@@ -1,6 +1,8 @@
 .header {
   position: relative;
   flex-grow: 1;
+  animation: appear 0.3s ease-in-out;
+  background: #FFF;
   &__nav {
     position: relative;
     z-index: 2;
@@ -12,7 +14,7 @@
       justify-content: space-between;
       padding: 20px;
     }
-    
+
     &_right {
       display: flex;
       align-items: center;
@@ -21,7 +23,6 @@
     &_logo {
       &-img {
         max-width: 150px;
-        
       }
     }
 
@@ -37,71 +38,121 @@
       font-family: 'Gilroy';
       font-size: 17px;
       font-weight: 400;
-      margin-left: 25px;
+      padding: 11px 17px;
       color: #fff;
-      &-reg{
-        background: white;
-        color: rgb(43, 43, 99);
+      background: transparent;
+      transition: 0.12s ease-in-out;
+      border-radius: 7px;
+      box-sizing: border-box;
+      margin-left: 2px;
+      &:hover {
+        background: rgba(255, 255, 255, 0.01);
+        box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.3);
+      }
+      &-reg,
+      &-login {
+        font-family: 'Gilroy';
+        font-size: 17px;
+        font-weight: 400;
+        background: transparent;
+        transition: 0.12s ease-in-out;
+
+        box-sizing: border-box;
+      }
+      &-reg {
+
+        color: rgb(255, 255, 255);
+
         padding: 10px 30px;
         border-radius: 7px;
         font-weight: 700;
         margin-left: 20px;
+        box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.7);
+        &:hover{
+          background: #FFF;
+          color: rgb(26, 26, 49);
+        }
       }
-      &-login{
+      &-login {
         color: rgb(255, 255, 255);
+        background: transparent;
         padding: 10px 30px;
         border-radius: 7px;
-        border: 1px #FFF solid;
+
         font-weight: 700;
+        box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.7);
+        &:hover{
+          background: #FFF;
+          color: rgb(26, 26, 49);
+        }
       }
     }
-
   }
 
-
-  &__content{
+  &__content {
     display: flex;
     align-items: center;
     font-family: 'Gilroy';
     padding: 100px 0;
-    &_left{
+    &_left {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       position: relative;
       z-index: 2;
     }
-    &_title{
+    &_title {
       font-size: 55px;
       font-weight: 500;
       line-height: 65px;
       color: rgb(70, 70, 70);
       margin-bottom: 40px;
-      & > span{
+      & > span {
         color: rgb(41, 41, 41);
         font-weight: 700;
       }
     }
-    &_descr{
+    &_descr {
       max-width: 400px;
       font-size: 18px;
       font-weight: 400;
       color: rgb(48, 48, 48);
     }
-    &_btn{
+    &_btn {
       padding: 12px 70px;
       font-family: 'Gilroy';
       font-size: 20px;
-      color: #FFF;
+      color: #fff;
       border-radius: 10px;
       margin-top: 40px;
-      background: linear-gradient(135deg, rgb(143, 143, 255), rgb(98, 98, 192));
+      
+      background: rgba(75, 107, 196, 0.7);
+      backdrop-filter: blur(4px);
       cursor: pointer;
+      transition: 0.12s;
+      
+      &:hover{
+        background: rgba(255, 255, 255, 0);
+        box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.3);
+        color: rgb(26, 26, 49);
+        
+      }
     }
-    &_img{
+    &_img {
       max-width: 700px;
       position: relative;
       z-index: 2;
     }
+  }
+}
+
+@keyframes appear{
+  0%{
+    margin-top: 50px;
+    opacity: 0;
+  }
+  100%{
+    margin-top: 0px;
+    opacity: 1;
   }
 }
