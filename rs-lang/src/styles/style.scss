@@ -1,0 +1,25 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+  background: rgb(26, 26, 49);
+}
+
+.container{
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
