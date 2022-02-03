@@ -2,7 +2,7 @@
   background: url('../assets/img/about-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  
+
   & > .container {
     display: flex;
     flex-direction: column;
@@ -48,13 +48,17 @@
       font-size: 40px;
       color: #fff;
       margin-bottom: 6px;
-      & .fa-github{
-        color: #FFF;
-        font-size: 30px;
-        margin-left: 10px;
-        transition: 0.12s;
-        &:hover{
-          color: black;
+      &_block {
+        display: flex;
+        align-items: center;
+        & .fa-github {
+          color: #fff;
+          font-size: 30px;
+          margin-left: 10px;
+          transition: 0.12s;
+          &:hover {
+            color: black;
+          }
         }
       }
     }
@@ -80,7 +84,7 @@
       margin-top: 10px;
       justify-self: flex-end;
       flex-grow: 1;
-      & > span {
+      & div {
         padding: 7px 15px;
         font-size: 15px;
         border-radius: 7px;
@@ -110,9 +114,9 @@
           content: '';
         }
 
-        & > .fa-star{
+        & .fa-star {
           font-size: 15px;
-          color: #FFF;
+          color: #fff;
           margin-right: 5px;
         }
       }
@@ -121,7 +125,7 @@
 }
 
 @keyframes shimmer {
-  0%{
+  0% {
     transform: translateX(-100%);
   }
   50% {

@@ -65,10 +65,22 @@ export class MainCard {
     cardAvatar.src = this.avatarLink
     card.appendChild(cardAvatar)
 
+    const cardTitleBlock:HTMLElement = document.createElement('div')
+    cardTitleBlock.className = 'about__card_title_block'
+    card.appendChild(cardTitleBlock)
+
     const cardTitle:HTMLElement = document.createElement('h3')
     cardTitle.className = 'about__card_title'
     cardTitle.textContent = this.name
-    card.appendChild(cardTitle)
+    cardTitleBlock.appendChild(cardTitle)
+
+    const cardTitleLink: HTMLLinkElement = document.createElement('a')
+    cardTitleLink.href = this.ghLink
+    cardTitleBlock.appendChild(cardTitleLink)
+    
+    const cardTitleLinkIcon: HTMLElement = document.createElement('i')
+    cardTitleLinkIcon.className = 'fab fa-github'
+    cardTitleLink.appendChild(cardTitleLinkIcon)
 
     const cardSubtitle:HTMLElement = document.createElement('h4')
     cardSubtitle.className = 'about__card_subtitle'
@@ -84,19 +96,23 @@ export class MainCard {
     cardGoals.className = 'about__card_goals'
     card.appendChild(cardGoals)
     
+    const cardGoalsBlock1: HTMLElement = document.createElement('div')
     const cardGoalsSpan1:HTMLElement = document.createElement('span')
     const cardGoalsIcon1:HTMLElement = document.createElement('i')
     cardGoalsIcon1.className = 'far fa-star'
-    cardGoalsSpan1.appendChild(cardGoalsIcon1)
+    cardGoalsBlock1.appendChild(cardGoalsIcon1)
     cardGoalsSpan1.textContent = this.goals[0]
-    cardGoals.appendChild(cardGoalsSpan1)
+    cardGoalsBlock1.appendChild(cardGoalsSpan1)
+    cardGoals.appendChild(cardGoalsBlock1)
 
+    const cardGoalsBlock2: HTMLElement = document.createElement('div')
     const cardGoalsSpan2:HTMLElement = document.createElement('span')
     const cardGoalsIcon2:HTMLElement = document.createElement('i')
     cardGoalsIcon2.className = 'far fa-star'
-    cardGoalsSpan2.appendChild(cardGoalsIcon2)
+    cardGoalsBlock2.appendChild(cardGoalsIcon2)
     cardGoalsSpan2.textContent = this.goals[1]
-    cardGoals.appendChild(cardGoalsSpan2)
+    cardGoalsBlock2.appendChild(cardGoalsSpan2)
+    cardGoals.appendChild(cardGoalsBlock2)
 
   }
 }

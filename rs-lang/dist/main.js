@@ -71,10 +71,19 @@ var MainCard = /*#__PURE__*/function () {
       cardAvatar.className = 'about__card_img';
       cardAvatar.src = this.avatarLink;
       card.appendChild(cardAvatar);
+      var cardTitleBlock = document.createElement('div');
+      cardTitleBlock.className = 'about__card_title_block';
+      card.appendChild(cardTitleBlock);
       var cardTitle = document.createElement('h3');
       cardTitle.className = 'about__card_title';
       cardTitle.textContent = this.name;
-      card.appendChild(cardTitle);
+      cardTitleBlock.appendChild(cardTitle);
+      var cardTitleLink = document.createElement('a');
+      cardTitleLink.href = this.ghLink;
+      cardTitleBlock.appendChild(cardTitleLink);
+      var cardTitleLinkIcon = document.createElement('i');
+      cardTitleLinkIcon.className = 'fab fa-github';
+      cardTitleLink.appendChild(cardTitleLinkIcon);
       var cardSubtitle = document.createElement('h4');
       cardSubtitle.className = 'about__card_subtitle';
       cardSubtitle.textContent = this.role;
@@ -86,18 +95,22 @@ var MainCard = /*#__PURE__*/function () {
       var cardGoals = document.createElement('div');
       cardGoals.className = 'about__card_goals';
       card.appendChild(cardGoals);
+      var cardGoalsBlock1 = document.createElement('div');
       var cardGoalsSpan1 = document.createElement('span');
       var cardGoalsIcon1 = document.createElement('i');
       cardGoalsIcon1.className = 'far fa-star';
-      cardGoalsSpan1.appendChild(cardGoalsIcon1);
+      cardGoalsBlock1.appendChild(cardGoalsIcon1);
       cardGoalsSpan1.textContent = this.goals[0];
-      cardGoals.appendChild(cardGoalsSpan1);
+      cardGoalsBlock1.appendChild(cardGoalsSpan1);
+      cardGoals.appendChild(cardGoalsBlock1);
+      var cardGoalsBlock2 = document.createElement('div');
       var cardGoalsSpan2 = document.createElement('span');
       var cardGoalsIcon2 = document.createElement('i');
       cardGoalsIcon2.className = 'far fa-star';
-      cardGoalsSpan2.appendChild(cardGoalsIcon2);
+      cardGoalsBlock2.appendChild(cardGoalsIcon2);
       cardGoalsSpan2.textContent = this.goals[1];
-      cardGoals.appendChild(cardGoalsSpan2);
+      cardGoalsBlock2.appendChild(cardGoalsSpan2);
+      cardGoals.appendChild(cardGoalsBlock2);
     }
   }]);
 
