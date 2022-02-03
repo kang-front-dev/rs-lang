@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    main: './index.js',
+    main: './index.ts',
   },
   output: {
     filename: '[name].js',
@@ -57,10 +57,10 @@ module.exports = {
           'sass-loader',
         ],
       },
-      {
-        test: /\.(png|jpg|jpeg|svg|gif)$/,
-        use: ['file-loader'],
-      },
+      // {
+      //   test: /\.(png|jpg|jpeg|svg|gif)$/,
+      //   use: ['file-loader'],
+      // },
       // {
       //   test: /\.(ttf|woff|woff2|eot)/,
       //   use: [
@@ -92,6 +92,10 @@ module.exports = {
           },
         },
       },
+      
     ],
   },
+  resolve: {
+    extensions: ['.js', '.ts', '.tsx'],
+  }
 };

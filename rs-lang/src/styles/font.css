@@ -1,0 +1,6 @@
+.fa-star::before{
+  content: '\f005';
+}
+.fa-github::before{
+  content: '\f09b';
+}
