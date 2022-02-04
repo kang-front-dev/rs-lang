@@ -167,6 +167,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+
 /***/ "./styles/font.css":
 /*!*************************!*\
   !*** ./styles/font.css ***!
@@ -190,6 +191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
+
 
 /***/ "./styles/header-bg.scss":
 /*!*******************************!*\
@@ -254,6 +256,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	}
 /******/ 	
 /************************************************************************/
+
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
@@ -271,6 +274,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
 /******/ 	}();
 /******/ 	
+
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	!function() {
 /******/ 		// define __esModule on exports
@@ -287,12 +291,15 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 !function() {
 /*!******************!*\
+
   !*** ./index.ts ***!
+
   \******************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_fonts_Roboto_stylesheet_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/fonts/Roboto/stylesheet.css */ "./assets/fonts/Roboto/stylesheet.css");
 /* harmony import */ var _assets_fonts_Montserrat_stylesheet_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/fonts/Montserrat/stylesheet.css */ "./assets/fonts/Montserrat/stylesheet.css");
 /* harmony import */ var _assets_fonts_Gilroy_stylesheet_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/fonts/Gilroy/stylesheet.css */ "./assets/fonts/Gilroy/stylesheet.css");
+
 /* harmony import */ var _assets_fonts_FontAwesome_stylesheet_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/fonts/FontAwesome/stylesheet.css */ "./assets/fonts/FontAwesome/stylesheet.css");
 /* harmony import */ var _styles_font_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles/font.css */ "./styles/font.css");
 /* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles/style.scss */ "./styles/style.scss");
@@ -300,6 +307,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_header_bg_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./styles/header-bg.scss */ "./styles/header-bg.scss");
 /* harmony import */ var _styles_about_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./styles/about.scss */ "./styles/about.scss");
 /* harmony import */ var _components_main__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/main */ "./components/main.ts");
+
+
 
 
 
@@ -349,6 +358,7 @@ var sashaCard = new _components_main__WEBPACK_IMPORTED_MODULE_9__.MainCard(sasha
 sashaCard.createCard();
 kostyaCard.createCard();
 lizaCard.createCard();
+
 }();
 /******/ })()
 ;
