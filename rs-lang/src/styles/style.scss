@@ -34,4 +34,35 @@ section{
   border-radius: 1px;
   background: #FFF;
   margin-top: 20px;
+  
+  opacity: 0;
+    &-appear-active{
+      animation: slideFromDown 0.3s ease-in-out;
+      opacity: 1;
+    }
+}
+
+.section__title {
+  font-family: 'Gilroy';
+  font-weight: 700;
+  font-size: 60px;
+  color: #fff;
+
+  opacity: 0;
+  &-appear-active{
+    animation: slideFromDown 0.3s ease-in-out;
+    opacity: 1;
+  }
+
+}
+
+@keyframes slideFromDown{
+  0%{
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(0px);
+    opacity: 1;
+  }
 }
