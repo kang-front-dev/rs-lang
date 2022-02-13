@@ -8,13 +8,17 @@ import './styles/style.scss';
 import './styles/header.scss';
 import './styles/header-bg.scss';
 import './styles/about.scss';
+import './styles/footer.scss';
 
 import {
   generateMain,
   generateSection,
-  generateContainer,
   MainCard,
+  generateFooter,
+  generateContainer
 } from './components/main';
+
+import { setAppearAnimation, setSlideFromRightAnimation } from './components/animation';
 
 const sashaInfo: object = {
   avatarLink: 'assets/img/avatar-2.png',
@@ -47,7 +51,7 @@ const lizaInfo: object = {
   goals: ['Электронный учебник', 'Статистика'],
 };
 
-function renderMain() {
+function buildMain() {
   const elementMain: HTMLElement = generateMain(),
     sectionAbout: HTMLElement = generateSection('about', 'Наша команда')
 
@@ -55,7 +59,8 @@ function renderMain() {
 
   document.body.appendChild(elementMain);
 }
-renderMain();
+buildMain();
+generateFooter()
 
 const sashaCard = new MainCard(sashaInfo),
   kostyaCard = new MainCard(kostyaInfo),
@@ -64,3 +69,19 @@ const sashaCard = new MainCard(sashaInfo),
 sashaCard.createCard();
 kostyaCard.createCard();
 lizaCard.createCard();
+
+
+setAppearAnimation('.section__title')
+setAppearAnimation('.section__underline')
+setAppearAnimation('.about__wrapper')
+
+const aboutCards = document.querySelectorAll('.about__card')
+setSlideFromRightAnimation('#about__card', aboutCards[0])
+setSlideFromRightAnimation('#about-card-1', aboutCards[1], 0.2)
+setSlideFromRightAnimation('#about-card-2', aboutCards[2], 0.4)
+
+// const guideCards = document.querySelectorAll('.guide__card')
+// setSlideFromRightAnimation('#about__card', aboutCards[0])
+// setSlideFromRightAnimation('#about-card-1', aboutCards[1], 0.2)
+// setSlideFromRightAnimation('#about-card-2', aboutCards[2], 0.4)
+
