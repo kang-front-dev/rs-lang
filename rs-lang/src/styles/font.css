@@ -1,6 +1,11 @@
+
+
 .fa-star::before{
   content: '\f005';
 }
 .fa-github::before{
   content: '\f09b';
+}
+.fa-times::before{
+  content: '\f00d';
 }

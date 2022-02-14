@@ -7,8 +7,6 @@ export function setAppearAnimation(targetSelector) {
   
   targets.forEach(item => {
     window.addEventListener('scroll', (e) => {
-      console.log(targetSelector, Math.round(item.getBoundingClientRect().top) , window.innerHeight + 50);
-      
       if (Math.round(item.getBoundingClientRect().top) < window.innerHeight + 50) {
         item.classList.add(`${targetSelector}-appear-active`);
       }

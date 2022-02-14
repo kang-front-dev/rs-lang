@@ -1,7 +1,8 @@
-import './assets/fonts/Roboto/stylesheet.css';
-import './assets/fonts/Montserrat/stylesheet.css';
-import './assets/fonts/Gilroy/stylesheet.css';
+
+
 import './assets/fonts/FontAwesome/stylesheet.css';
+import './assets/fonts/Gilroy/stylesheet.css';
+
 
 import './styles/font.css';
 import './styles/style.scss';
@@ -10,15 +11,20 @@ import './styles/header-bg.scss';
 import './styles/about.scss';
 import './styles/footer.scss';
 
+
+import './components/pages/audiogame/audiogame.css';
+
 import {
+  setAppearAnimation,
+  setSlideFromRightAnimation,
+} from './components/app/animation';
+import {
+  MainCard,
+  deleteMain,
+  generateFooter,
   generateMain,
   generateSection,
-  MainCard,
-  generateFooter,
-  generateContainer
-} from './components/main';
-
-import { setAppearAnimation, setSlideFromRightAnimation } from './components/animation';
+} from './components/app/main';
 
 const sashaInfo: object = {
   avatarLink: 'assets/img/avatar-2.png',
@@ -53,14 +59,14 @@ const lizaInfo: object = {
 
 function buildMain() {
   const elementMain: HTMLElement = generateMain(),
-    sectionAbout: HTMLElement = generateSection('about', 'Наша команда')
+    sectionAbout: HTMLElement = generateSection('about', 'Наша команда');
 
   elementMain.appendChild(sectionAbout);
 
   document.body.appendChild(elementMain);
 }
 buildMain();
-generateFooter()
+generateFooter();
 
 const sashaCard = new MainCard(sashaInfo),
   kostyaCard = new MainCard(kostyaInfo),
@@ -70,15 +76,30 @@ sashaCard.createCard();
 kostyaCard.createCard();
 lizaCard.createCard();
 
+setAppearAnimation('.section__title');
+setAppearAnimation('.section__underline');
+setAppearAnimation('.about__wrapper');
 
-setAppearAnimation('.section__title')
-setAppearAnimation('.section__underline')
-setAppearAnimation('.about__wrapper')
+const aboutCards = document.querySelectorAll('.about__card');
+setSlideFromRightAnimation('#about__card', aboutCards[0]);
+setSlideFromRightAnimation('#about-card-1', aboutCards[1], 0.2);
+setSlideFromRightAnimation('#about-card-2', aboutCards[2], 0.4);
 
-const aboutCards = document.querySelectorAll('.about__card')
-setSlideFromRightAnimation('#about__card', aboutCards[0])
-setSlideFromRightAnimation('#about-card-1', aboutCards[1], 0.2)
-setSlideFromRightAnimation('#about-card-2', aboutCards[2], 0.4)
+import './components/pages/user/user.css';
+import './components/pages/register/register.css';
+import { User } from './components/pages/user/user';
 
+const loginRegList: HTMLElement = document.querySelector('#login-reg-list')
 
+const loginLink: HTMLElement = document.querySelector('.header__nav_link-login'),
+  regLink: HTMLElement = document.querySelector('.header__nav_link-reg')
 
+  loginRegList.addEventListener('click', (e) => {
+    if(e.target === loginLink){
+
+      const loginObject = new User('user'),
+      loginRendered = loginObject.render();
+      
+      document.body.appendChild(loginRendered)
+    }
+  })

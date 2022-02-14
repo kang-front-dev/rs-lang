@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    main: './index.ts',
+    main: ['babel-polyfill','./index.ts'],
   },
   output: {
     filename: '[name].js',
@@ -61,17 +61,6 @@ module.exports = {
       //   test: /\.(png|jpg|jpeg|svg|gif)$/,
       //   use: ['file-loader'],
       // },
-      // {
-      //   test: /\.(ttf|woff|woff2|eot)/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader?name=./assets/fonts/[name].[ext]',
-      //     },
-      //     {
-      //       loader: 'file-loader?name=./assets/fonts/[name].[ext]',
-      //     },
-      //   ],
-      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -92,10 +81,9 @@ module.exports = {
           },
         },
       },
-      
     ],
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
-  }
+    extensions: ['.ts', '.js']
+  },
 };
