@@ -21,8 +21,17 @@ export interface IWords{
 
 
 export const getWords = async (group:number, page:number) => {
+  try {
     const rawResponse = await fetch(`${base}words?group=${group}&page=${page}`)
-    return<IWords> await rawResponse.json()
+    
+    if (rawResponse.status === 200) {
+       return <IWords> await rawResponse.json();
+    }
+    return null;
+   
+  } catch (err) {
+    throw err as Error;
+  }
 }
 export const getWord = async (id:string) => {
     return (await fetch(`${base}words/${id}`)).json()
@@ -118,3 +127,35 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
       'Content-Type': 'application/json'
     },
   })).json();
+  export const getAllWords = async (
+    page = 1,
+    limit = 20,
+    group = 0
+  ): Promise<{ words: Array<IWords>; count: string }> | null => {
+    try { 
+      const dataWords = await fetch(
+        `${base}/words?_limit=${limit}&page=${page}&group=${group}`
+      );
+      const res: IWords[] = await dataWords.json();
+      if (dataWords.status === 200) {
+        return {
+          words: res,
+          count: dataWords.headers.get("X-Total-Count") || "0",
+        };
+      }
+      return null;
+    } catch (err) {
+      throw err as Error;
+    }
+  };
+
+  export const deleteWord = async (wordId: string): Promise<void> => {
+    try {
+      await fetch(`${base}/words/${wordId}`, {
+        method: "DELETE",
+      });
+    } catch (err) {
+      throw err as Error;
+    }
+  };
+  
