@@ -158,4 +158,8 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
       throw err as Error;
     }
   };
+  export interface IConnection {
+    name: string;
+    component: () => void;
+  }
   
