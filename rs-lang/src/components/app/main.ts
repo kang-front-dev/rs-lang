@@ -77,7 +77,8 @@ export function generateFooter() {
   footerContacts.appendChild(footerContactsLi1)
   const footerContactsLink1: HTMLElement = document.createElement('a')
   footerContactsLink1.className = 'footer__link'
-  footerContactsLink1.href = 'https://github.com/alexanderson0708'
+  // footerContactsLink1.href = 'https://github.com/alexanderson0708'
+  footerContactsLink1.setAttribute("href", "https://github.com/alexanderson0708")
   footerContactsLink1.textContent = 'alexanderson0708'
   footerContactsLi1.appendChild(footerContactsLink1)
 
@@ -85,7 +86,8 @@ export function generateFooter() {
   footerContacts.appendChild(footerContactsLi2)
   const footerContactsLink2: HTMLElement = document.createElement('a')
   footerContactsLink2.className = 'footer__link'
-  footerContactsLink2.href = 'https://github.com/na1led'
+  // footerContactsLink2.href = 'https://github.com/na1led'
+  footerContactsLink2.setAttribute("href", "https://github.com/na1led")
   footerContactsLink2.textContent = 'na1led'
   footerContactsLi2.appendChild(footerContactsLink2)
 
@@ -93,7 +95,8 @@ export function generateFooter() {
   footerContacts.appendChild(footerContactsLi3)
   const footerContactsLink3: HTMLElement = document.createElement('a')
   footerContactsLink3.className = 'footer__link'
-  footerContactsLink3.href = 'https://github.com/elizavetachizh'
+  // footerContactsLink3.href = 'https://github.com/elizavetachizh';
+  footerContactsLink3.setAttribute("href", "https://github.com/elizavetachizh")
   footerContactsLink3.textContent = 'elizavetachizh'
   footerContactsLi3.appendChild(footerContactsLink3)
 
@@ -180,7 +183,7 @@ export class MainCard {
     cardTitle.textContent = this.name
     cardTitleBlock.appendChild(cardTitle)
 
-    const cardTitleLink: HTMLLinkElement = document.createElement('a')
+    const cardTitleLink = document.createElement('a');
     cardTitleLink.href = this.ghLink
     cardTitleBlock.appendChild(cardTitleLink)
     

@@ -1,15 +1,15 @@
 import { Component } from "../addition/addComponents";
-import { IWord } from "../../interfaces/iword";
+import { IWords } from "../../../api/api";
 import { Pages } from "../pagination";
 import "./style.scss";
 import { WordsItem } from "./wordsItem";
-import { MainTextContent } from "../Components/textBookMain";
+import { MainTextContent } from "../componentsTextBook";
 export class GroupWordsContainer extends Component {
   removeWord: (wordId: string) => void = () => {};
    updateWord: (wordId: string) => void = () => {};
   updatePage: (page: number) => void = () => {};
   getGroup:(group:number)=> void = () => {};
-  public word: IWord;
+  public word: IWords;
   private container: Component;
   private title: Component;
   pagination: Pages;
@@ -17,7 +17,7 @@ export class GroupWordsContainer extends Component {
   wordCart: Array<WordsItem>;
 
   constructor(parentNode: HTMLElement) {
-    super(parentNode, "div", ["garage-container"]);
+    super(parentNode, "div", ["textBooks-container"]);
     this.wordCart = [];
     this.title = new Component(this.element, "h2");
     this.grouping=new MainTextContent(this.element)
@@ -35,7 +35,7 @@ export class GroupWordsContainer extends Component {
     this.title.element.innerHTML = `WordLength - (${wordLength} words)`;
   }
 
-  addItems(wordCart: Array<IWord>, wordLength: string): void {
+  addItems(wordCart: Array<IWords>, wordLength: string): void {
     this.clear();
     this.updateTitle(wordLength);
     this.wordCart = wordCart.map((word) => {

@@ -10,8 +10,9 @@ import './styles/header.scss';
 import './styles/header-bg.scss';
 import './styles/about.scss';
 import './styles/footer.scss';
-
-
+import "./components/pages/textBook/textBook"
+import "./components/pages/textBook/groupWords/groupWords"
+import "./components/pages/textBook/componentsTextBook/index"
 import './components/pages/audiogame/audiogame.css';
 
 import {
@@ -25,6 +26,12 @@ import {
   generateMain,
   generateSection,
 } from './components/app/main';
+import {App} from "./components/pages/textBook/textBook"
+window.addEventListener("DOMContentLoaded", () => {
+  const rootElement = document.body;
+  const app = new App(rootElement);
+  app.init();
+});
 
 const sashaInfo: object = {
   avatarLink: 'assets/img/avatar-2.png',

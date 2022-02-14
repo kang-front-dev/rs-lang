@@ -1,5 +1,5 @@
 import { Component } from "../addition/addComponents";
-import { GroupWordsClass } from "../groupWords.ts/groupWords";
+import { GroupWordsClass } from "../groupWords/groupWords";
 
 import { IConnection } from "../../../api/api";
 

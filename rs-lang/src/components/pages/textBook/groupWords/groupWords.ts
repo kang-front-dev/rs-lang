@@ -1,9 +1,9 @@
 import { Component } from "../addition/addComponents";
-import { IWord } from "../../interfaces/iword";
+import { IWords } from "../../../api/api";
 import "./style.scss";
-import {getAllWords, getWord, deleteWord } from "../../api/api";
+import { getAllWords, getWord, deleteWord } from "../../../api/api";
 import { GroupWordsContainer } from "./groupWordsContainer";
-import { MainTextContent } from "../Components/textBookMain";
+import { MainTextContent } from "../componentsTextBook";
 export class GroupWordsClass extends Component {
   [x: string]: any;
   page = 1;
@@ -43,7 +43,7 @@ export class GroupWordsClass extends Component {
     const data = await getAllWords(page, group);
 
     if (data) {
-      const wordsArr: Array<IWord> = data.words;
+      const wordsArr: Array<IWords> = data.words;
       const wordLength: string = data.count;
       this.groupWordsContainer.addItems(wordsArr, wordLength);
       this.groupWordsContainer.pagination.updateNextButton(
@@ -65,7 +65,7 @@ export class GroupWordsClass extends Component {
     console.log(word);
     // if (word) this.garageOptions.updateState(word);
   }
-  private async updateWord(word: IWord): Promise<void> {
+  private async updateWord(word: IWords): Promise<void> {
     await this.updateWord(word);
     await this.getAllWords(this.page, this.group);
   }
