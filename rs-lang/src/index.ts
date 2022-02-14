@@ -80,8 +80,5 @@ setSlideFromRightAnimation('#about__card', aboutCards[0])
 setSlideFromRightAnimation('#about-card-1', aboutCards[1], 0.2)
 setSlideFromRightAnimation('#about-card-2', aboutCards[2], 0.4)
 
-// const guideCards = document.querySelectorAll('.guide__card')
-// setSlideFromRightAnimation('#about__card', aboutCards[0])
-// setSlideFromRightAnimation('#about-card-1', aboutCards[1], 0.2)
-// setSlideFromRightAnimation('#about-card-2', aboutCards[2], 0.4)
+
 
