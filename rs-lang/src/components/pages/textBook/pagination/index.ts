@@ -1,5 +1,5 @@
 import { Component } from "../addition/addComponents";
-import { Button } from "../../../UI/Button";
+import { Button } from "../../../UI/Button/button";
 import "./style.scss";
 
 export class Pages extends Component {

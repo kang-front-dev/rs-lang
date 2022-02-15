@@ -1,7 +1,7 @@
 import { Component } from "../addition/addComponents";
-import { Button } from "../../../UI/Button";
+import { Button } from "../../../UI/Button/button";
 import { base, IWords } from "../../../api/api";
-import "../groupWords/style.scss"
+import "../groupWords/groupWordsStyle.scss"
 
 
 export class MainTextContent extends Component {

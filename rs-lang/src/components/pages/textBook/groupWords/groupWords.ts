@@ -1,9 +1,9 @@
 import { Component } from "../addition/addComponents";
 import { IWords } from "../../../api/api";
-import "./style.scss";
+import "./groupWordsStyle.scss";
 import { getAllWords, getWord, deleteWord } from "../../../api/api";
 import { GroupWordsContainer } from "./groupWordsContainer";
-import { MainTextContent } from "../componentsTextBook";
+import { MainTextContent } from "../componentsTextBook/componentsTextBook";
 export class GroupWordsClass extends Component {
   [x: string]: any;
   page = 1;

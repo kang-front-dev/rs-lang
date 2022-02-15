@@ -1,6 +1,6 @@
 import "./button.scss";
 import { Component } from "../../pages/textBook/addition/addComponents";
-import "../../groupWords/style.scss"
+import "../../pages/textBook/groupWords/groupWordsStyle.scss"
 
 export class Button extends Component {
   onClickButton: () => void = () => {};

@@ -1,8 +1,8 @@
 import {Component} from "../addition/addComponents"
 import {IWords, base} from "../../../api/api"
 
-import "./style.scss";
-import {Button} from "../../../UI/Button/index"
+import "./groupWordsStyle.scss";
+import {Button} from "../../../UI/Button/button"
 
 export class WordsItem extends Component {
   removeWord: (wordId: string) => void = () => {};

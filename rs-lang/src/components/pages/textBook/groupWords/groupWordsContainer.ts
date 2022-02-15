@@ -1,9 +1,9 @@
 import { Component } from "../addition/addComponents";
 import { IWords } from "../../../api/api";
 import { Pages } from "../pagination";
-import "./style.scss";
+import "./groupWordsStyle.scss";
 import { WordsItem } from "./wordsItem";
-import { MainTextContent } from "../componentsTextBook";
+import { MainTextContent } from "../componentsTextBook/componentsTextBook";
 export class GroupWordsContainer extends Component {
   removeWord: (wordId: string) => void = () => {};
    updateWord: (wordId: string) => void = () => {};
