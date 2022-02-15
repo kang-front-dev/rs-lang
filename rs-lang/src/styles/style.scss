@@ -55,6 +55,11 @@ section {
   }
 }
 
+.module__wrapper{
+  position: relative;
+  z-index: 5;
+}
+
 @keyframes slideFromDown {
   0% {
     transform: translateY(100px);
@@ -62,6 +67,15 @@ section {
   }
   100% {
     transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }

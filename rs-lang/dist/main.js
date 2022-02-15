@@ -631,7 +631,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "generateMain": function() { return /* binding */ generateMain; },
 /* harmony export */   "generateFooter": function() { return /* binding */ generateFooter; },
-/* harmony export */   "deleteMain": function() { return /* binding */ deleteMain; },
+/* harmony export */   "disableMain": function() { return /* binding */ disableMain; },
+/* harmony export */   "enableMain": function() { return /* binding */ enableMain; },
 /* harmony export */   "generateSection": function() { return /* binding */ generateSection; },
 /* harmony export */   "generateContainer": function() { return /* binding */ generateContainer; },
 /* harmony export */   "MainCard": function() { return /* binding */ MainCard; }
@@ -723,9 +724,13 @@ function generateFooter() {
   footerContactsLink3.textContent = 'elizavetachizh';
   footerContactsLi3.appendChild(footerContactsLink3);
 }
-function deleteMain() {
+function disableMain() {
   var main = document.querySelector('.main');
-  main.remove();
+  main.classList.add('element-disabled');
+}
+function enableMain() {
+  var main = document.querySelector('.main');
+  main.classList.remove('element-disabled');
 }
 function generateSection(sectionSelector, titleText) {
   var section = document.createElement('section');
@@ -818,6 +823,484 @@ var MainCard = /*#__PURE__*/function () {
   }]);
 
   return MainCard;
+}();
+
+/***/ }),
+
+/***/ "./components/pages/audiogame/audiogame.ts":
+/*!*************************************************!*\
+  !*** ./components/pages/audiogame/audiogame.ts ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AudioGame": function() { return /* binding */ AudioGame; }
+/* harmony export */ });
+/* harmony import */ var _api_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api/api */ "./components/api/api.ts");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var AudioGame = /*#__PURE__*/function () {
+  function AudioGame(id) {
+    _classCallCheck(this, AudioGame);
+
+    _defineProperty(this, "questionsShufle", function (array) {
+      for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var _ref = [array[j], array[i]];
+        array[i] = _ref[0];
+        array[j] = _ref[1];
+      }
+
+      return array;
+    });
+
+    _defineProperty(this, "createForShufle", function (questionArr) {
+      var forShufle = [];
+      questionArr.forEach(function (el) {
+        forShufle.push(el.wordTranslate);
+      });
+      return forShufle;
+    });
+
+    this.container = document.createElement('div');
+    this.container.id = id;
+    this.currentAudio = '';
+    this.questions = [];
+    this.correctAnswer = 0;
+    this.questNumber = 0;
+    this.wrongAnswer = [];
+    this.rightAnswer = [];
+    this.audio = new Audio();
+  }
+
+  _createClass(AudioGame, [{
+    key: "audioGameHeader",
+    value: function audioGameHeader(className) {
+      var _this = this;
+
+      var sidebar = document.createElement('aside');
+      sidebar.className = 'sidebar';
+      var headerNav = document.createElement('div');
+      headerNav.className = 'header__nav-audio'; // const sidebarBtn = document.createElement('div');
+      // sidebarBtn.innerHTML = `
+      //         <div id='top'></div>
+      //         <div id='middle'></div>
+      //         <div id='bottom'></div>`;
+      // sidebarBtn.id = 'btn';
+      // sidebarBtn.onclick = () => {
+      //   sidebarBtn.classList.toggle('active');
+      //   sidebarNav.classList.toggle('active');
+      // };
+      // const sidebarNav = document.createElement('nav');
+      // sidebarNav.id = 'box';
+      // sidebarNav.innerHTML = `
+      // 	    <ul id="items">
+      // 	    	<li class="item">Item 1</li>
+      // 	    	<li class="item">Item 2</li>
+      // 	    	<li class="item">Item 3</li>
+      // 	    	<li class="item">Item 4</li>
+      // 	    	<li class="item">Item 5</li>
+      // 	    </ul>`;
+      // sidebar.append(sidebarBtn, sidebarNav);
+
+      var headerGame = document.createElement('div');
+      headerGame.className = "game__".concat(className);
+      headerGame.append(headerNav);
+      headerNav.append(sidebar);
+      var headerSet = document.createElement('div');
+      headerSet.className = 'header__set';
+      var headerCross = document.createElement('button');
+      var headerVolume = document.createElement('button');
+      var headerSize = document.createElement('button');
+      headerCross.className = 'exit__game';
+      headerVolume.className = 'game__volume';
+      headerSize.className = 'game__size';
+      headerCross.style.backgroundImage = 'url(../../../assets/svg/cross.svg)';
+      headerVolume.style.backgroundImage = 'url(../../../assets/svg/vol.svg)';
+      headerSize.style.backgroundImage = 'url(../../../assets/svg/size.svg)';
+
+      headerCross.onclick = function () {
+        _this.container.remove();
+      };
+
+      headerVolume.onclick = function () {
+        if (_this.audio.volume === 0) {
+          _this.audio.volume = 1;
+          headerVolume.style.backgroundImage = 'url(../../../assets/svg/vol.svg)';
+        } else {
+          _this.audio.volume = 0;
+          headerVolume.style.backgroundImage = 'url(../../../assets/svg/mute.svg)';
+        }
+      };
+
+      headerSize.onclick = function () {
+        document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+      };
+
+      headerGame.append(headerSet);
+      headerSet.append(headerSize, headerVolume, headerCross);
+      this.container.append(headerGame);
+    }
+  }, {
+    key: "startGame",
+    value: function startGame() {
+      var _this2 = this;
+
+      this.questions = [];
+      this.correctAnswer = 0;
+      this.questNumber = 0;
+      this.wrongAnswer = [];
+      this.rightAnswer = [];
+      var startGameContainer = document.createElement('div');
+      startGameContainer.className = 'start-game__container';
+      this.container.append(startGameContainer);
+      var startGameHeader = document.createElement('p');
+      startGameHeader.className = 'start-game__header__text';
+      startGameHeader.innerHTML = 'Аудиовызов';
+      var startGameText = document.createElement('p');
+      startGameText.className = 'start-game__text';
+      startGameText.innerHTML = 'Игра "Аудиовызов" улучшает твое восприятие речи на слух';
+      var startGameChoose = document.createElement('p');
+      startGameChoose.className = 'start-game__choose';
+      startGameChoose.innerHTML = 'Выберите уровень:';
+      var arr = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+      var startGameBtns = document.createElement('div');
+      startGameBtns.className = 'start-game__btns';
+      arr.forEach(function (elem) {
+        var startGameBtn = document.createElement('button');
+        startGameBtn.className = 'start-game__btn';
+        startGameBtn.innerHTML = "".concat(elem);
+        startGameBtn.dataset.level = "".concat(elem);
+        startGameBtns.append(startGameBtn);
+
+        startGameBtn.onclick = function () {
+          localStorage.setItem('group', String(arr.indexOf(elem)));
+          startGameBtns.childNodes.forEach(function (el) {
+            el.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+            el.style.color = 'rgb(48, 48, 48)';
+          });
+          startGameBtn.style.backgroundColor = 'rgb(43, 43, 99)';
+          startGameBtn.style.color = '#FFF';
+          startGameSubmit.disabled = false;
+        };
+      });
+      var startGameSubmit = document.createElement('button');
+      startGameSubmit.className = 'start-game__submit';
+      startGameSubmit.innerHTML = 'Начать';
+      startGameSubmit.disabled = true;
+      startGameSubmit.onclick = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var page, answer, i, subQuestion, randomArr, randomnumber, j;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                page = Math.floor(Math.random() * (30 - 0) + 0);
+                _context.next = 3;
+                return (0,_api_api__WEBPACK_IMPORTED_MODULE_0__.getWords)(+localStorage.getItem('group'), page);
+
+              case 3:
+                answer = _context.sent;
+
+                for (i = 0; i < 20; i++) {
+                  subQuestion = [];
+                  subQuestion.push(answer[i]);
+                  randomArr = [i];
+
+                  while (randomArr.length <= 3) {
+                    randomnumber = Math.floor(Math.random() * 20);
+                    if (randomArr.indexOf(randomnumber) == -1) randomArr.push(randomnumber);
+                  }
+
+                  for (j = 0; j < 3; j++) {
+                    subQuestion.push(answer[randomArr[j + 1]]);
+                  }
+
+                  _this2.questions.push(subQuestion);
+                }
+
+                startGameContainer.remove();
+
+                _this2.renderGame(_this2.questNumber);
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+      startGameContainer.append(startGameHeader, startGameText, startGameChoose, startGameBtns, startGameSubmit);
+    }
+  }, {
+    key: "renderGame",
+    value: function renderGame(num) {
+      var _this3 = this;
+
+      var gameMainContainer = document.createElement('div');
+      var questionArr = this.questions[num];
+      var a = this.createForShufle(questionArr);
+      var questionPage = this.questionsShufle(a);
+      gameMainContainer.className = 'game-main__container';
+      this.container.append(gameMainContainer);
+      var countQuest = document.createElement('p');
+      countQuest.className = 'count__quest';
+      countQuest.innerHTML = "".concat(num + 1, "/").concat(this.questions.length);
+      var audioPlay = document.createElement('button');
+      audioPlay.className = 'audio__play';
+      audioPlay.style.backgroundImage = 'url(../../../assets/svg/vol.svg)';
+      audioPlay.dataset.answer = "".concat(questionArr[0].word);
+      this.audio.src = "".concat(_api_api__WEBPACK_IMPORTED_MODULE_0__.base).concat(questionArr[0].audio);
+      this.audio.play();
+
+      audioPlay.onclick = function () {
+        _this3.audio.src = "".concat(_api_api__WEBPACK_IMPORTED_MODULE_0__.base).concat(questionArr[0].audio);
+
+        _this3.audio.play();
+      };
+
+      var audioImg = document.createElement('img');
+      audioImg.className = 'audio__img';
+      var audioDiscript = document.createElement("p");
+      audioDiscript.className = 'audio__discription';
+      var audioQuestBox = document.createElement('div');
+      audioQuestBox.className = 'audio_questions';
+
+      function disabledBtn() {
+        document.querySelectorAll('.audio-quest__btn').forEach(function (el) {
+          el.disabled = true;
+          if (el.textContent === questionArr[0].wordTranslate) el.style.background = 'rgba(126, 255, 133, 0.7)';
+        });
+      }
+
+      questionPage.forEach(function (el) {
+        var questBtn = document.createElement('button');
+        questBtn.className = 'audio-quest__btn';
+        questBtn.innerHTML = "".concat(el); // questBtn.dataset.answer = `${el}`
+
+        audioQuestBox.append(questBtn);
+
+        questBtn.onclick = function (event) {
+          var target = event.target;
+
+          if (questionArr[0].wordTranslate === target.textContent) {
+            target.style.background = 'rgba(126, 255, 133, 0.7)';
+            _this3.correctAnswer++;
+
+            _this3.rightAnswer.push(questionArr[0]);
+
+            changeLastBtn();
+          } else {
+            target.style.background = 'rgba(255, 126, 126, 0.7)';
+
+            _this3.wrongAnswer.push(questionArr[0]);
+
+            changeLastBtn();
+          }
+        };
+      });
+
+      function changeLastBtn() {
+        nextQuestBtn.remove();
+        disabledBtn();
+        nextBtn.style.display = 'block'; //<---возможно придется изменить
+
+        audioImg.style.display = 'block';
+        audioImg.src = "".concat(_api_api__WEBPACK_IMPORTED_MODULE_0__.base).concat(questionArr[0].image);
+        audioImg.alt = "".concat(_api_api__WEBPACK_IMPORTED_MODULE_0__.base).concat(questionArr[0].word, " image");
+        audioDiscript.innerHTML = "".concat(questionArr[0].word, " - ").concat(questionArr[0].transcription);
+        audioDiscript.style.display = 'block';
+      }
+
+      var nextQuestBtn = document.createElement('button');
+      nextQuestBtn.className = 'next-quest__btn';
+      nextQuestBtn.innerHTML = 'Не знаю';
+
+      nextQuestBtn.onclick = function () {
+        changeLastBtn();
+
+        _this3.wrongAnswer.push(questionArr[0]);
+      };
+
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'next__btn';
+      nextBtn.innerHTML = 'Дальше';
+      nextBtn.style.display = 'none';
+
+      nextBtn.onclick = function () {
+        _this3.questNumber++;
+        gameMainContainer.remove(); // this.renderGame(this.questNumber)
+
+        if (_this3.questNumber === _this3.questions.length) {
+          _this3.audioStat();
+        } else {
+          _this3.renderGame(_this3.questNumber);
+        }
+      };
+
+      gameMainContainer.append(countQuest, audioPlay, audioImg, audioDiscript, audioQuestBox, nextQuestBtn, nextBtn);
+    }
+  }, {
+    key: "audioStat",
+    value: function audioStat() {
+      var _this4 = this;
+
+      var persent = Math.ceil(this.rightAnswer.length / this.questions.length * 100);
+      var audioStatContainer = document.createElement('div');
+      audioStatContainer.className = 'audio-stat__container';
+      this.container.append(audioStatContainer);
+      var audioStatHeader = document.createElement('div');
+      audioStatHeader.className = 'audio-stat__header';
+      var audioStatRes = document.createElement('button');
+      audioStatRes.className = 'audio-stat__res';
+      audioStatRes.innerHTML = 'Результат';
+      audioStatRes.disabled = true;
+
+      audioStatRes.onclick = function () {
+        audioStatView.disabled = false;
+        audioStatRes.disabled = true;
+        audioStatResMain.classList.add('active');
+        audioStatViewMain.classList.remove('active');
+      };
+
+      var audioStatView = document.createElement('button');
+      audioStatView.className = 'audio-stat__view';
+      audioStatView.innerHTML = 'Посмотреть мои слова';
+      audioStatView.disabled = false;
+
+      audioStatView.onclick = function () {
+        audioStatView.disabled = true;
+        audioStatRes.disabled = false;
+        audioStatResMain.classList.remove('active');
+        audioStatViewMain.classList.add('active');
+      };
+
+      audioStatHeader.append(audioStatRes, audioStatView);
+      var audioStatToggle = document.createElement('div');
+      audioStatToggle.className = 'audio-stat__toggle';
+      var audioStatResMain = document.createElement('div');
+      audioStatResMain.className = 'audio-stat__resContainer active';
+      var audioStatResMainText = document.createElement('p');
+      audioStatResMainText.className = 'audio-stat__resText';
+      audioStatResMainText.innerHTML = "".concat(persent !== 100 ? 'Ты можешь лучше! Повтори слова и возвращайся.' : 'Хорошая работа!');
+      var audioStatResMainBtn = document.createElement('button');
+      audioStatResMainBtn.className = 'audio-stat__resMainBtn';
+      audioStatResMainBtn.innerHTML = "".concat(this.rightAnswer.length, " \u0441\u043B\u043E\u0432 \u0438\u0437\u0443\u0447\u0435\u043D\u043E, ").concat(this.wrongAnswer.length, " \u0441\u043B\u043E\u0432 \u043D\u0430 \u0438\u0437\u0443\u0447\u0435\u043D\u0438\u0438");
+
+      audioStatResMainBtn.onclick = function () {
+        audioStatView.disabled = true;
+        audioStatRes.disabled = false;
+        audioStatResMain.classList.remove('active');
+        audioStatViewMain.classList.add('active');
+      };
+
+      var audioStatPersentBox = document.createElement('div');
+      audioStatPersentBox.className = 'audio-stat__persentBox';
+      var audioStatPersent = document.createElement('p');
+      audioStatPersent.className = 'audio-stat__persent';
+      audioStatPersent.innerHTML = "".concat(persent, "%");
+      var audioStatPersentText = document.createElement('p');
+      audioStatPersentText.className = 'audio-stat__persentText';
+      audioStatPersentText.innerHTML = 'изученных слов';
+      audioStatPersentBox.append(audioStatPersent, audioStatPersentText);
+      var audioStatBtnContainer = document.createElement('div');
+      audioStatBtnContainer.className = 'audio-stat__btnContainer';
+      var audioStatBtnRetry = document.createElement('button');
+      audioStatBtnRetry.className = 'audio-stat__retry';
+      audioStatBtnRetry.innerHTML = 'Сыграть еще раз';
+
+      audioStatBtnRetry.onclick = function () {
+        audioStatContainer.remove();
+
+        _this4.startGame();
+      };
+
+      var audioStatBtnLearn = document.createElement('button');
+      audioStatBtnLearn.className = 'audio-stat__learn';
+      audioStatBtnLearn.innerHTML = 'Перейти в учебник';
+
+      audioStatBtnLearn.onclick = function () {
+        audioStatContainer.remove(); //<--дописать код
+      };
+
+      audioStatBtnContainer.append(audioStatBtnRetry, audioStatBtnLearn);
+      var audioStatViewMain = document.createElement('div');
+      audioStatViewMain.className = 'audio-stat__viewContainer';
+      var audioStatWrongText = document.createElement('p');
+      audioStatWrongText.className = 'audio-stat__wrongText';
+      audioStatWrongText.innerHTML = "\u041E\u0448\u0438\u0431\u043E\u043A <span>".concat(this.wrongAnswer.length, "</span>");
+      var audioStatWrongBox = document.createElement('div');
+      audioStatWrongBox.className = 'audio-stat__wrongBox';
+      this.wrongAnswer.forEach(function (el) {
+        var wrongBox = document.createElement('div');
+        wrongBox.className = 'audio__wrong-box';
+        var wrongBtn = document.createElement('button');
+        wrongBtn.className = 'audio-stat__wrong-btn';
+        wrongBtn.style.backgroundImage = 'url(../../../assets/svg/vol.svg)';
+        wrongBtn.dataset.src = "".concat(_api_api__WEBPACK_IMPORTED_MODULE_0__.base).concat(el.audio);
+        var wrongText = document.createElement('span');
+        wrongText.className = 'wrong__text';
+        wrongText.innerHTML = "".concat(el.word, " - ").concat(el.wordTranslate);
+        wrongBox.append(wrongBtn, wrongText);
+        audioStatWrongBox.append(wrongBox);
+
+        wrongBtn.onclick = function () {
+          _this4.audio.src = "".concat(wrongBtn.dataset.src);
+
+          _this4.audio.play();
+        };
+      });
+      var audioStatRightText = document.createElement('p');
+      audioStatRightText.className = 'audio-stat__rightText';
+      audioStatRightText.innerHTML = "\u041F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0445 \u043E\u0442\u0432\u0435\u0442\u043E\u0432 <span>".concat(this.rightAnswer.length, "</span>");
+      var audioStatRightBox = document.createElement('div');
+      audioStatRightBox.className = 'audio-stat__rightBox';
+      this.rightAnswer.forEach(function (el) {
+        var rightBox = document.createElement('div');
+        rightBox.className = 'audio__right-box';
+        var rightBtn = document.createElement('button');
+        rightBtn.className = 'audio-stat__right-btn';
+        rightBtn.style.backgroundImage = 'url(../../../assets/svg/vol.svg)';
+        rightBtn.dataset.src = "".concat(_api_api__WEBPACK_IMPORTED_MODULE_0__.base).concat(el.audio);
+        var rightText = document.createElement('span');
+        rightText.className = 'right__text';
+        rightText.innerHTML = "".concat(el.word, " - ").concat(el.wordTranslate);
+        rightBox.append(rightBtn, rightText);
+        audioStatRightBox.append(rightBox);
+
+        rightBtn.onclick = function () {
+          _this4.audio.src = "".concat(rightBtn.dataset.src);
+
+          _this4.audio.play();
+        };
+      });
+      audioStatResMain.append(audioStatResMainText, audioStatResMainBtn, audioStatPersentBox);
+      audioStatViewMain.append(audioStatWrongText, audioStatWrongBox, audioStatRightText, audioStatRightBox);
+      audioStatToggle.append(audioStatResMain, audioStatViewMain);
+      audioStatContainer.append(audioStatHeader, audioStatToggle, audioStatBtnContainer);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      this.audioGameHeader('header');
+      this.startGame();
+      return this.container;
+    }
+  }]);
+
+  return AudioGame;
 }();
 
 /***/ }),
@@ -12094,6 +12577,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_user_user_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/pages/user/user.css */ "./components/pages/user/user.css");
 /* harmony import */ var _components_pages_register_register_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/pages/register/register.css */ "./components/pages/register/register.css");
 /* harmony import */ var _components_pages_user_user__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/pages/user/user */ "./components/pages/user/user.ts");
+/* harmony import */ var _components_pages_register_register__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/pages/register/register */ "./components/pages/register/register.ts");
+/* harmony import */ var _components_pages_audiogame_audiogame__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/pages/audiogame/audiogame */ "./components/pages/audiogame/audiogame.ts");
 
 
 
@@ -12155,6 +12640,7 @@ var aboutCards = document.querySelectorAll('.about__card');
 
 
 
+
 var loginRegList = document.querySelector('#login-reg-list');
 var loginLink = document.querySelector('.header__nav_link-login'),
     regLink = document.querySelector('.header__nav_link-reg');
@@ -12163,6 +12649,38 @@ loginRegList.addEventListener('click', function (e) {
     var loginObject = new _components_pages_user_user__WEBPACK_IMPORTED_MODULE_13__.User('user'),
         loginRendered = loginObject.render();
     document.body.appendChild(loginRendered);
+  } else if (e.target === regLink) {
+    var regObject = new _components_pages_register_register__WEBPACK_IMPORTED_MODULE_14__.Register('user'),
+        regRendered = regObject.render();
+    document.body.appendChild(regRendered);
+  }
+});
+
+var headerNavList = document.getElementById('header-nav-links');
+var audiogameLink = document.getElementById('audiogame');
+var moduleWrapper = document.getElementById('module-wrapper'),
+    headerContent = document.querySelector('.header__content');
+headerNavList.addEventListener('click', function (e) {
+  if (e.target === audiogameLink) {
+    headerContent.classList.add('element-animated-out');
+    setTimeout(function () {
+      headerContent.classList.add('element-disabled');
+      headerContent.classList.remove('element-animated-out');
+      (0,_components_app_main__WEBPACK_IMPORTED_MODULE_10__.disableMain)();
+      var audiogameObject = new _components_pages_audiogame_audiogame__WEBPACK_IMPORTED_MODULE_15__.AudioGame('audio__game'),
+          audiogameRendered = audiogameObject.render();
+      moduleWrapper.appendChild(audiogameRendered);
+    }, 300);
+  }
+});
+var headerLogo = document.querySelector('.header__nav_logo');
+headerLogo.addEventListener('click', function () {
+  if (headerContent.classList.contains('element-disabled') && document.querySelector('.main').classList.contains('element-disabled')) {
+    console.log('232332323');
+    headerContent.classList.remove('element-disabled');
+    (0,_components_app_main__WEBPACK_IMPORTED_MODULE_10__.enableMain)();
+    var audioGame = document.getElementById('audio__game');
+    audioGame.remove();
   }
 });
 }();

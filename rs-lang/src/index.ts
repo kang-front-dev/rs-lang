@@ -20,10 +20,12 @@ import {
 } from './components/app/animation';
 import {
   MainCard,
-  deleteMain,
+  disableMain,
+  enableMainMain,
   generateFooter,
   generateMain,
   generateSection,
+  enableMain,
 } from './components/app/main';
 
 const sashaInfo: object = {
@@ -88,6 +90,7 @@ setSlideFromRightAnimation('#about-card-2', aboutCards[2], 0.4);
 import './components/pages/user/user.css';
 import './components/pages/register/register.css';
 import { User } from './components/pages/user/user';
+import { Register } from './components/pages/register/register';
 
 const loginRegList: HTMLElement = document.querySelector('#login-reg-list')
 
@@ -101,5 +104,51 @@ const loginLink: HTMLElement = document.querySelector('.header__nav_link-login')
       loginRendered = loginObject.render();
       
       document.body.appendChild(loginRendered)
+    }else if(e.target === regLink){
+      const regObject = new Register('user'),
+      regRendered = regObject.render();
+      
+      document.body.appendChild(regRendered)
     }
   })
+
+import { AudioGame } from './components/pages/audiogame/audiogame';
+
+const headerNavList = document.getElementById('header-nav-links')
+
+const audiogameLink = document.getElementById('audiogame')
+
+const moduleWrapper = document.getElementById('module-wrapper'),
+  headerContent = document.querySelector('.header__content')
+
+headerNavList.addEventListener('click', (e)=> {
+  if(e.target === audiogameLink){
+    headerContent.classList.add('element-animated-out')
+    setTimeout(() => {
+      headerContent.classList.add('element-disabled')
+      headerContent.classList.remove('element-animated-out')
+      disableMain()
+
+      const audiogameObject = new AudioGame('audio__game'),
+      audiogameRendered = audiogameObject.render();
+      
+      moduleWrapper.appendChild(audiogameRendered)
+
+    }, 300);
+
+  }
+})
+
+const headerLogo = document.querySelector('.header__nav_logo')
+
+headerLogo.addEventListener('click', ()=>{
+  if(headerContent.classList.contains('element-disabled') && document.querySelector('.main').classList.contains('element-disabled')){
+    console.log('232332323');
+    
+    headerContent.classList.remove('element-disabled')
+    enableMain()
+
+    const audioGame = document.getElementById('audio__game')
+    audioGame.remove()
+  }
+})

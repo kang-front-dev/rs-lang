@@ -102,9 +102,15 @@ export function generateFooter() {
  
 }
 
-export function deleteMain(){
+export function disableMain(){
   const main: HTMLElement = document.querySelector('.main')
-  main.remove()
+  main.classList.add('element-disabled')
+
+}
+export function enableMain(){
+  const main: HTMLElement = document.querySelector('.main')
+  main.classList.remove('element-disabled')
+
 }
 
 
