@@ -26,12 +26,7 @@ import {
   generateMain,
   generateSection,
 } from './components/app/main';
-import {App} from "./components/pages/textBook/textBook"
-window.addEventListener("DOMContentLoaded", () => {
-  const rootElement = document.body;
-  const app = new App(rootElement);
-  app.init();
-});
+
 
 const sashaInfo: object = {
   avatarLink: 'assets/img/avatar-2.png',
@@ -110,3 +105,16 @@ const loginLink: HTMLElement = document.querySelector('.header__nav_link-login')
       document.body.appendChild(loginRendered)
     }
   })
+
+  import {TextBook} from "./components/pages/textBook/textBook"
+  import { Statistics } from './components/pages/statistics/statistics';
+window.addEventListener("DOMContentLoaded", () => {
+  const rootElement = document.body;
+  const textBook = new TextBook(rootElement);
+  const statisticsApp = new Statistics(rootElement)
+
+  textBook.init();
+  statisticsApp.init()
+});
+
+

@@ -127,6 +127,8 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
       'Content-Type': 'application/json'
     },
   })).json();
+
+  export const baseUrl = "http://localhost:3000";
   export const getAllWords = async (
     page = 1,
     limit = 20,
@@ -134,7 +136,7 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
   ): Promise<{ words: Array<IWords>; count: string }> | null => {
     try { 
       const dataWords = await fetch(
-        `${base}/words?_limit=${limit}&page=${page}&group=${group}`
+        `${baseUrl}/words?_limit=${limit}&page=${page}&group=${group}`
       );
       const res: IWords[] = await dataWords.json();
       if (dataWords.status === 200) {
@@ -151,7 +153,7 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
 
   export const deleteWord = async (wordId: string): Promise<void> => {
     try {
-      await fetch(`${base}/words/${wordId}`, {
+      await fetch(`${baseUrl}/words/${wordId}`, {
         method: "DELETE",
       });
     } catch (err) {

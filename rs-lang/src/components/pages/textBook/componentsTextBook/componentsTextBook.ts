@@ -1,6 +1,6 @@
 import { Component } from "../addition/addComponents";
 import { Button } from "../../../UI/Button/button";
-import { base, IWords } from "../../../api/api";
+import { baseUrl, IWords } from "../../../api/api";
 import "../groupWords/groupWordsStyle.scss"
 
 

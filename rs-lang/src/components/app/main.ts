@@ -4,6 +4,7 @@ export function generateMain() {
 
   return main
 }
+
 export function generateFooter() {
   const footer: HTMLElement = document.createElement('footer');
   footer.className = 'footer';

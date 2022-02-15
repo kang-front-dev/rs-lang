@@ -1,5 +1,5 @@
 import {Component} from "../addition/addComponents"
-import {IWords, base} from "../../../api/api"
+import {IWords, baseUrl} from "../../../api/api"
 
 import "./groupWordsStyle.scss";
 import {Button} from "../../../UI/Button/button"
@@ -20,6 +20,7 @@ export class WordsItem extends Component {
   private groupWord: Component
   private pageWord: Component
   private textMeaningTranslate: Component;
+  private textMeaningWordI: Component
   constructor(parentNode: HTMLElement, word: IWords) {
     super(parentNode, "div", ["word-list"]);
     this.word = word;
@@ -49,20 +50,24 @@ export class WordsItem extends Component {
     //див со звком 
     const soundWord=new Component(transcriptAndMusicWord.element, "div", ["sound-word__div"])
     this.soundWordImg =new Component(soundWord.element, "img", ["sound-word__svg"]) 
-    this.soundWordImg.element.setAttribute("src", '../../assets/img/soundicon.png')
+    this.soundWordImg.element.setAttribute("src", '../../../../assets/png/soundicon.png')
    
     // this.soundWordAudio=new Component(soundWord.element, "audio", ["sound-word__audio"])
-    const soundWordAudio=document.createElement("audio") as HTMLAudioElement
+    const soundWordAudio=document.createElement("audio")
     soundWord.element.appendChild(soundWordAudio)
-    soundWordAudio.setAttribute("src", `${base}/${word.audio}`)
-   
+    soundWordAudio.setAttribute("src", `${baseUrl}/${word.audio}`)
+    soundWordAudio.setAttribute("src",  `${baseUrl}/${word.audioExample}`)
+    soundWordAudio.setAttribute("src",  `${baseUrl}/${word.audioMeaning}`)
+
     this.soundWordImg.element.addEventListener("click", (e) => {
+      soundWordAudio.play()
+      soundWordAudio.play()
       soundWordAudio.play()
 })
     
     this.wordImage = new Component(this.element, "img", ["image-word"]);
 
-this.wordImage.element.setAttribute("src", `${base}/${word.image}`);
+this.wordImage.element.setAttribute("src", `${baseUrl}/${word.image}`);
     this.wordName = new Component(
       transcriptAndWordOneBlock.element,
       "span",
@@ -88,6 +93,7 @@ this.wordImage.element.setAttribute("src", `${base}/${word.image}`);
       ["textMeaning-word"],
       word.textMeaning
     );
+    
     this.textMeaningTranslate=new Component(informationWordExampleone.element, "div", ["text-meaning-translate"], word.textMeaningTranslate)
     this.textExample = new Component(
       informationWordExampletwo.element,
@@ -101,9 +107,14 @@ this.wordImage.element.setAttribute("src", `${base}/${word.image}`);
       ["textExampleTranslate-word"],
       word.textExampleTranslate
     );
-
-    const removeBtn = new Button(wordList.element, ["btn-small"], "remove");
+      const divButtons=new Component(wordList.element, "div", ["div-buttons"])
+    const removeBtn = new Button(divButtons.element, ["btn-small"], "delete");
     removeBtn.onClickButton = () => {
+      if (word.id) this.removeWord(word.id);
+      this.destroy();
+    };
+    const difficultBtn = new Button(divButtons.element, ["btn-small"], "difficult");
+    difficultBtn.onClickButton = () => {
       if (word.id) this.removeWord(word.id);
       this.destroy();
     };

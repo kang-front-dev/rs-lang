@@ -31,13 +31,13 @@ export class GroupWordsContainer extends Component {
   private clear() {
     this.container.element.innerHTML = "";
   }
-  private updateTitle(wordLength: string) {
-    this.title.element.innerHTML = `WordLength - (${wordLength} words)`;
-  }
+  // private updateTitle(wordLength: string) {
+  //   this.title.element.innerHTML = `WordLength - (${wordLength} words)`;
+  // }
 
   addItems(wordCart: Array<IWords>, wordLength: string): void {
     this.clear();
-    this.updateTitle(wordLength);
+    // this.updateTitle(wordLength);
     this.wordCart = wordCart.map((word) => {
       const item = new WordsItem(this.container.element, word);
       item.removeWord = (wordId) => this.removeWord(wordId);
