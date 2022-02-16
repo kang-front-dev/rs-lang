@@ -179,6 +179,7 @@
   border-radius: 10px;
   border: 1px rgb(112, 112, 112) solid;
   margin-bottom: 20px;
+  backdrop-filter: blur(10px);
 }
 
 .audio__discription{
