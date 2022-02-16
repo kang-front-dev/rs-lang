@@ -1,5 +1,7 @@
 export class Component {
   element: HTMLElement;
+  innerHTML: string[];
+  disabled: boolean;
 
   constructor(
     parentNode: HTMLElement,

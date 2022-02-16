@@ -1,5 +1,5 @@
 import {Component} from "../addition/addComponents"
-import {IWords, baseUrl} from "../../../api/api"
+import {IWords, base} from "../../../api/api"
 
 import "./groupWordsStyle.scss";
 import {Button} from "../../../UI/Button/button"
@@ -24,9 +24,6 @@ export class WordsItem extends Component {
   constructor(parentNode: HTMLElement, word: IWords) {
     super(parentNode, "div", ["word-list"]);
     this.word = word;
-    
-    this.pageWord = new Component(this.element, "span", ["page-word"], word.page.toString())
-    this.groupWord = new Component(this.element, "span", ["group-word"], word.group.toString())
     //главный див карточки
     const wordList = new Component(this.element, "div", ["card-word-list"]);
 
@@ -55,9 +52,9 @@ export class WordsItem extends Component {
     // this.soundWordAudio=new Component(soundWord.element, "audio", ["sound-word__audio"])
     const soundWordAudio=document.createElement("audio")
     soundWord.element.appendChild(soundWordAudio)
-    soundWordAudio.setAttribute("src", `${baseUrl}/${word.audio}`)
-    soundWordAudio.setAttribute("src",  `${baseUrl}/${word.audioExample}`)
-    soundWordAudio.setAttribute("src",  `${baseUrl}/${word.audioMeaning}`)
+    soundWordAudio.setAttribute("src", `${base}${word.audio}`)
+    soundWordAudio.setAttribute("src",  `${base}${word.audioExample}`)
+    soundWordAudio.setAttribute("src",  `${base}${word.audioMeaning}`)
 
     this.soundWordImg.element.addEventListener("click", (e) => {
       soundWordAudio.play()
@@ -67,7 +64,8 @@ export class WordsItem extends Component {
     
     this.wordImage = new Component(this.element, "img", ["image-word"]);
 
-this.wordImage.element.setAttribute("src", `${baseUrl}/${word.image}`);
+  this.wordImage.element.setAttribute("src", `${base}${word.image}`);
+
     this.wordName = new Component(
       transcriptAndWordOneBlock.element,
       "span",
@@ -90,23 +88,25 @@ this.wordImage.element.setAttribute("src", `${baseUrl}/${word.image}`);
     this.textMeaning = new Component(
       informationWordExampleone.element,
       "div",
-      ["textMeaning-word"],
-      word.textMeaning
+      ["textMeaning-word"]
     );
+    this.textMeaning.element.innerHTML= word.textMeaning
     
-    this.textMeaningTranslate=new Component(informationWordExampleone.element, "div", ["text-meaning-translate"], word.textMeaningTranslate)
+    this.textMeaningTranslate=new Component(informationWordExampleone.element, "div", ["text-meaning-translate"])
+this.textMeaningTranslate.element.innerHTML=word.textMeaningTranslate
+
     this.textExample = new Component(
       informationWordExampletwo.element,
       "div",
-      ["textExample-word"],
-      word.textExample
-    );
+      ["textExample-word"]);
+    this.textExample.element.innerHTML= word.textExample
+
     this.textExampleTranslate = new Component(
       informationWordExampletwo.element,
       "div",
-      ["textExampleTranslate-word"],
-      word.textExampleTranslate
-    );
+      ["textExampleTranslate-word"]);
+    this.textExampleTranslate.element.innerHTML= word.textExampleTranslate
+
       const divButtons=new Component(wordList.element, "div", ["div-buttons"])
     const removeBtn = new Button(divButtons.element, ["btn-small"], "delete");
     removeBtn.onClickButton = () => {

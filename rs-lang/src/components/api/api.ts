@@ -3,6 +3,7 @@ export const base = 'https://rs-learn-word-21-group.herokuapp.com/'
 
 
 export interface IWords{
+      length: number;
       id:string,
       group:number,
       page:number,
@@ -130,13 +131,13 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
 
   export const baseUrl = "http://localhost:3000";
   export const getAllWords = async (
-    page = 1,
+    page = 0,
     limit = 20,
     group = 0
   ): Promise<{ words: Array<IWords>; count: string }> | null => {
     try { 
       const dataWords = await fetch(
-        `${baseUrl}/words?_limit=${limit}&page=${page}&group=${group}`
+        `${base}words?page=${page}&group=${group}`
       );
       const res: IWords[] = await dataWords.json();
       if (dataWords.status === 200) {
@@ -153,7 +154,7 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
 
   export const deleteWord = async (wordId: string): Promise<void> => {
     try {
-      await fetch(`${baseUrl}/words/${wordId}`, {
+      await fetch(`${base}words/${wordId}`, {
         method: "DELETE",
       });
     } catch (err) {

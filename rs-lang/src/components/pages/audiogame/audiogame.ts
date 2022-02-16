@@ -150,7 +150,7 @@ export class AudioGame {
 
         startGameSubmit.onclick = async() =>{
             const page = Math.floor(Math.random()*(30-0)+0)
-            const answer:IWords = await getWords(+localStorage.getItem('group'),page)
+            const answer:IWords = await getWords(+localStorage.getItem('group'),page) 
             for(let i=0; i < 20; i++){
                 const subQuestion= []
                 subQuestion.push(answer[i])

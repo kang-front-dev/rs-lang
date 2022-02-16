@@ -8,7 +8,7 @@ export function generateMain() {
 export function generateFooter() {
   const footer: HTMLElement = document.createElement('footer');
   footer.className = 'footer';
-  document.body.appendChild(footer)
+  document.body.after(footer)
 
   const footerContainer: HTMLElement = document.createElement('div')
   footerContainer.className = 'container'

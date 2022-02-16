@@ -9,10 +9,13 @@
   background-repeat: no-repeat;
 }
 .textBook__title {
-  font-family: "Gilroy";
-  font-weight: 700;
-  font-size: 60px;
-  color: #fff;
+  font-size: 55px;
+    font-weight: 500;
+    line-height: 65px;
+    color: #464646;
+    margin-bottom: 40px;
+    animation: appear 0.3s ease-in-out;
+    animation-delay: 0s;
 }
 .link_textBook {
   display: flex;

@@ -18,9 +18,9 @@ export class TextBook {
       deleteMain()
       deleteHedaerContent();
       this.wordSectionMain = new Component(this.rootElement, "div", ["word-section-main"]);
-      this.router = new Connection(this.wordSectionMain.element);
+        this.router = new Connection(this.wordSectionMain.element);
     });
-  
+   
   }
 
   init(): void {

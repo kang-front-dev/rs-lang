@@ -1,15 +1,107 @@
 .pages {
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    
     .pages__title {
       margin-right: 10px;
     }
     .btn {
       padding: 8px 20px;
+      width: 80px;
+      height: 40px;
     }
     .btn-prev {
       margin: 0 10px;
     }
   }
+  .btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid black;
+    cursor: pointer;
+    max-width: 100px;
+    width: 100%;
+    border-radius: 10px;
+  }
+  .answer-group {
+    max-width: 400px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #303030;
+  }
+
+  .textbook__subheading {
+    color: #2c2647;
+    font-family: 'Gilroy-SemiBold';
+    font-size: 20px;
+    margin-bottom: 1rem;
+}
+
+
+.start-game__container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 80vh;
+}
+.start-game__header__text {
+  font-size: 3rem;
+}
+.start-game__text {
+  font-size: 1.5em;
+}
+.start-game__choose {
+  margin: 0;
+}
+.start-game__btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.group_btn,
+.start-game__submit,
+.audio-quest__btn,
+.next__btn,
+.next-quest__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  max-width: 100px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.group_btn:hover,
+.start-game__submit:hover,
+.audio-quest__btn:hover,
+.next__btn:hover,
+.next-quest__btn:hover {
+  background-color: burlywood;
+  transform: scale(1.1);
+}
+.game-main__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 80vh;
+  font-family: Comfortaa;
+}
+
+.container__btn-pagination {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
   
