@@ -11,7 +11,6 @@ import './styles/header-bg.scss';
 import './styles/about.scss';
 import './styles/footer.scss';
 
-
 import './components/pages/audiogame/audiogame.css';
 
 import {
@@ -152,3 +151,11 @@ headerLogo.addEventListener('click', ()=>{
     audioGame.remove()
   }
 })
+
+
+import './components/pages/sprint/sprint.scss';
+
+import { Sprint } from './components/pages/sprint/sprint';
+
+const sprintBlock = new Sprint('sprint')
+moduleWrapper.append(sprintBlock.generateStartPage())
