@@ -16,11 +16,8 @@ export class WordsItem extends Component {
   private textExample: Component;
   private textExampleTranslate: Component;
   private soundWordImg: Component;
-  private soundWordAudio: Component;
-  private groupWord: Component
-  private pageWord: Component
   private textMeaningTranslate: Component;
-  private textMeaningWordI: Component
+ 
   constructor(parentNode: HTMLElement, word: IWords) {
     super(parentNode, "div", ["word-list"]);
     this.word = word;
@@ -50,17 +47,16 @@ export class WordsItem extends Component {
     this.soundWordImg.element.setAttribute("src", '../../../../assets/png/soundicon.png')
    
     // this.soundWordAudio=new Component(soundWord.element, "audio", ["sound-word__audio"])
-    const soundWordAudio=document.createElement("audio")
-    soundWord.element.appendChild(soundWordAudio)
+    const soundWordAudio=new Audio();
+    const soundWordExample=new Audio();
+    const soundWordMeaning=new Audio();
+    soundWord.element.append(soundWordAudio, soundWordExample, soundWordMeaning);
     soundWordAudio.setAttribute("src", `${base}${word.audio}`)
-    soundWordAudio.setAttribute("src",  `${base}${word.audioExample}`)
-    soundWordAudio.setAttribute("src",  `${base}${word.audioMeaning}`)
-
-    this.soundWordImg.element.addEventListener("click", (e) => {
-      soundWordAudio.play()
-      soundWordAudio.play()
-      soundWordAudio.play()
-})
+    soundWordExample.setAttribute("src",  `${base}${word.audioExample}`)
+    soundWordMeaning.setAttribute("src",  `${base}${word.audioMeaning}`)
+    this.soundWordImg.element.addEventListener("click", ()=> soundWordAudio.play());
+    soundWordAudio.addEventListener("ended", ()=>soundWordMeaning.play() )
+    soundWordMeaning.addEventListener("ended", ()=>soundWordExample.play() )
     
     this.wordImage = new Component(this.element, "img", ["image-word"]);
 

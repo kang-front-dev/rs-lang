@@ -18,12 +18,9 @@ export class GroupWordsClass extends Component {
         ["textBook__title"],
         "Учебник"
       );
-    //  this.grouping=new Pages(this.element)
 
     this.groupWordsContainer = new GroupWordsContainer(this.element);
-
     this.getAllWords(this.page, this.group);
-   
     this.groupWordsContainer.removeWord = (wordId) => this.removeWord(wordId);
      this.groupWordsContainer.updateWord = (wordId) => this.getWord(wordId);
     this.groupWordsContainer.updatePage = (page, group) => {
@@ -31,19 +28,13 @@ export class GroupWordsClass extends Component {
       this.group = group;
       this.getAllWords(page, group);
     };
-    // this.groupWordsContainer.getGroup = (group)=> {
-    //   this.group = group;
-    //   this.page = this.page
-    //   this.getAllWords(this.page, group)
-    // }
+
   }
   private async getAllWords(page: number, group:number): Promise<void> {
     const data = await getAllWords(page, group);
     if (data) {
       const wordsArr: Array<IWords> = data.words;
-      console.log(`wordsArr ${wordsArr}`)
       const wordLength: string = data.count;
-      console.log(`wordLength ${wordLength}`)
       this.groupWordsContainer.addItems(wordsArr, wordLength);
       this.groupWordsContainer.pagination.updateNextButton(
         this.page,
@@ -58,7 +49,7 @@ export class GroupWordsClass extends Component {
         600
       )
     }
-  }
+  } 
   private async getWord(wordId: string): Promise<void> {
     const word = await getWord(wordId);
     console.log(word);

@@ -1,3 +1,10 @@
+.textBook_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 100px 0px
+}
+
 .textBookGroup {
   display: grid;
   -webkit-box-pack: center;

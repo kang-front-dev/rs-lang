@@ -8,8 +8,8 @@ export class MainTextContent extends Component {
   getGroup: (group: number) => void = () => {};
   private title:Component
   public word: IWords;
-  private group = 0;
-  private page = 1;
+  private group = 1;
+  private page = 0;
   private groupWord: Component;
   private startGameContainer: Component;
   private startGameChoose: Component;
@@ -45,71 +45,7 @@ export class MainTextContent extends Component {
    
     }
 
-    // this.twoButton = new Button(this.element, ["level-card"], "Easy")
-    // this.twoButton.onClickButton=()=> {
-    //   this.switchGroup("EasyA2")
-    //   console.log("two")
-    //   console.log(this.group)
-    // }
-
-    // this.threeButton=new Button(this.element, ["level-card"], "Medium")
-    // this.threeButton.onClickButton=()=> {
-    //   this.switchGroup("MediumB1")
-    //   console.log("three")
-    //   console.log(this.group)
-    //   // console.log(this.word.group[2])
-    // }
-
-    // this.fourButton=new Button(this.element, ["level-card"], "Medium")
-    // this.fourButton.onClickButton=()=> {
-    //   this.switchGroup("MediumB2")
-    //   console.log("four")
-    //   console.log(this.group)
-    //   // console.log(this.word.group[3])
-    // }
-
-    // this.fiveButton=new Button(this.element, ["level-card"], "Hard")
-    // this.fiveButton.onClickButton=()=> {
-    //   this.switchGroup("HardC1")
-    //   console.log("five")
-    //   // console.log(this.word.group[4])
-    // }
-
-    // this.sixButton=new Button(this.element, ["level-card"], "Hard")
-    // this.sixButton.onClickButton=()=> {
-    //   this.switchGroup("HardC2")
-    //   console.log("six")
-    //   console.log(this.group)
-    //   // console.log(this.word.group[5])
-    // }
- 
   }
-
-  // updateGroupButton(page: number, group: number, totalCount: number, limit: number): void {
-   
-    // if (group = totalCount / limit) {
-     
-    //     this.oneButton.setDisabled(false)
-    
-    //   // console.log("group > totalCount / limit")
-    //   if(this.group===1) {
-    //     this.twoButton.setDisabled(false) 
-    //   }
-    //   if(this.group===2) {
-    //     this.threeButton.setDisabled(false) 
-    //   }
-    //   if(this.group===3) {
-    //     this.fourButton.setDisabled(false) 
-    //   }
-    //   if(this.group===4) {
-    //     this.fiveButton.setDisabled(false) 
-    //   }
-    //   if(this.group===5) {
-    //     this.sixButton.setDisabled(false) 
-    //   }
-    // }
-    // console.log(group, totalCount)
-  // }
 
   private switchGroup(type: string) {
     if (type === "EasyA1") {

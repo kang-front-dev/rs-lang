@@ -10,8 +10,10 @@ export class TextBook {
   constructor(private rootElement: HTMLElement) {
     const textBookLink = document.querySelector(".textBook-link") as HTMLElement;
     const headerContent = document.querySelector(".header__content") as HTMLElement;
+    const circles = document.querySelector(".circles") as HTMLElement
     function deleteHedaerContent() {
       headerContent.style.display = "none";
+      circles.style.display="none"
     }
     textBookLink.addEventListener("click", (event) => {
       event.preventDefault();
