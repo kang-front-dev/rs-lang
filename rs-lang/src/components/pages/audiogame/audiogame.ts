@@ -1,14 +1,16 @@
 import { base, getWords, IWords } from '../../api/api';
+import { Sprint } from '../sprint/sprint';
 
 export class AudioGame {
   public container: HTMLElement;
   currentAudio: string;
-  questions: [[IWords]] | [];
+  questions: [[IWords]] | [] | IWords[];
   correctAnswer: number;
   questNumber: number;
   rightAnswer: [IWords] | [];
   wrongAnswer: [IWords] | [];
   audio: HTMLAudioElement;
+  game:string
 
   constructor(id: string) {
     this.container = document.createElement('div');
@@ -20,6 +22,7 @@ export class AudioGame {
     this.wrongAnswer = [];
     this.rightAnswer = [];
     this.audio = new Audio();
+    this.game = 'audiocall'
   }
 
   audioGameHeader(className: string) {
@@ -28,30 +31,6 @@ export class AudioGame {
 
     const headerNav = document.createElement('div');
     headerNav.className = 'header__nav-audio';
-
-    // const sidebarBtn = document.createElement('div');
-    // sidebarBtn.innerHTML = `
-    //         <div id='top'></div>
-    //         <div id='middle'></div>
-    //         <div id='bottom'></div>`;
-    // sidebarBtn.id = 'btn';
-
-    // sidebarBtn.onclick = () => {
-    //   sidebarBtn.classList.toggle('active');
-    //   sidebarNav.classList.toggle('active');
-    // };
-
-    // const sidebarNav = document.createElement('nav');
-    // sidebarNav.id = 'box';
-    // sidebarNav.innerHTML = `
-	// 	    <ul id="items">
-	// 	    	<li class="item">Item 1</li>
-	// 	    	<li class="item">Item 2</li>
-	// 	    	<li class="item">Item 3</li>
-	// 	    	<li class="item">Item 4</li>
-	// 	    	<li class="item">Item 5</li>
-	// 	    </ul>`;
-    // sidebar.append(sidebarBtn, sidebarNav);
 
     const headerGame = document.createElement('div');
     headerGame.className = `game__${className}`;
@@ -308,9 +287,9 @@ export class AudioGame {
     );
   }
   audioStat() {
-    const persent = Math.ceil(
+    const persent = this.questions.length > 0 ? Math.ceil(
       (this.rightAnswer.length / this.questions.length) * 100
-    );
+    ) : 0;
     const audioStatContainer = document.createElement('div');
     audioStatContainer.className = 'audio-stat__container';
     this.container.append(audioStatContainer);
@@ -386,7 +365,12 @@ export class AudioGame {
     audioStatBtnRetry.innerHTML = 'Сыграть еще раз';
     audioStatBtnRetry.onclick = () => {
       audioStatContainer.remove();
-      this.startGame();
+      if(this.game === 'audiocall'){
+        this.startGame()
+      }else{
+        // const sprintGame = new Sprint('sprint')
+        // document.getElementById('module-wrapper').append(sprintGame.generateStartPage())
+      }
     };
 
     const audioStatBtnLearn = document.createElement('button');

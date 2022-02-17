@@ -20,7 +20,7 @@ import {
 import {
   MainCard,
   disableMain,
-  enableMainMain,
+
   generateFooter,
   generateMain,
   generateSection,

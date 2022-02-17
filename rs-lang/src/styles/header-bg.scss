@@ -1,5 +1,4 @@
-
-.circles{
+.circles {
   position: absolute;
   z-index: 1;
   top: 0;
@@ -10,46 +9,42 @@
   pointer-events: none;
 }
 
-.circles li{
+.circles li {
   position: absolute;
   display: block;
   list-style: none;
   width: 20px;
   height: 20px;
   background: rgba(141, 177, 255, 0.7);
-  animation: animate 25s linear infinite;
+  // animation: animate 25s linear infinite;
   bottom: -150px;
   border-radius: 50%;
-  
 }
 
-
-@for $i from 1 to 31{
-  $size: (random($limit: 50) + 25);
-  .circles li:nth-of-type(#{$i}){
-    left: random($limit: 1920)+px;
-    width: $size+px;
-    height: $size+px;
-    animation-delay: random($limit: 8)+s;
-    animation-duration: (random($limit: 10) + 10)+s;
+@for $i from 1 to 31 {
+  $size: (
+    random(
+        $limit: 50,
+      ) +
+      25
+  );
+  .circles li:nth-of-type(#{$i}) {
+    left: random($limit: 1920) + px;
+    width: $size + px;
+    height: $size + px;
+    animation-delay: random($limit: 8) + s;
+    animation-duration: (random($limit: 10) + 10) + s;
   }
 }
-
-
-
 
 @keyframes animate {
-
-  0%{
-      transform: translateY(0) rotate(0deg);
-      opacity: 1;
-
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
   }
 
-  100%{
-      transform: translateY(-1000px) rotate(720deg);
-      opacity: 0;
-
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
   }
-
 }

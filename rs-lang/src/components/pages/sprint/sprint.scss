@@ -1,13 +1,11 @@
 .sprint {
-
-
   display: flex;
   flex-direction: column;
   align-items: center;
 
   min-height: 300px;
   padding: 100px 0;
-  font-family: 'Gilroy';
+  font-family: "Gilroy";
 
   position: relative;
   z-index: 5;
@@ -19,20 +17,20 @@
     color: #3b3b3b;
   }
 
-  &__descr{
+  &__descr {
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 200px;
     color: #3b3b3b;
     text-align: center;
   }
-  
-  &__levels{
+
+  &__levels {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    &_title{
+    &_title {
       font-size: 20px;
       font-weight: 500;
       margin-bottom: 20px;
@@ -40,80 +38,156 @@
       text-align: center;
     }
 
-    &_wrapper{
+    &_wrapper {
       display: flex;
       align-items: center;
     }
 
-    &_item
-    {
+    &_item {
       display: flex;
       align-items: center;
       justify-content: center;
-    
+
       background-color: rgba(255, 255, 255, 0.3);
       border: none;
-      box-shadow:  0px 1px 2px rgba(0, 0, 0, 0.4);
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
       cursor: pointer;
-    
+
       padding: 10px 45px;
       margin: 0 5px;
 
       border-radius: 5px;
       backdrop-filter: blur(5px);
-    
+
       font-size: 20px;
       font-weight: 500;
       color: rgb(48, 48, 48);
-    
+
       animation: fade 0.2s ease-in-out;
       transition: 0.12s;
 
-      &:hover{
+      &:hover {
         background-color: rgb(43, 43, 99);
-        color: #FFF;
+        color: #fff;
         transform: scale(1.05);
       }
 
-      &-active{
+      &-active {
         background-color: rgb(43, 43, 99);
-        color: #FFF;
+        color: #fff;
         transform: scale(1.05);
       }
     }
   }
 
-
-  &__btn{
-    &-start{
+  &__btn {
+    &-start {
       display: flex;
       align-items: center;
       justify-content: center;
-    
+
       background-color: rgba(255, 255, 255, 0.3);
       border: none;
-      box-shadow:  0px 1px 2px rgba(0, 0, 0, 0.4);
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
       cursor: pointer;
-    
+
       padding: 10px 45px;
       margin: 0 5px;
       margin-top: 20px;
 
       border-radius: 5px;
       backdrop-filter: blur(5px);
-    
+
       font-size: 25px;
       font-weight: 700;
       color: rgb(48, 48, 48);
-    
+
       animation: fade 0.2s ease-in-out;
       transition: 0.12s;
 
-      &:hover{
+      &:hover {
         background-color: rgb(43, 43, 99);
-        color: #FFF;
+        color: #fff;
         transform: scale(1.05);
       }
     }
   }
+}
+
+.sprint__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 70vh;
+  width: 100%;
+  max-width: 900px;
+}
+.sprint__time-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  width: 100%;
+}
+.score__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.mult__box,
+.sprint__score {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  height: 40px;
+  padding: 20px;
+  border-radius: 15px;
+}
+.sprint__quest b {
+  font-size: 1.5rem;
+  background-color: darkorange;
+  padding: 5px;
+  border-radius: 10px;
+}
+.sprint__ans u {
+  font-size: 1.5rem;
+  padding: 5px;
+  border-radius: 10px;
+}
+.sprint__btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 300px;
+  width: 100%;
+}
+.true__ans,
+.false__ans {
+  height: 30px;
+  padding: 5px 20px 5px 20px;
+  width: 100%;
+  max-width: 150px;
+  background-color: transparent;
+  border: none;
+}
+.true__ans {
+  border-radius: 15px 0px 0 15px;
+  background-color: forestgreen;
+  &:hover {
+    filter: brightness(1.5);
+  }
+}
+.false__ans {
+  border-radius: 0px 15px 15px 0;
+  background-color: darkred;
+  &:hover {
+    filter: brightness(1.5);
+  }
+}
+.sprint__time {
+  background-color: darkorange;
+  padding: 10px;
+  border-radius: 50%;
 }
