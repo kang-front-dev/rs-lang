@@ -33,7 +33,8 @@ export class GroupWordsContainer extends Component {
       const item = new WordsItem(this.container.element, word);
       item.removeWord = (wordId) => this.removeWord(wordId);
        item.updateWord = (wordId) => this.updateWord(wordId);
-    
+    // console.log(item)
+    // console.log(item.removeWord)
       return item;
     });
   }

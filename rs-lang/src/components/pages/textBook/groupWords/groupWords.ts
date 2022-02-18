@@ -2,8 +2,7 @@ import { Component } from "../addition/addComponents";
 import { IWords, getAllWords, getWord, deleteWord } from "../../../api/api";
 import "./groupWordsStyle.scss";
 import { GroupWordsContainer } from "./groupWordsContainer";
-// import { MainTextContent } from "../componentsTextBook/componentsTextBook";
-// import { Pages } from "../pagination";
+
 export class GroupWordsClass extends Component {
   [x: string]: any;
   page = 0;
@@ -40,7 +39,7 @@ export class GroupWordsClass extends Component {
         this.page,
         this.group,
         +wordLength,
-        20
+        29
       );
       this.groupWordsContainer.pagination.updateGroupButton(
         this.page,
@@ -62,6 +61,7 @@ export class GroupWordsClass extends Component {
 
   private async removeWord(wordId: string): Promise<void> {
     await deleteWord(wordId);
+    // console.log(deleteWord(wordId))
     await this.getAllWords(this.page, this.group);
   }
 

@@ -61,8 +61,46 @@ export class Pages extends Component {
               (el as HTMLButtonElement).style.backgroundColor = 'white'
           })
       }
-      this.groupBtn.element.addEventListener("click", ()=> {
-        this.switchGroup()
+      this.groupBtn.element.addEventListener("click", ()=> { 
+        if(elem === "A1") {
+        if(this.group == 0) {
+         this.group;
+        } else if(this.group>0) this.group--;
+      }
+        if(elem==="A2") {
+        if (this.group < 1){
+            this.group++;
+            } else if(this.group>1) this.group--
+          }
+          if(elem === "B1") {
+          if(this.group<2) {
+              this.group++;
+            }else if (this.group>2) this.group--;
+          }
+          if(elem === "B2") {
+           if(this.group<3) {
+              this.group++;
+            } else if(this.group>3) this.group--
+          }
+          if(elem === "C1") {
+            if(this.group<4) {
+              this.group++;
+              } else if(this.group>4) {
+                this.group--
+              }
+            }
+          
+              if(elem === "C2") {
+                if(this.group < 5) {
+                this.group++
+              }
+                else if(this.group == 5) {this.group}
+                else if(this.group>5) this.group--;
+              
+            }  
+        // elsethis.group--;
+       //  this.titleGROUP.element.innerHTML = `GROUP #${this.group}`;
+         this.updatePage(this.page, this.group);
       })  
   })
 
@@ -73,12 +111,19 @@ export class Pages extends Component {
     this.selectorPaginaion =new Component(this.containerBtnPagination.element, "select", ["select__pagination"])
     this.selectorPaginaion.element.setAttribute("value", this.page.toString())
     this.selectorPaginaion.element.addEventListener('input', this.changePage.bind(this));
-    for (let i = 0; i <= constants.maxWordsPage; i += 1) {
+    
       const newOption = document.createElement('option') as HTMLOptionElement;
-      newOption.value = String(i);
-      newOption.textContent = `Страница №${i + 1}`;
+      newOption.value=String(this.page)
+      console.log(newOption.value);
+   
+      newOption.addEventListener('change', () => {
+        this.updatePage(this.page, this.group);
+        console.log(newOption.value)
+        newOption.value=String(this.page)
+      })
+      newOption.textContent = `Страница №${this.page}`;
       this.selectorPaginaion.element.append(newOption);
-    }
+    
     // this.selectorPaginaion.value = String(this.page)
 
     this.nextButton = new Button(this.containerBtnPagination.element, ["btn-next"], "Next");
@@ -125,23 +170,19 @@ export class Pages extends Component {
     this.updatePrevButton();
   }
 
-public switchGroup() {
-    if (this.group > 5) this.group--;
- else this.group++;
-//  this.titleGROUP.element.innerHTML = `GROUP #${this.group}`;
-  this.updatePage(this.page, this.group);
-  // this.updateGroupButton();
-}
+// public switchGroup() {
+//     if (this.group > 5) this.group--;
+//  else this.group++;
+// //  this.titleGROUP.element.innerHTML = `GROUP #${this.group}`;
+//   this.updatePage(this.page, this.group);
+//   // this.updateGroupButton();
+// }
 render() {
   return this.container
   
 }
 updateGroupButton(page: number, group: number, totalCount: number, limit: number): void {
   console.log(`page ${page}, group ${group}, totalCount ${totalCount}, limit ${limit}`)
-  // if (group < totalCount / limit) {
-  //   this.groupBtn.disabled=false;
-  //   this.setPaginator()
-  // } 
 }
 }
 

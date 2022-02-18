@@ -17,18 +17,19 @@ export class WordsItem extends Component {
   private textExampleTranslate: Component;
   private soundWordImg: Component;
   private textMeaningTranslate: Component;
+  private wordList: Component;
  
   constructor(parentNode: HTMLElement, word: IWords) {
     super(parentNode, "div", ["word-list"]);
     this.word = word;
     //главный див карточки
-    const wordList = new Component(this.element, "div", ["card-word-list"]);
+    this.wordList = new Component(this.element, "div", ["card-word-list"]);
 
     //див со словом, звуком транскрипцией и переводом
-    const transcriptAndMusicWord = new Component(wordList.element, "div", ["transcript-music-word"]);
+    const transcriptAndMusicWord = new Component(this.wordList.element, "div", ["transcript-music-word"]);
 
     //див с доп информацией об слове
-    const informationWord = new Component(wordList.element, "div", ["information-word"]);
+    const informationWord = new Component(this.wordList.element, "div", ["information-word"]);
 
     //первй див с информацией о слове первый пример
     const informationWordExampleone=new Component(informationWord.element, "div", ["informationWorde-exampleone"])
@@ -103,11 +104,15 @@ this.textMeaningTranslate.element.innerHTML=word.textMeaningTranslate
       ["textExampleTranslate-word"]);
     this.textExampleTranslate.element.innerHTML= word.textExampleTranslate
 
-      const divButtons=new Component(wordList.element, "div", ["div-buttons"])
+      const divButtons=new Component(this.wordList.element, "div", ["div-buttons"])
     const removeBtn = new Button(divButtons.element, ["btn-small"], "delete");
     removeBtn.onClickButton = () => {
       if (word.id) this.removeWord(word.id);
       this.destroy();
+      this.wordList.element.style.display="none" 
+      // console.log(`removeBTN ${removeBtn}`)
+      // console.log(`this.removeWord(word.id): ${this.removeWord(word.id)}`)
+      // console.log(` this.destroy();: ${ this.destroy()}`)
     };
     const difficultBtn = new Button(divButtons.element, ["btn-small"], "difficult");
     difficultBtn.onClickButton = () => {

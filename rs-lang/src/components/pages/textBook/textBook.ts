@@ -13,7 +13,7 @@ export class TextBook {
     const circles = document.querySelector(".circles") as HTMLElement
     function deleteHedaerContent() {
       headerContent.style.display = "none";
-      circles.style.display="none"
+      // circles.style.display = "none";
     }
     textBookLink.addEventListener("click", (event) => {
       event.preventDefault();
@@ -21,6 +21,7 @@ export class TextBook {
       deleteHedaerContent();
       this.wordSectionMain = new Component(this.rootElement, "div", ["word-section-main"]);
         this.router = new Connection(this.wordSectionMain.element);
+        this.wordSectionMain.element.append(circles)
     });
    
   }

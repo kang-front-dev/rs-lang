@@ -12,7 +12,6 @@ import './styles/about.scss';
 import './styles/footer.scss';
 import "./components/pages/textBook/textBook"
 import "./components/pages/textBook/groupWords/groupWords"
-import "./components/pages/textBook/componentsTextBook/componentsTextBook"
 import './components/pages/audiogame/audiogame.css';
 
 import {
