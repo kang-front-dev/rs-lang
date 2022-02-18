@@ -99,10 +99,10 @@ export class Sprint extends AudioGame {
     const sprintTimeBox = document.createElement('div')
     sprintTimeBox.className = 'sprint__time-box'
 
-    const sprintTimeImg = document.createElement('img')
-    sprintTimeImg.alt = 'time__img'
-    sprintTimeImg.className = 'sprint__time-img'
-    sprintTimeImg.src = '../../../assets/img/clock.gif'
+    // const sprintTimeImg = document.createElement('img')
+    // sprintTimeImg.alt = 'time__img'
+    // sprintTimeImg.className = 'sprint__time-img'
+    // sprintTimeImg.src = '../../../assets/img/clock.gif'
 
     const sprintTime = document.createElement('div')
     sprintTime.className = 'sprint__time'
@@ -123,7 +123,7 @@ export class Sprint extends AudioGame {
     
 
 
-    sprintTimeBox.append(sprintTimeImg, sprintTime)
+    sprintTimeBox.append(sprintTime)
 
 
     const scoreContainer = document.createElement('div')
