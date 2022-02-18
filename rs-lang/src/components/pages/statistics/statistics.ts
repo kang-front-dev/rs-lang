@@ -3,7 +3,7 @@ import { ConnectionStatistics } from "./serverConnection";
 import { Component } from "../textBook/addition/addComponents";
 import { deleteMain } from "../../app/main";
 export class Statistics {
-
+ 
   private statisticsSectionMain;
   private router;
 

@@ -106,18 +106,30 @@ this.textMeaningTranslate.element.innerHTML=word.textMeaningTranslate
 
       const divButtons=new Component(this.wordList.element, "div", ["div-buttons"])
     const removeBtn = new Button(divButtons.element, ["btn-small"], "delete");
-    removeBtn.onClickButton = () => {
-      if (word.id) this.removeWord(word.id);
+    removeBtn.element.title="Удалить слово"
+    removeBtn.element.addEventListener("click", ()=> {
+      if (word.id) {
+        this.removeWord(word.id);
       this.destroy();
-      this.wordList.element.style.display="none" 
+      } 
+      // this.wordList.element.style.display="none" 
       // console.log(`removeBTN ${removeBtn}`)
       // console.log(`this.removeWord(word.id): ${this.removeWord(word.id)}`)
       // console.log(` this.destroy();: ${ this.destroy()}`)
-    };
+    });
     const difficultBtn = new Button(divButtons.element, ["btn-small"], "difficult");
-    difficultBtn.onClickButton = () => {
+    difficultBtn.element.title="Добавить слово в сложные"
+    difficultBtn.element.addEventListener("click", () => {
       if (word.id) this.removeWord(word.id);
       this.destroy();
-    };
+    });
+
+    const deleteTranslateBtn = new Button(divButtons.element, ["btn-small"], "translate")
+    deleteTranslateBtn.element.title="Скрыть/Показать перевод предложений"
+    deleteTranslateBtn.element.addEventListener("click", () => {
+      this.translateWord.element.classList.toggle("delete-translate");
+      this.textExampleTranslate.element.classList.toggle("delete-translate");
+      this.textMeaningTranslate.element.classList.toggle("delete-translate");
+    })
   }
 }

@@ -12,6 +12,8 @@ import './styles/about.scss';
 import './styles/footer.scss';
 import "./components/pages/textBook/textBook"
 import "./components/pages/textBook/groupWords/groupWords"
+import "./components/pages/statistics/statistics"
+import "./components/pages/statistics/containerStatistics/statisticsPage"
 import './components/pages/audiogame/audiogame.css';
 
 import {

@@ -11,6 +11,7 @@ export class GroupWordsClass extends Component {
   private title: Component;
   constructor(parentNode: HTMLElement) {
     super(parentNode, "div", ["textBook_wrapper"]); 
+    
     this.title = new Component( 
         this.element,
         "h1",

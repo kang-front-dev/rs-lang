@@ -152,16 +152,16 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
     }
   };
 
-  // export const deleteWord = async (wordId: string): Promise<void> => {
-  //   try {
-  //     await fetch(`${base}words/${wordId}`, {
-  //       method: "DELETE",
-  //     });
-  //   } catch (err) {
-  //     throw err as Error;
-  //   }
-  // };
-  export const deleteWord = async (wordId:string) => (await fetch (`${baseUrl}/words/${wordId}`, {method: 'DELETE'})).json();
+  export const deleteWord = async (wordId: string): Promise<void> => {
+    try {
+      await fetch(`${base}words/${wordId}`, {
+        method: "DELETE",
+      });
+    } catch (err) {
+      throw err as Error;
+    }
+  };
+  // export const deleteWord = async (wordId:string) => (await fetch (`${base}words/${wordId}`, {method: 'DELETE'})).json();
   export interface IConnection {
     name: string;
     component: () => void;

@@ -5,7 +5,7 @@ import { deleteMain } from "../../app/main";
 export class TextBook {
 
   private wordSectionMain;
-  private router;
+  private router; 
 
   constructor(private rootElement: HTMLElement) {
     const textBookLink = document.querySelector(".textBook-link") as HTMLElement;
