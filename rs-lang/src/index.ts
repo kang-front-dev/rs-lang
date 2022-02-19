@@ -157,5 +157,7 @@ import './components/pages/sprint/sprint.scss';
 
 import { Sprint } from './components/pages/sprint/sprint';
 
+localStorage.setItem('group', '-1')
+localStorage.setItem('page', '-1')
 const sprintBlock = new Sprint('sprint')
 moduleWrapper.append(sprintBlock.generateStartPage())

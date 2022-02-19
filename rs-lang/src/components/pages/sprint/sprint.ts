@@ -35,7 +35,7 @@ export class Sprint extends AudioGame {
     const sprintLevels = document.createElement('div');
     sprintLevels.className = 'sprint__levels';
     // this.container.append(sprintLevels);
-    if (+localStorage.group >= 0){
+    if (+localStorage.group <= 0){
     const sprintLevelsTitle = document.createElement('h3');
     sprintLevelsTitle.className = 'sprint__levels_title';
     sprintLevelsTitle.textContent = 'Выберите уровень:';
@@ -57,6 +57,7 @@ export class Sprint extends AudioGame {
         const allLevelsItems = document.querySelectorAll(
           '.sprint__levels_item'
         );
+        localStorage.setItem('group', String(levelsArr.indexOf(item)));
 
         allLevelsItems.forEach((item) => {
           item.classList.remove('sprint__levels_item-active');
@@ -82,6 +83,7 @@ export class Sprint extends AudioGame {
         }
       }else{
         for (let i=0; i<5; i++){
+          console.log(localStorage.group)
           const page = Math.floor(Math.random() * (30 - 0) + 0);
           const answer:IWords = await getWords(+localStorage.getItem('group'),page);
           (this.questSprint as [IWords]).push(answer as IWords)
