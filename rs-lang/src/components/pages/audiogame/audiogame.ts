@@ -120,7 +120,7 @@ export class AudioGame {
 
         const startGameChoose = document.createElement('p')
         startGameChoose.className = 'start-game__choose'
-        startGameChoose.innerHTML = 'Выберете уровень:'
+        startGameChoose.innerHTML = 'Выберите уровень:'
 
         const arr: Array<string> = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
         const startGameBtns = document.createElement('div')

@@ -68,8 +68,9 @@ body {
 .start-game__btns {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   width: 100%;
+  margin-bottom: 40px;
 }
 .start-game__btn,
 .start-game__submit,

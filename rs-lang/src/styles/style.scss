@@ -55,6 +55,11 @@ section {
   }
 }
 
+#module-wrapper{
+  position: relative;
+  z-index: 5;
+}
+
 @keyframes slideFromDown {
   0% {
     transform: translateY(100px);

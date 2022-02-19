@@ -1,8 +1,5 @@
-
-
 import './assets/fonts/FontAwesome/stylesheet.css';
 import './assets/fonts/Gilroy/stylesheet.css';
-
 
 import './styles/font.css';
 import './styles/style.scss';
@@ -10,10 +7,10 @@ import './styles/header.scss';
 import './styles/header-bg.scss';
 import './styles/about.scss';
 import './styles/footer.scss';
-import "./components/pages/textBook/textBook"
-import "./components/pages/textBook/groupWords/groupWords"
-import "./components/pages/statistics/statistics"
-import "./components/pages/statistics/containerStatistics/statisticsPage"
+import './components/pages/textBook/textBook';
+import './components/pages/textBook/groupWords/groupWords';
+import './components/pages/statistics/statistics';
+import './components/pages/statistics/containerStatistics/statisticsPage';
 import './components/pages/audiogame/audiogame.css';
 
 import {
@@ -27,7 +24,6 @@ import {
   generateMain,
   generateSection,
 } from './components/app/main';
-
 
 const sashaInfo: object = {
   avatarLink: 'assets/img/avatar-2.png',
@@ -92,30 +88,29 @@ import './components/pages/user/user.css';
 import './components/pages/register/register.css';
 import { User } from './components/pages/user/user';
 
-const loginRegList: HTMLElement = document.querySelector('#login-reg-list')
+const loginRegList: HTMLElement = document.querySelector('#login-reg-list');
 
-const loginLink: HTMLElement = document.querySelector('.header__nav_link-login'),
-  regLink: HTMLElement = document.querySelector('.header__nav_link-reg')
+const loginLink: HTMLElement = document.querySelector(
+    '.header__nav_link-login'
+  ),
+  regLink: HTMLElement = document.querySelector('.header__nav_link-reg');
 
-  loginRegList.addEventListener('click', (e) => {
-    if(e.target === loginLink){
-
-      const loginObject = new User('user'),
+loginRegList.addEventListener('click', (e) => {
+  if (e.target === loginLink) {
+    const loginObject = new User('user'),
       loginRendered = loginObject.render();
-      
-      document.body.appendChild(loginRendered)
-    }
-  })
 
-  import {TextBook} from "./components/pages/textBook/textBook"
-  import { Statistics } from './components/pages/statistics/statistics';
-window.addEventListener("DOMContentLoaded", () => {
-  const rootElement = document.body;
-  const textBook = new TextBook(rootElement);
-  const statisticsApp = new Statistics(rootElement)
-
-  textBook.init();
-  statisticsApp.init()
+    document.body.appendChild(loginRendered);
+  }
 });
 
+import { TextBook } from './components/pages/textBook/textBook';
+import { Statistics } from './components/pages/statistics/statistics';
+window.addEventListener('DOMContentLoaded', () => {
+  const rootElement = document.body;
+  const textBook = new TextBook(rootElement);
+  const statisticsApp = new Statistics(rootElement);
 
+  textBook.init();
+  statisticsApp.init();
+});
