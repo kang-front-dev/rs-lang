@@ -1,7 +1,7 @@
 import { Component } from "../addition/addComponents";
 import { Button } from "../../../UI/Button/button";
 import "./style.scss";
-import { IWords, getWords, getAllWords } from "../../../api/api";
+import { IWords, getWords, getAllWords, createUserWords } from "../../../api/api";
 import constants from "./1";
 import { WordsItem } from "../groupWords/wordsItem";
 import { getState, updateState } from './state';
@@ -25,6 +25,7 @@ export class Pages extends Component {
   private containerBtnPagination:Component;
   private selectorPaginaion:Component
   private updating = false;
+  private newOption: Component
   constructor(parentNode: HTMLElement) {
     super(parentNode, "div", ["pages"]);
 
@@ -47,8 +48,7 @@ export class Pages extends Component {
       this.groupBtn.element.innerHTML=`${elem}`
      
       this.groupBtn.element.dataset.level = `${elem}`
-      console.log(this.groupBtn.element.dataset.level)
-
+      console.log(`this.groupBtn.element.dataset.level ${this.groupBtn.element.dataset.level}`)
 
       this.groupBtn.element.onclick = async () =>{
         this.page=this.page;
@@ -103,26 +103,41 @@ export class Pages extends Component {
          this.updatePage(this.page, this.group);
       })  
   })
-
+const arrPage=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
     this.containerBtnPagination=new Component(this.element, "div", ["container__btn-pagination"])
     this.prevButton = new Button(this.containerBtnPagination.element, ["btn-prev"], "Prev", true);
     this.prevButton.onClickButton = () => this.switchPage("prev");
   
     this.selectorPaginaion =new Component(this.containerBtnPagination.element, "select", ["select__pagination"])
-    this.selectorPaginaion.element.setAttribute("value", this.page.toString())
-    this.selectorPaginaion.element.addEventListener('input', this.changePage.bind(this));
-    
-      const newOption = document.createElement('option') as HTMLOptionElement;
-      newOption.value=String(this.page)
-      console.log(newOption.value);
+    // this.selectorPaginaion.element.setAttribute("value", this.page.toString())
+    // this.selectorPaginaion.element.addEventListener('input', this.changePage.bind(this));
    
-      newOption.addEventListener('change', () => {
-        this.updatePage(this.page, this.group);
-        console.log(newOption.value)
-        newOption.value=String(this.page)
+    arrPage.forEach((item)=> {
+      // const newOption = document.createElement('option') as HTMLOptionElement;
+      this.newOption=new Component(this.selectorPaginaion.element, "option", ["selector-option"])
+      this.newOption.element.setAttribute("value", `${item.toString()}`)
+      // const newOption = document.createElement('option') as HTMLOptionElement;
+      // this.newOption.element.textContent=item.toString();
+      // this.selectorPaginaion.element.append(newOption);
+      this.newOption.element.textContent = `Страница №${item}`;
+
+
+      this.selectorPaginaion.element.addEventListener("change", async (event) => {
+        localStorage.setItem("page", String(arrPage.indexOf(item)))
+        const groupStorage:IWords = await getWords(this.group, +localStorage.getItem("page")) 
+        console.log(groupStorage);
+        // this.newOption.element.setAttribute("value", `${this.page.toString()}`)
+        
       })
-      newOption.textContent = `Страница №${this.page}`;
-      this.selectorPaginaion.element.append(newOption);
+    })
+   
+      // newOption.addEventListener('change', () => {
+      //   this.updatePage(this.page, this.group);
+      //   console.log(newOption.value)
+      //   newOption.value=String(this.page)
+      // })
+    
+      // this.selectorPaginaion.element.append(newOption);
     
     // this.selectorPaginaion.value = String(this.page)
 
@@ -130,17 +145,17 @@ export class Pages extends Component {
     this.nextButton.onClickButton = () => this.switchPage("next");
   }
 
-  private goToPage(page: number): void {
-    if (page < 0 || page > constants.maxWordsPage || this.updating) {
-      return;
-    }
-    this.selectorPaginaion.element.setAttribute("value", this.page.toString())
-  }
+  // private goToPage(page: number): void {
+  //   if (page < 0 || page > constants.maxWordsPage || this.updating) {
+  //     return;
+  //   }
+  //   this.selectorPaginaion.element.setAttribute("value", this.page.toString())
+  // }
 
-  private changePage(): void {
-    const newPage = Number(this.selectorPaginaion.element.setAttribute("value", this.page.toString()));
-    this.goToPage(newPage);
-  }
+  // private changePage(): void {
+  //   const newPage = Number(this.selectorPaginaion.element.setAttribute("value", this.page.toString()));
+  //   this.goToPage(newPage);
+  // }
 
   updateNextButton(page: number, group:number, totalCount: number, limit: number): void {
     if (page > totalCount / limit) {
@@ -148,6 +163,7 @@ export class Pages extends Component {
     } else {
       this.nextButton.setDisabled(false);
     }
+    
   }
 
   private updatePrevButton(): void {
@@ -164,6 +180,8 @@ export class Pages extends Component {
     }
 
     if (type === "next") this.page++;
+    this.newOption.element.setAttribute("value", `Страница № ${this.page}`);
+    
 
     // this.title.element.innerHTML = `Page #${this.page}`;
     this.updatePage(this.page, this.group);

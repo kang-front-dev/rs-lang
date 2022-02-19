@@ -8,7 +8,7 @@ export class StatisticsItem extends Component {
     private divWordsLearning: Component;
     private textWordsLearning: Component;
     private divPercentWordsLearning: Component;
-    private textPercentWordsLearning: Component
+    private textPercentWordsLearning: Component;
     constructor(parentNode: HTMLElement) {
         super(parentNode, "div", ["statistics-list"])
        this.statisticToday=new Component(this.element, "div", ["statistics-today"]);

@@ -105,7 +105,7 @@ export const updateUserWords = async (id:number, wordId:string, word:{difficulty
     },
   })).json();
 
-export const deleteUserWord = async (id:number, wordId:string) => (await fetch (`${base}/users/${id}/words/${wordId}`, {method: 'DELETE'})).json();
+export const deleteUserWord = async (id:string, wordId:string) => (await fetch (`${base}users/${id}/words/${wordId}`, {method: 'DELETE'})).json();
 
 
 export const getUserStatistic = async (id:string) => (await fetch(`${base}users/${id}/statistics`)).json()
@@ -152,15 +152,15 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
     }
   };
 
-  export const deleteWord = async (wordId: string): Promise<void> => {
-    try {
-      await fetch(`${base}words/${wordId}`, {
-        method: "DELETE",
-      });
-    } catch (err) {
-      throw err as Error;
-    }
-  };
+  // export const deleteWord = async (wordId: string): Promise<void> => {
+  //   try {
+  //     await fetch(`${base}words/${wordId}`, {
+  //       method: "DELETE",
+  //     });
+  //   } catch (err) {
+  //     throw err as Error;
+  //   }
+  // };
   // export const deleteWord = async (wordId:string) => (await fetch (`${base}words/${wordId}`, {method: 'DELETE'})).json();
   export interface IConnection {
     name: string;

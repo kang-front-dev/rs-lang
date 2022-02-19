@@ -3,7 +3,6 @@ export class Component {
   element: HTMLElement;
   innerHTML: string[];
   disabled: boolean;
-  // value: any;
 
   constructor(
     parentNode: HTMLElement,
