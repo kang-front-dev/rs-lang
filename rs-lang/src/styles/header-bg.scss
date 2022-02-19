@@ -16,7 +16,7 @@
   width: 20px;
   height: 20px;
   background: rgba(141, 177, 255, 0.7);
-  animation: animate 25s linear infinite;
+  // animation: animate 25s linear infinite;
   bottom: -150px;
   border-radius: 50%;
 }
@@ -39,7 +39,7 @@
 
 @keyframes animate {
   0% {
-    transform: translateY(0)  rotate(0deg);
+    transform: translateY(0) rotate(0deg);
     opacity: 1;
   }
 

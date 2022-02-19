@@ -1,5 +1,5 @@
 import { spawn } from "child_process";
-import { getWords, IWords } from "../../api/api";
+import { createUserWords, getWords, IWords } from "../../api/api";
 import { AudioGame } from "../audiogame/audiogame";
 
 export class Sprint extends AudioGame {
@@ -32,11 +32,10 @@ export class Sprint extends AudioGame {
     sprintDescr.className = 'sprint__descr';
     sprintDescr.innerHTML = `Мини-игра "Спринт" - тренировка на скорость. <br> Ваша цель - ответить на наибольшее количество вопросов за 30 секунд.`;
     // this.container.append(sprintDescr);
-
     const sprintLevels = document.createElement('div');
     sprintLevels.className = 'sprint__levels';
     // this.container.append(sprintLevels);
-
+    if (+localStorage.group >= 0){
     const sprintLevelsTitle = document.createElement('h3');
     sprintLevelsTitle.className = 'sprint__levels_title';
     sprintLevelsTitle.textContent = 'Выберите уровень:';
@@ -68,16 +67,27 @@ export class Sprint extends AudioGame {
 
       sprintLevelsWrapper.append(sprintLevelsItem);
     });
-
+    }else{
+      console.log(localStorage.group)
+    }
     const sprintStartBtn = document.createElement('div');
     sprintStartBtn.className = 'sprint__btn-start';
     sprintStartBtn.textContent = 'Начать';
     sprintStartBtn.onclick = async() =>{
-      for (let i=0; i<5; i++){
-        const page = Math.floor(Math.random() * (30 - 0) + 0);
-        const answer:IWords = await getWords(+localStorage.getItem('group'),page);
-        (this.questSprint as [IWords]).push(answer as IWords)
+      if (+localStorage.page >= 0){
+        for(let i = +localStorage.page; i<=0 ;i--){
+          const page = +localStorage.page;
+          const answer:IWords = await getWords(+localStorage.getItem('group'),page);
+          (this.questSprint as [IWords]).push(answer as IWords)
+        }
+      }else{
+        for (let i=0; i<5; i++){
+          const page = Math.floor(Math.random() * (30 - 0) + 0);
+          const answer:IWords = await getWords(+localStorage.getItem('group'),page);
+          (this.questSprint as [IWords]).push(answer as IWords)
+        }
       }
+      
 
       console.log(this.questSprint.flat(1))
       this.questSprint = this.questSprint.flat(1) as IWords[]
@@ -107,18 +117,6 @@ export class Sprint extends AudioGame {
     const sprintTime = document.createElement('div')
     sprintTime.className = 'sprint__time'
     
-    const timer = setInterval(()=>{
-      this.time--
-      if (this.time<=1){
-        (this.questions as [IWords]).concat(this.rightAnswer as [IWords], this.wrongAnswer as [IWords])
-        console.log(this.questions)
-        sprintContainer.remove()
-        this.audioStat()
-        clearInterval(timer)
-      }
-      sprintTime.innerHTML = `${this.time}`
-      console.log(this.time)
-    },1000)
 
     
 
@@ -161,8 +159,8 @@ export class Sprint extends AudioGame {
     // Math.floor(Math.random() * (99 - 0) + 0)
 
     function asd(arr:IWords[], num:number, score:number, mult:number){ 
-      sprintQuest.innerHTML = `${arr[num+1].word} это - `
-      sprintAns.innerHTML = `${Math.random() < 0.5 ? arr[num+1].wordTranslate : arr[Math.floor(Math.random() * (99 - 0) + 0)].wordTranslate} ?`
+      sprintQuest.innerHTML = `<b>${arr[num+1].word}</b> это - `
+      sprintAns.innerHTML = `<u>${Math.random() < 0.5 ? arr[num+1].wordTranslate : arr[Math.floor(Math.random() * (99 - 0) + 0)].wordTranslate} ?</u>`
       multBox.innerHTML = `умножение: х${mult} +${mult*10}`
       sprintScore.innerHTML = `очки: ${score}`
     }
@@ -181,13 +179,15 @@ export class Sprint extends AudioGame {
     }
 
     trueAns.onclick = () =>{
-      if(this.questSprint[this.questNumber].wordTranslate === sprintAns.textContent){
+      if(this.questSprint[this.questNumber].wordTranslate === sprintAns.textContent.split(' ')[0]){
         (this.rightAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
+        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'easy', optional:[]})
         this.multiply = multScore(this.winStreak)
         this.score = this.score + this.multiply*10
         this.winStreak++
       }else{
         (this.wrongAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
+        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'hard', optional:[]})
         this.winStreak = 0
         this.multiply = 1
       }
@@ -201,13 +201,15 @@ export class Sprint extends AudioGame {
     falseAns.className = 'false__ans'
     falseAns.innerHTML = 'ложь'
     falseAns.onclick = () =>{
-      if(this.questSprint[this.questNumber].wordTranslate !== sprintAns.textContent){
+      if(this.questSprint[this.questNumber].wordTranslate !== sprintAns.textContent.split(' ')[0]){
         (this.rightAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
+        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'easy', optional:[]})
         this.multiply = multScore(this.winStreak)
         this.score = this.score + this.multiply*10
         this.winStreak++
       }else{
         (this.wrongAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
+        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'hard', optional:[]})
         this.winStreak = 0
         this.multiply = 1
       }
@@ -221,6 +223,22 @@ export class Sprint extends AudioGame {
 
     sprintContainer.append(sprintTimeBox,scoreContainer,sprintQuestText,sprintBtnBox)
 
+
+
+    const timer = setInterval(()=>{
+      this.time--
+      this.questions = [...this.rightAnswer,...this.wrongAnswer]
+      if (this.time<=1 || this.questNumber+1 > this.questSprint.length){
+        console.log(this.questions)
+        sprintContainer.remove()
+        this.audioStat()
+        clearInterval(timer)
+      }
+      sprintTime.innerHTML = `${this.time}`
+    },1000)
+
+    
   }
+
 
 }
