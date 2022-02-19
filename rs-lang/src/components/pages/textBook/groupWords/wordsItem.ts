@@ -137,7 +137,11 @@ this.textMeaningTranslate.element.innerHTML=word.textMeaningTranslate
       arrDifficultWords.push(word.id)
       console.log(arrDifficultWords)
       this.wordList.element.classList.add("difficultWords_arr")
-
+      const arrDifficultLocalStorage = createUserWords(JSON.parse(localStorage.SignInUser).userId, word.id, {
+  difficulty: "hard",
+  optional: []
+})
+console.log(arrDifficultLocalStorage)
     });
 
     const deleteTranslateBtn = new Button(divButtons.element, ["btn-small"], "translate")
