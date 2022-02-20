@@ -32,8 +32,8 @@ export class User {
         
         userCross.addEventListener('click', (event)=>{
             console.log(event.target)
-            const user = document.querySelector('.user__bg')
-            user.remove()
+            // const user = document.querySelector('.user__bg')
+            this.userSectionBg.remove()
         })
         
 
@@ -98,6 +98,8 @@ export class User {
             const userArr = {email: userEmail.value, password: userPass.value}
             const a = await loginUser(userArr)
             localStorage.setItem('SignInUser', JSON.stringify(a))
+            this.userSectionBg.remove()
+
         })
 
         const register = document.createElement('button') as HTMLButtonElement
@@ -108,7 +110,7 @@ export class User {
 
         register.addEventListener('click', ()=>{
             const user = document.querySelector('.user__bg')
-            user.remove()
+            this.userSectionBg.remove()
             const Register = this.register.render()
             document.body.append(Register)
             console.log(1)

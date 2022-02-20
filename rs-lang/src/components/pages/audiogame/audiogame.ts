@@ -2,6 +2,7 @@ import { base, createUserWords, getWords, IWords } from '../../api/api';
 import { disableMain } from '../../app/main';
 import { Sprint } from '../sprint/sprint';
 
+export let Statistic = []
 export class AudioGame {
   public container: HTMLElement;
   currentAudio: string;
@@ -16,6 +17,7 @@ export class AudioGame {
 
   constructor(id: string) {
     this.user = localStorage.SignInUser ? JSON.parse(localStorage.SignInUser).userId : null
+    console.log(this.user)
     this.container = document.createElement('div');
     this.container.id = id;
     this.currentAudio = '';
@@ -27,7 +29,6 @@ export class AudioGame {
     this.audio = new Audio();
     this.game = 'audiocall'
   }
-
   audioGameHeader(className: string) {
     const sidebar = document.createElement('aside');
     sidebar.className = 'sidebar';
@@ -241,13 +242,13 @@ export class AudioGame {
           target.style.background = 'rgba(126, 255, 133, 0.7)';
           this.correctAnswer++;
           if (this.user !== null){
-            createUserWords(this.user, questionArr[0].id, {difficulty:'easy', optional:[]})
+            createUserWords(this.user, questionArr[0].id, {difficulty:'easy', optional:{newWord:true}})
           }
           (this.rightAnswer as [IWords]).push(questionArr[0]);
           changeLastBtn();
         } else {
           if (this.user !== null){
-            createUserWords(this.user, questionArr[0].id, {difficulty:'hard', optional:[]})
+            createUserWords(this.user, questionArr[0].id, {difficulty:'hard', optional:{newWord:true}})
           }
           target.style.background = 'rgba(255, 126, 126, 0.7)';
           (this.wrongAnswer as [IWords]).push(questionArr[0]);
@@ -285,6 +286,8 @@ export class AudioGame {
       // this.renderGame(this.questNumber)
       if (this.questNumber === this.questions.length) {
         this.audioStat();
+        Statistic.push(this.questions,this.rightAnswer, this.wrongAnswer)
+        
       } else {
         this.renderGame(this.questNumber);
       }
@@ -472,10 +475,11 @@ export class AudioGame {
       audioStatToggle,
       audioStatBtnContainer
     );
+    
   }
   render() {
     this.audioGameHeader('header');
-    this.startGame();
+    this.startGame();   
     return this.container;
   }
 

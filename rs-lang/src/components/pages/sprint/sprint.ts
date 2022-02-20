@@ -2,6 +2,7 @@ import { spawn } from "child_process";
 import { createUserWords, getWords, IWords } from "../../api/api";
 import { AudioGame } from "../audiogame/audiogame";
 
+export let sprinStat = []
 export class Sprint extends AudioGame {
   private questSprint: [] | [IWords] | IWords[]
   private time: number
@@ -14,7 +15,7 @@ export class Sprint extends AudioGame {
     this.winStreak = 0
     this.multiply = 1
     this.score = 0
-    this.time = 31
+    this.time = 10
     this.questSprint = []
     this.container = document.createElement('div');
     this.container.id = id;
@@ -83,9 +84,9 @@ export class Sprint extends AudioGame {
         }
       }else{
         for (let i=0; i<5; i++){
-          console.log(localStorage.group)
           const page = Math.floor(Math.random() * (30 - 0) + 0);
           const answer:IWords = await getWords(+localStorage.getItem('group'),page);
+          console.log(answer);
           (this.questSprint as [IWords]).push(answer as IWords)
         }
       }
@@ -183,13 +184,13 @@ export class Sprint extends AudioGame {
     trueAns.onclick = () =>{
       if(this.questSprint[this.questNumber].wordTranslate === sprintAns.textContent.split(' ')[0]){
         (this.rightAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'easy', optional:[]})
+        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'easy', optional:{newWord:true}})
         this.multiply = multScore(this.winStreak)
         this.score = this.score + this.multiply*10
         this.winStreak++
       }else{
         (this.wrongAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'hard', optional:[]})
+        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'hard', optional:{newWord:true}})
         this.winStreak = 0
         this.multiply = 1
       }
@@ -205,13 +206,13 @@ export class Sprint extends AudioGame {
     falseAns.onclick = () =>{
       if(this.questSprint[this.questNumber].wordTranslate !== sprintAns.textContent.split(' ')[0]){
         (this.rightAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'easy', optional:[]})
+        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'easy', optional:{newWord:true}})
         this.multiply = multScore(this.winStreak)
         this.score = this.score + this.multiply*10
         this.winStreak++
       }else{
         (this.wrongAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'hard', optional:[]})
+        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'hard', optional:{newWord:true}})
         this.winStreak = 0
         this.multiply = 1
       }
@@ -234,6 +235,9 @@ export class Sprint extends AudioGame {
         console.log(this.questions)
         sprintContainer.remove()
         this.audioStat()
+
+        sprinStat.push(this.questions, this.rightAnswer,this.wrongAnswer)
+        console.log(sprinStat)
         clearInterval(timer)
       }
       sprintTime.innerHTML = `${this.time}`
