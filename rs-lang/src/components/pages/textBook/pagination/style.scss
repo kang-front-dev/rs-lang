@@ -9,11 +9,17 @@
     }
     .btn {
       padding: 8px 20px;
-      width: 80px;
-      height: 40px;
+      width: 100px;
+      height: 50px;
     }
     .btn-prev, .btn-next {
-      margin: 0 10px;
+      border-radius: 50px;
+    }
+    .btn-prev {
+      margin-right: 14px;
+    }
+    .btn-next {
+      margin-left: 14px;
     }
   }
   .btn-group {
@@ -103,5 +109,43 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
+  border-radius: 50px;
+  border-color: #baedff;
+  background-color: white;
+  border-style: solid;
 }
-  
+.select__pagination {
+  padding: 5px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+}
+.select__pagination li {
+  list-style: none;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  width: 24px;
+  cursor: pointer;
+}
+.select__pagination li:hover {
+  background-color: #baedff;
+  border-radius: 30px;
+}
+.select__pagination_UlLi {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+}
+.selector-option_li {
+  list-style: none;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  width: 24px;
+  cursor: pointer;
+
+}

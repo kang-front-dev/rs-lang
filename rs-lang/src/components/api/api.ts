@@ -82,12 +82,13 @@ export const getUserToken = async (id:string) => (await fetch(`${base}users/${id
 
 export const getUserWords = async (id:string) => (await fetch(`${base}users/${id}/words`)).json()
 
-export const createUserWords = async (id:string, wordId:string, word:{difficulty:string, optional:[] }) => {
+export const createUserWords = async (id:string, wordId:string, word:{difficulty:string, optional:{word:string} }) => {
     const rawResponse = await fetch(`${base}users/${id}/words/${wordId}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(word)
     }).catch()
@@ -104,8 +105,11 @@ export const updateUserWords = async (id:number, wordId:string, word:{difficulty
       'Content-Type': 'application/json'
     },
   })).json();
-
-export const deleteUserWord = async (id:string, wordId:string) => (await fetch (`${base}users/${id}/words/${wordId}`, {method: 'DELETE'})).json();
+const token:string =JSON.parse(localStorage.SignInUser).token
+export const deleteUserWord = async (id:string, wordId:string) => (await fetch (`${base}users/${id}/words/${wordId}`, {method: 'DELETE',
+headers: {
+  Authorization: `Bearer ${token}`
+}})).json();
 
 
 export const getUserStatistic = async (id:string) => (await fetch(`${base}users/${id}/statistics`)).json()

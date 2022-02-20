@@ -25,7 +25,7 @@ export class Pages extends Component {
   private containerBtnPagination:Component;
   private selectorPaginaion:Component
   private updating = false;
-  private newOption: Component
+  private newOption: Component;
   constructor(parentNode: HTMLElement) {
     super(parentNode, "div", ["pages"]);
 
@@ -46,17 +46,12 @@ export class Pages extends Component {
     arr.forEach((elem:string)=>{
       this.groupBtn=new Component(this.groupBtns.element, "button", ["group_btn"])
       this.groupBtn.element.innerHTML=`${elem}`
-     
       this.groupBtn.element.dataset.level = `${elem}`
-      console.log(`this.groupBtn.element.dataset.level ${this.groupBtn.element.dataset.level}`)
 
-      this.groupBtn.element.onclick = async () =>{
-        this.page=this.page;
-       
+      this.groupBtn.element.onclick = async () =>{       
           localStorage.setItem('group', String(arr.indexOf(elem)))
           const answer:IWords = await getWords(+localStorage.getItem('group'), this.page)
           this.answerGroup=new Component(this.element, "div", ["answer-group"], answer.id)
-          
           this.groupBtns.element.childNodes.forEach((el)=>{
               (el as HTMLButtonElement).style.backgroundColor = 'white'
           })
@@ -97,9 +92,7 @@ export class Pages extends Component {
                 else if(this.group == 5) {this.group}
                 else if(this.group>5) this.group--;
               
-            }  
-        // elsethis.group--;
-       //  this.titleGROUP.element.innerHTML = `GROUP #${this.group}`;
+            }   
          this.updatePage(this.page, this.group);
       })  
   })
@@ -108,62 +101,36 @@ const arrPage=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
     this.prevButton = new Button(this.containerBtnPagination.element, ["btn-prev"], "Prev", true);
     this.prevButton.onClickButton = () => this.switchPage("prev");
   
-    this.selectorPaginaion =new Component(this.containerBtnPagination.element, "select", ["select__pagination"])
-    // this.selectorPaginaion.element.setAttribute("value", this.page.toString())
-    // this.selectorPaginaion.element.addEventListener('input', this.changePage.bind(this));
-   
+    this.selectorPaginaion =new Component(this.containerBtnPagination.element, "ul", ["select__pagination"])
+
     arrPage.forEach((item)=> {
-      // const newOption = document.createElement('option') as HTMLOptionElement;
-      this.newOption=new Component(this.selectorPaginaion.element, "option", ["selector-option"])
-      this.newOption.element.setAttribute("value", `${item.toString()}`)
-      // const newOption = document.createElement('option') as HTMLOptionElement;
-      // this.newOption.element.textContent=item.toString();
-      // this.selectorPaginaion.element.append(newOption);
-      this.newOption.element.textContent = `Страница №${item}`;
+      this.newOption=new Component(this.selectorPaginaion.element, "li", ["selector-option"])
+       this.newOption.element.textContent = `${item}`;
 
-
-      this.selectorPaginaion.element.addEventListener("change", async (event) => {
+      this.newOption.element.addEventListener("click", async (event) => {
         localStorage.setItem("page", String(arrPage.indexOf(item)))
-        const groupStorage:IWords = await getWords(this.group, +localStorage.getItem("page")) 
-        console.log(groupStorage);
-        // this.newOption.element.setAttribute("value", `${this.page.toString()}`)
-        
+        const groupStorage:IWords = await getWords(this.group, this.page) 
+        this.updatePage(this.page, this.group)
+        // this.newOption.element.classList.toggle("selector-option_click")
+        if(item > this.group) {
+          this.page++
+        } else if(item == this.group) this.group;
+        else  this.group--;
       })
     })
-   
-      // newOption.addEventListener('change', () => {
-      //   this.updatePage(this.page, this.group);
-      //   console.log(newOption.value)
-      //   newOption.value=String(this.page)
-      // })
-    
-      // this.selectorPaginaion.element.append(newOption);
-    
-    // this.selectorPaginaion.value = String(this.page)
 
     this.nextButton = new Button(this.containerBtnPagination.element, ["btn-next"], "Next");
-    this.nextButton.onClickButton = () => this.switchPage("next");
+    this.nextButton.onClickButton = async () => {
+      this.switchPage("next");
+    };
   }
-
-  // private goToPage(page: number): void {
-  //   if (page < 0 || page > constants.maxWordsPage || this.updating) {
-  //     return;
-  //   }
-  //   this.selectorPaginaion.element.setAttribute("value", this.page.toString())
-  // }
-
-  // private changePage(): void {
-  //   const newPage = Number(this.selectorPaginaion.element.setAttribute("value", this.page.toString()));
-  //   this.goToPage(newPage);
-  // }
 
   updateNextButton(page: number, group:number, totalCount: number, limit: number): void {
     if (page > totalCount / limit) {
-      this.nextButton.setDisabled(false);
+      this.nextButton.setDisabled(false); 
     } else {
       this.nextButton.setDisabled(false);
     }
-    
   }
 
   private updatePrevButton(): void {
@@ -176,32 +143,20 @@ const arrPage=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
 
   private switchPage(type: string) {
     if (type === "prev") {
-      if (this.page > 0) this.page--;
+      if (this.page > 0) {this.page--};
     }
-
-    if (type === "next") this.page++;
-    this.newOption.element.setAttribute("value", `Страница № ${this.page}`);
-    
+    if (type === "next") {this.page++;
+      }
 
     // this.title.element.innerHTML = `Page #${this.page}`;
     this.updatePage(this.page, this.group);
+    localStorage.setItem(this.page.toString(), this.group.toString());
     this.updatePrevButton();
   }
 
-// public switchGroup() {
-//     if (this.group > 5) this.group--;
-//  else this.group++;
-// //  this.titleGROUP.element.innerHTML = `GROUP #${this.group}`;
-//   this.updatePage(this.page, this.group);
-//   // this.updateGroupButton();
-// }
-render() {
-  return this.container
-  
-}
 updateGroupButton(page: number, group: number, totalCount: number, limit: number): void {
   console.log(`page ${page}, group ${group}, totalCount ${totalCount}, limit ${limit}`)
-}
+  }
 }
 
 
