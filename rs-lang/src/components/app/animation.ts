@@ -5,7 +5,6 @@ export function setAppearAnimation(targetSelector) {
   targetSelector = targetSelector.split('');
   targetSelector.splice(0, 1);
   targetSelector = targetSelector.join('');
-  console.log(targetSelector);
 
   targets.forEach((item) => {
     window.addEventListener('scroll', (e) => {
@@ -30,9 +29,10 @@ export function setSlideFromRightAnimation(
     targetSelector = targetSelector.split('');
     targetSelector.splice(0, 1);
     targetSelector = targetSelector.join('');
-    console.log(targetSelector);
-  } else {
-    targetSelector = target.classList[0];
+
+  }else{
+    targetSelector = target.classList[0]
+
   }
   window.addEventListener('scroll', (e) => {
     if (target.getBoundingClientRect().top < window.innerHeight + 50) {

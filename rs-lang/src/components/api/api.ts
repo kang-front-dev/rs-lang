@@ -22,8 +22,17 @@ export interface IWords{
 
 
 export const getWords = async (group:number, page:number) => {
+  try {
     const rawResponse = await fetch(`${base}words?group=${group}&page=${page}`)
-    return  await rawResponse.json() 
+    if (rawResponse.status === 200) {
+       return <IWords> await rawResponse.json();
+    }
+    return null;
+   
+  } catch (err) {
+    throw err as Error;
+  }
+
 }
 export const getWord = async (id:string) => {
     return (await fetch(`${base}words/${id}`)).json()
@@ -72,6 +81,7 @@ export const getUserToken = async (id:string) => (await fetch(`${base}users/${id
 
 export const getUserWords = async (id:string) => (await fetch(`${base}users/${id}/words`)).json()
 
+
 export const getUserWord = async (id:string, wordId:string) => {
   const token:string = JSON.parse(localStorage.SignInUser).token
   const rawResponse = await fetch(`${base}users/${id}/words/${wordId}`,
@@ -86,6 +96,7 @@ const content = await rawResponse.json();
 return content
 }
 
+
 export const updateUserWords = async (id:string, wordId:string, word:{difficulty:string, optional:{repeat:boolean} }) => {
   const token:string = JSON.parse(localStorage.SignInUser).token 
   const rawResponse = await fetch(`${base}users/${id}/words/${wordId}`, {
@@ -96,6 +107,7 @@ export const updateUserWords = async (id:string, wordId:string, word:{difficulty
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
+
   })
   const content = await rawResponse.json();
   return content
@@ -166,6 +178,34 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
       'Content-Type': 'application/json'
     },
   })).json();
+
+  export const getAllWords = async (
+    page = 0,
+    group = 0
+  ): Promise<{ words: Array<IWords>; count: string }> | null => {
+    try { 
+      const dataWords = await fetch(
+        `${base}words?page=${page}&group=${group}`
+      );
+      const res: IWords[] = await dataWords.json();
+      if (dataWords.status === 200) {
+        return {
+          words: res, 
+          count: dataWords.headers.get("X-Total-Count") || "0",
+        };
+      }
+      return null;
+    } catch (err) {
+      throw err as Error;
+    }
+  };
+
+
+  export interface IConnection {
+    name: string;
+    component: () => void;
+  }
+
 export const generateHardWords = async (userId:string, group:number, page:number) => {
   const token:string = JSON.parse(localStorage.SignInUser).token 
   // const filter = {"$or":[{"$and":[{"group":${group}},{"page":${page}},{"userWord.difficulty":"easy", "userWord.optional.repeat":true}]},{"userWord":null},{"userWord.difficulty":"hard"}]}
@@ -206,3 +246,4 @@ export const generateWordsForAudio = async (userId:string, group:number, page:nu
   })
   return await rawResponse.json();
 }
+

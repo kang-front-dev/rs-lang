@@ -7,6 +7,12 @@ import './styles/header.scss';
 import './styles/header-bg.scss';
 import './styles/about.scss';
 import './styles/footer.scss';
+
+import "./components/pages/textBook/textBook"
+import "./components/pages/textBook/groupWords/groupWords"
+import "./components/pages/statistics/statistics"
+import "./components/pages/statistics/containerStatistics/statisticsPage"
+
 import './components/pages/sprint/sprint.scss';
 
 import './components/pages/audiogame/audiogame.css';
@@ -24,9 +30,11 @@ import {
   generateSection,
 } from './components/app/main';
 
+
 import { generateBubbles } from './components/app/animation';
 
-// generateBubbles(60);
+generateBubbles(60);
+
 
 const sashaInfo: object = {
   avatarLink: 'assets/img/avatar-2.png',
@@ -104,6 +112,7 @@ loginRegList.addEventListener('click', (e) => {
     const loginObject = new User('user'),
       loginRendered = loginObject.render();
 
+
     document.body.appendChild(loginRendered);
   } else if (e.target === regLink) {
     const regObject = new Register('user'),
@@ -149,3 +158,4 @@ function leaveProfile() {
   localStorage.removeItem('SignInUser');
   location.reload();
 }
+
