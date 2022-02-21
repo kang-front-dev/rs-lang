@@ -1,6 +1,6 @@
 import { base, getWords, IWords } from "../../api/api";
 
-
+export let Statistic = []
 export class AudioGame {
     public container: HTMLElement;
     currentAudio: string;
@@ -436,6 +436,7 @@ export class AudioGame {
             this.audio.src = `${rightBtn.dataset.src}`  
             this.audio.play()
             }
+            Statistic.push(this.questions,this.rightAnswer, this.wrongAnswer)
         })
         audioStatResMain.append(audioStatResMainText, audioStatResMainBtn, audioStatPersentBox)
         audioStatViewMain.append(audioStatWrongText, audioStatWrongBox, audioStatRightText, audioStatRightBox)
@@ -447,6 +448,7 @@ export class AudioGame {
         this.startGame()
         return this.container
     }
+   
 }
 
 

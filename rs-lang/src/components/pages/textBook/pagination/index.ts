@@ -109,13 +109,15 @@ const arrPage=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
 
       this.newOption.element.addEventListener("click", async (event) => {
         localStorage.setItem("page", String(arrPage.indexOf(item)))
-        const groupStorage:IWords = await getWords(this.group, this.page) 
+        const groupStorage:IWords = await getWords(this.page, this.group) 
         this.updatePage(this.page, this.group)
+        
         // this.newOption.element.classList.toggle("selector-option_click")
-        if(item > this.group) {
-          this.page++
-        } else if(item == this.group) this.group;
-        else  this.group--;
+        if(item < this.page-1) {
+          this.page--
+        } 
+        else if(item > this.page-1)  this.page++;
+        else item == this.page-1
       })
     })
 

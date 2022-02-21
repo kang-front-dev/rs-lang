@@ -2,7 +2,7 @@ import { Component } from "../../textBook/addition/addComponents";
 import { Button } from "../../../UI/Button/button";
 import { IWords, baseUrl } from "../../../api/api";
 import "./containerStatistics.scss"
-
+import { Statistic } from "../../audiogame/audiogame";
 export class StatisticsItem extends Component {
     private statisticToday:Component;
     private divWordsLearning: Component;
@@ -48,5 +48,6 @@ export class StatisticsItem extends Component {
     this.SavannaH3=new Component(this.gameStatisticCardSavanna.element, "h3", ["savanna_h3"], `Изучено ${0} слов`)
     this.SavannaH3=new Component(this.gameStatisticCardSavanna.element, "h3", ["savanna_h3"], `Правильных ответов: ${0}%`)
     this.SavannaH3=new Component(this.gameStatisticCardSavanna.element, "h3", ["savanna_h3"], `Самая длинная серия ответов: ${0}`)
+    console.log(Statistic)
     }
 } 
