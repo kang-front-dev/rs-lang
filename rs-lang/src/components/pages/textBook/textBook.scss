@@ -5,12 +5,14 @@
 }
 .textBook__title {
   font-size: 55px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 65px;
     color: #464646;
     margin-bottom: 40px;
     animation: appear 0.3s ease-in-out;
     animation-delay: 0s;
+    text-align: center;
+    font-family: 'Gilroy';
 }
 .link_textBook {
   display: flex;

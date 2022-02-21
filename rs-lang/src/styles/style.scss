@@ -75,6 +75,8 @@ section {
   background-size: cover;
   background-repeat: no-repeat;
   flex-grow: 1;
+  position: relative;
+  z-index: 5;
 
 }
 
