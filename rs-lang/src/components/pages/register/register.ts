@@ -1,6 +1,6 @@
 import { createUser } from "../../api/api";
 import { User } from "../user/user";
-
+import { checkOnProfile } from "../../../index";
 
 export class Register {
     private registerSection: HTMLElement;
@@ -132,6 +132,7 @@ export class Register {
             const arr = {name: name[1].value, email: name[0].value, password: name[2].value}
             const a = await createUser(arr)
             localStorage.setItem('userRegistration', JSON.stringify(a))
+            checkOnProfile()
         })
 
         

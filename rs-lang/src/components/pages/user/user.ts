@@ -1,6 +1,6 @@
 import { loginUser } from "../../api/api";
 import { Register } from "../register/register";
-
+import { checkOnProfile } from "../../../index";
 
 export class User {
     private userSection: HTMLElement;
@@ -99,7 +99,7 @@ export class User {
             const a = await loginUser(userArr)
             localStorage.setItem('SignInUser', JSON.stringify(a))
             this.userSectionBg.remove()
-
+            checkOnProfile()
         })
 
         const register = document.createElement('button') as HTMLButtonElement

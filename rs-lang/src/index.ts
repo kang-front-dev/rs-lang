@@ -1,6 +1,7 @@
 import './assets/fonts/FontAwesome/stylesheet.css';
 import './assets/fonts/Gilroy/stylesheet.css';
 
+import './styles/root.scss';
 import './styles/style.scss';
 import './styles/header.scss';
 import './styles/header-bg.scss';
@@ -115,3 +116,37 @@ loginRegList.addEventListener('click', (e) => {
 import { setRouting } from './components/app/routing';
 
 setRouting();
+
+const exitBtn = document.querySelector('.header__nav_profile_btn-exit');
+exitBtn.addEventListener('click', leaveProfile);
+
+const userProfile = document.querySelector('.header__nav_profile'),
+  userProfileAvatar = document.querySelector('.header__nav_link-profile'),
+  userProfileExitBtn = document.querySelector('.header__nav_profile_cross-icon')
+
+
+userProfileAvatar.addEventListener('click', ()=>{
+  userProfile.classList.remove('element-disabled')
+})
+userProfileExitBtn.addEventListener('click', ()=>{
+  userProfile.classList.add('element-disabled')
+})
+
+export function checkOnProfile() {
+  const userProfileLink = document.querySelector('.header__nav_link-profile'),
+  userLogin = document.querySelector('.header__nav_link-login'),
+  userReg = document.querySelector('.header__nav_link-reg');
+
+  if (localStorage.getItem('userRegistration') || localStorage.getItem('SignInUser')) {
+    userProfileLink.classList.remove('element-disabled');
+    userLogin.classList.add('element-disabled');
+    userReg.classList.add('element-disabled');
+  }
+}
+checkOnProfile();
+
+function leaveProfile() {
+  localStorage.removeItem('userRegistration');
+  localStorage.removeItem('SignInUser');
+  location.reload();
+}
