@@ -1,0 +1,53 @@
+.textBook {
+  background: "../../../assets/img/about-bg.jpg";
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.textBook__title {
+  font-size: 55px;
+    font-weight: 500;
+    line-height: 65px;
+    color: #464646;
+    margin-bottom: 40px;
+    animation: appear 0.3s ease-in-out;
+    animation-delay: 0s;
+}
+.link_textBook {
+  display: flex;
+  flex-direction: inherit;
+  text-align: center;
+}
+.textBook > .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container, .word-section-main {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.tutorial_groups {
+  width: 50px;
+  background-color: aqua;
+}
+
+.group__description {
+  font-size: 25px;
+  font-weight: 700;
+  margin-top: 24px;
+}
+
+.group-btn {
+  display: flex;
+
+  align-items: baseline;
+  width: 420px;
+  padding: 0 28px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  box-sizing: border-box;
+}
+
