@@ -1,3 +1,5 @@
+import {base, getWords, IWords} from '../api/api'
+
 export function setAppearAnimation(targetSelector) {
   const targets = document.querySelectorAll(`${targetSelector}`);
   targetSelector = targetSelector.split('');
@@ -51,6 +53,13 @@ export function generateBubbles(amount: number) {
   if (amount > 0) {
     const bubble = document.createElement('li');
     const bubbleList = document.querySelector('.circles');
+    async function getBubbleInfo(){
+      const result = await getWords(getRandom(1,6), getRandom(1,30))
+      return result
+    }
+    const bubbleInfo = getBubbleInfo()
+    console.log(bubbleInfo);
+    
     bubbleList.appendChild(bubble);
 
     generateBubbles(amount - 1);
@@ -58,7 +67,9 @@ export function generateBubbles(amount: number) {
     return;
   }
 }
-
+export function getRandom(min, max) {
+  return Math.random() * (max - min) + min;
+}
 export class headerNavLinkActive {
 
   setActivePosition(left: number, width: number, height: number) {

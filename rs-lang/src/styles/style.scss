@@ -1,3 +1,14 @@
+$cerulean-blue-50: #ecf2ff;
+$cerulean-blue-100: #dde7ff;
+$cerulean-blue-200: #c2d2ff;
+$cerulean-blue-300: #9db4ff;
+$cerulean-blue-400: #758bff;
+$cerulean-blue-500: #5563ff;
+$cerulean-blue-600: #3738f4;
+$cerulean-blue-700: #3734da;
+$cerulean-blue-800: #2525ae;
+$cerulean-blue-900: #262889;
+
 * {
   margin: 0;
   padding: 0;
@@ -58,6 +69,10 @@ section {
 .module__wrapper{
   position: relative;
   z-index: 5;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 @keyframes slideFromDown {
@@ -79,3 +94,4 @@ section {
     opacity: 1;
   }
 }
+

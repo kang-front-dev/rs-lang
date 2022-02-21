@@ -1,7 +1,7 @@
 import './assets/fonts/FontAwesome/stylesheet.css';
 import './assets/fonts/Gilroy/stylesheet.css';
 
-import './styles/font.css';
+
 import './styles/style.scss';
 import './styles/header.scss';
 import './styles/header-bg.scss';
@@ -17,11 +17,10 @@ import {
 import {
   MainCard,
   disableMain,
-  enableMainMain,
+  enableMain,
   generateFooter,
   generateMain,
-  generateSection,
-  enableMain,
+  generateSection
 } from './components/app/main';
 
 import { generateBubbles } from './components/app/animation';
@@ -113,98 +112,7 @@ loginRegList.addEventListener('click', (e) => {
   }
 });
 
-import { AudioGame } from './components/pages/audiogame/audiogame';
+import { setRouting } from './components/app/routing';
 
-import { headerNavLinkActive } from './components/app/animation';
+setRouting();
 
-const headerLinkActive = new headerNavLinkActive();
-
-const headerNavList = document.getElementById('header-nav-links');
-
-const audiogameLink = document.getElementById('audiogame'),
-  sprintLink = document.getElementById('sprint'),
-  mainpageLink = document.getElementById('main-page'),
-  textbookLink = document.getElementById('textbook'),
-  statsLink = document.getElementById('stats');
-
-const moduleWrapper = document.getElementById('module-wrapper'),
-  headerContent = document.querySelector('.header__content');
-
-window.onload = () => {
-  headerLinkActive.setActivePosition(
-    mainpageLink.offsetLeft,
-    mainpageLink.offsetWidth,
-    mainpageLink.offsetHeight
-  );
-  console.log('wdwadwd');
-  
-}
-
-
-headerNavList.addEventListener('click', (e) => {
-  if (e.target === audiogameLink) {
-    headerContent.classList.add('element-animated-out');
-    headerLinkActive.setActivePosition(
-      audiogameLink.offsetLeft,
-      audiogameLink.offsetWidth,
-      audiogameLink.offsetHeight
-    );
-    setTimeout(() => {
-      headerContent.classList.add('element-disabled');
-      headerContent.classList.remove('element-animated-out');
-      disableMain();
-
-      const audiogameObject = new AudioGame('audio__game'),
-        audiogameRendered = audiogameObject.render();
-
-      moduleWrapper.appendChild(audiogameRendered);
-    }, 300);
-  } else if (e.target === sprintLink) {
-    headerLinkActive.setActivePosition(
-      sprintLink.offsetLeft,
-      sprintLink.offsetWidth,
-      sprintLink.offsetHeight
-    );
-  } else if (e.target === mainpageLink) {
-    headerLinkActive.setActivePosition(
-      mainpageLink.offsetLeft,
-      mainpageLink.offsetWidth,
-      mainpageLink.offsetHeight
-    );
-  } else if (e.target === textbookLink) {
-    headerLinkActive.setActivePosition(
-      textbookLink.offsetLeft,
-      textbookLink.offsetWidth,
-      textbookLink.offsetHeight
-    );
-  } else if (e.target === statsLink) {
-    headerLinkActive.setActivePosition(
-      statsLink.offsetLeft,
-      statsLink.offsetWidth,
-      statsLink.offsetHeight
-    );
-  }
-});
-
-const headerLogo = document.querySelector('.header__nav_logo');
-
-headerLogo.addEventListener('click', () => {
-  if (
-    headerContent.classList.contains('element-disabled') &&
-    document.querySelector('.main').classList.contains('element-disabled')
-  ) {
-    console.log('232332323');
-
-    headerContent.classList.remove('element-disabled');
-    enableMain();
-
-    const audioGame = document.getElementById('audio__game');
-    audioGame.remove();
-
-    headerLinkActive.setActivePosition(
-      mainpageLink.offsetLeft,
-      mainpageLink.offsetWidth,
-      mainpageLink.offsetHeight
-    );
-  }
-});
