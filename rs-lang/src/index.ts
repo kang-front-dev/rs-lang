@@ -114,6 +114,7 @@ loginRegList.addEventListener('click', (e) => {
 });
 
 import { setRouting } from './components/app/routing';
+import { getNewToken } from './components/api/api';
 
 setRouting();
 
@@ -149,3 +150,15 @@ function leaveProfile() {
   localStorage.removeItem('SignInUser');
   location.reload();
 }
+async function refreshToken(){
+  if (localStorage.SignInUser !== undefined){
+    console.log(JSON.parse(localStorage.SignInUser).userId);
+    console.log(JSON.parse(localStorage.NewToken).refreshToken)
+    const func = await getNewToken()
+    console.log(func)
+    localStorage.setItem('NewToken', JSON.stringify(func))
+  }else{
+    console.log(localStorage.SignInUser)
+  }
+}
+refreshToken()

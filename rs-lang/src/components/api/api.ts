@@ -42,7 +42,23 @@ export const loginUser = async (user:{email: string, password: string}) => {
   return rawResponse.status == 403 ? 'Incorrect e-mail password' : await rawResponse.json()
   
 };
-
+export const getNewToken = async ()=> {
+  const userId = JSON.parse(localStorage.SignInUser).userId;
+  let refToken:string
+  if (localStorage.NewToken == undefined){
+    refToken = JSON.parse(localStorage.SignInUser).refreshToken;
+  }else{
+    refToken = JSON.parse(localStorage.NewToken).refreshToken;
+  }
+  const rawResponse = await fetch(`${base}users/${userId}/tokens`,{
+    method: 'GET',
+    headers: {
+    'Authorization': `Bearer ${refToken}`,
+    'Accept': 'application/json',
+  }
+  })
+  return await rawResponse.json()
+}
 export const createUser = async (user:{name:string, 'email': string, 'password': string}) => {
   const rawResponse = await fetch(`${base}users`, {
     method: 'POST',
@@ -73,7 +89,7 @@ export const getUserToken = async (id:string) => (await fetch(`${base}users/${id
 export const getUserWords = async (id:string) => (await fetch(`${base}users/${id}/words`)).json()
 
 export const getUserWord = async (id:string, wordId:string) => {
-  const token:string = JSON.parse(localStorage.SignInUser).token
+  const token:string = JSON.parse(localStorage.NewToken).token
   const rawResponse = await fetch(`${base}users/${id}/words/${wordId}`,
 {
   method: 'GET',
@@ -87,7 +103,7 @@ return content
 }
 
 export const updateUserWords = async (id:string, wordId:string, word:{difficulty:string, optional:{repeat:boolean} }) => {
-  const token:string = JSON.parse(localStorage.SignInUser).token 
+  const token:string = JSON.parse(localStorage.NewToken).token 
   const rawResponse = await fetch(`${base}users/${id}/words/${wordId}`, {
     method: 'PUT',
     body: JSON.stringify(word),
@@ -102,7 +118,7 @@ export const updateUserWords = async (id:string, wordId:string, word:{difficulty
 }
 
 export const createUserWords = async (id:string, wordId:string, word:{difficulty:string, optional:{repeat:boolean}}) => { 
-  const token:string = JSON.parse(localStorage.SignInUser).token
+  const token:string = JSON.parse(localStorage.NewToken).token
   const rawResponse = await fetch(`${base}users/${id}/words/${wordId}`, {
       method: 'POST',
       headers: {
@@ -133,7 +149,7 @@ export const createUserWords = async (id:string, wordId:string, word:{difficulty
 // export getHardWords = async 
 
 export const deleteUserWord = async (id:number, wordId:string) => {
-  const token:string = JSON.parse(localStorage.SignInUser).token 
+  const token:string = JSON.parse(localStorage.NewToken).token 
   const rawResponse = await fetch(`${base}user/${id}/words/${wordId}`, {
     method: 'DELETE',
     headers: {
@@ -167,7 +183,7 @@ export const upsertsSettings = async (id:number, set:{wordsPerDay:number, option
     },
   })).json();
 export const generateHardWords = async (userId:string, group:number, page:number) => {
-  const token:string = JSON.parse(localStorage.SignInUser).token 
+  const token:string = JSON.parse(localStorage.NewToken).token 
   // const filter = {"$or":[{"$and":[{"group":${group}},{"page":${page}},{"userWord.difficulty":"easy", "userWord.optional.repeat":true}]},{"userWord":null},{"userWord.difficulty":"hard"}]}
   // const filter = {"$and":[{"group":`${group}`},{"page":`${page}`},{"userWord":null}]}
   // {"$and":[{"group":1},{"page":1},{"userWord.difficulty":"hard"}]}`
@@ -182,7 +198,7 @@ export const generateHardWords = async (userId:string, group:number, page:number
 }
 
 export const generateEasyWords = async (userId:string, group:number, page:number) => {
-  const token:string = JSON.parse(localStorage.SignInUser).token 
+  const token:string = JSON.parse(localStorage.NewToken).token 
   const rawResponse = await fetch(`${base}users/${userId}/aggregatedWords?filter=
   {"$and":[{"group":${group}},{"page":${page}},{"userWord.difficulty":"easy", "userWord.optional.repeat":true}]}`,{
     headers:{
@@ -193,7 +209,7 @@ export const generateEasyWords = async (userId:string, group:number, page:number
   return await rawResponse.json();
 }
 export const generateWordsForAudio = async (userId:string, group:number, page:number) => {
-  const token:string = JSON.parse(localStorage.SignInUser).token 
+  const token:string = JSON.parse(localStorage.NewToken).token 
   // const filter = {"$or":[{"$and":[{"group":${group}},{"page":${page}},{"userWord.difficulty":"easy", "userWord.optional.repeat":true}]},{"userWord":null},{"userWord.difficulty":"hard"}]}
   // const filter = {"$and":[{"group":`${group}`},{"page":`${page}`},{"userWord":null}]}
   // {"$and":[{"group":1},{"page":1},{"userWord.difficulty":"hard"}]}`
