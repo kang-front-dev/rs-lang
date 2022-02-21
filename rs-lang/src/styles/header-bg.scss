@@ -1,5 +1,17 @@
 
-.circles{
+$cerulean-blue-50: #ecf2ff;
+$cerulean-blue-100: #dde7ff;
+$cerulean-blue-200: #c2d2ff;
+$cerulean-blue-300: #9db4ff;
+$cerulean-blue-400: #758bff;
+$cerulean-blue-500: #5563ff;
+$cerulean-blue-600: #3738f4;
+$cerulean-blue-700: #3734da;
+$cerulean-blue-800: #2525ae;
+$cerulean-blue-900: #262889;
+
+.circles {
+
   position: absolute;
   z-index: 1;
   top: 0;
@@ -10,46 +22,49 @@
   pointer-events: none;
 }
 
-.circles li{
+.circles li {
   position: absolute;
   display: block;
   list-style: none;
   width: 20px;
   height: 20px;
-  background: rgba(141, 177, 255, 0.4);
-  animation: animate 25s linear infinite;
-  bottom: -150px;
-  border-radius: 50%;
-  
+
+  background: rgba(141, 177, 255, 0.6);
+  animation: animate 0s linear infinite;
+  bottom: -100px;
+
+  border-radius: 20%;
 }
 
 
-@for $i from 1 to 21{
-  $size: (random($limit: 100) + 50);
+@for $i from 1 to 61{
+  $size: (random($limit: 25) + 15);
   .circles li:nth-of-type(#{$i}){
     left: random($limit: 1920)+px;
     width: $size+px;
     height: $size+px;
-    animation-delay: random($limit: 8)+s;
-    animation-duration: (random($limit: 8) + 8)+s;
+
+    animation-duration: (random($limit: 13) + 13)+s;
+    animation-delay: (random($limit: 20) + 0)+s;
+
   }
 }
-
-
-
 
 @keyframes animate {
+  0% {
 
-  0%{
-      transform: translateY(0) rotate(0deg);
-      opacity: 1;
-
+    transform: translate(0px, 0vh) rotate(0deg);
+    opacity: 0;
+  }
+  1% {
+    transform: translate(0px, 0vh) rotate(0deg);
+    opacity: 1;
   }
 
-  100%{
-      transform: translateY(-1000px) rotate(720deg);
-      opacity: 0;
 
+  100% {
+    transform: translate(500px,-100vh) rotate(960deg);
+    opacity: 0;
   }
-
 }
+

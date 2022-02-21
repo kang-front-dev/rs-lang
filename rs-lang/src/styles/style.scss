@@ -1,3 +1,14 @@
+$cerulean-blue-50: #ecf2ff;
+$cerulean-blue-100: #dde7ff;
+$cerulean-blue-200: #c2d2ff;
+$cerulean-blue-300: #9db4ff;
+$cerulean-blue-400: #758bff;
+$cerulean-blue-500: #5563ff;
+$cerulean-blue-600: #3738f4;
+$cerulean-blue-700: #3734da;
+$cerulean-blue-800: #2525ae;
+$cerulean-blue-900: #262889;
+
 * {
   margin: 0;
   padding: 0;
@@ -55,6 +66,18 @@ section {
   }
 }
 
+
+#module-wrapper{
+  width: 100%;
+  max-width: 100%;
+  padding: 0 290px;
+  background-image: url('../assets/img/stacked-waves-haikei\ \(6\).svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex-grow: 1;
+
+}
+
 @keyframes slideFromDown {
   0% {
     transform: translateY(100px);
@@ -65,3 +88,13 @@ section {
     opacity: 1;
   }
 }
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

@@ -1,3 +1,15 @@
+$cerulean-blue-50: #ecf2ff;
+$cerulean-blue-100: #dde7ff;
+$cerulean-blue-200: #c2d2ff;
+$cerulean-blue-300: #9db4ff;
+$cerulean-blue-400: #758bff;
+$cerulean-blue-500: #5563ff;
+$cerulean-blue-600: #3738f4;
+$cerulean-blue-700: #3734da;
+$cerulean-blue-800: #2525ae;
+$cerulean-blue-900: #262889;
+
+
 .footer{
   padding: 70px 0;
   background: rgb(15, 15, 15);
@@ -63,4 +75,14 @@
       border-bottom: 1px white solid;
     }
   }
+}
+
+.element-animated-out{
+  animation: fade 0.3s ease-in-out reverse;
+}
+.element-animated-in{
+  animation: fade 0.3s ease-in-out;
+}
+.element-disabled{
+  display: none;
 }
