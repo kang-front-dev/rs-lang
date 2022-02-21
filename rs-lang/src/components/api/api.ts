@@ -23,7 +23,7 @@ export interface IWords{
 
 export const getWords = async (group:number, page:number) => {
     const rawResponse = await fetch(`${base}words?group=${group}&page=${page}`)
-    return<IWords> await rawResponse.json()
+    return  await rawResponse.json() 
 }
 export const getWord = async (id:string) => {
     return (await fetch(`${base}words/${id}`)).json()
@@ -86,7 +86,7 @@ const content = await rawResponse.json();
 return content
 }
 
-export const updateUserWords = async (id:string, wordId:string, word:{difficulty:string, optional:{} }) => {
+export const updateUserWords = async (id:string, wordId:string, word:{difficulty:string, optional:{repeat:boolean} }) => {
   const token:string = JSON.parse(localStorage.SignInUser).token 
   const rawResponse = await fetch(`${base}users/${id}/words/${wordId}`, {
     method: 'PUT',
@@ -172,7 +172,7 @@ export const generateHardWords = async (userId:string, group:number, page:number
   // const filter = {"$and":[{"group":`${group}`},{"page":`${page}`},{"userWord":null}]}
   // {"$and":[{"group":1},{"page":1},{"userWord.difficulty":"hard"}]}`
   const rawResponse = await fetch(`${base}users/${userId}/aggregatedWords?filter=
-  {"$or":[{"$and":[{"group":1},{"page":1},{"userWord":null}]},{"$and":[{"group":1},{"page":1},{"userWord.difficulty":"hard"}]}]}`,{
+  {"$or":[{"$and":[{"group":${group}},{"page":${page}},{"userWord":null}]},{"$and":[{"group":${group}},{"page":${page}},{"userWord.difficulty":"hard"}]}]}`,{
     headers:{
       'Authorization': `Bearer ${token}`,
       'Accept': 'application/json',
@@ -185,6 +185,20 @@ export const generateEasyWords = async (userId:string, group:number, page:number
   const token:string = JSON.parse(localStorage.SignInUser).token 
   const rawResponse = await fetch(`${base}users/${userId}/aggregatedWords?filter=
   {"$and":[{"group":${group}},{"page":${page}},{"userWord.difficulty":"easy", "userWord.optional.repeat":true}]}`,{
+    headers:{
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json',
+    }
+  })
+  return await rawResponse.json();
+}
+export const generateWordsForAudio = async (userId:string, group:number, page:number) => {
+  const token:string = JSON.parse(localStorage.SignInUser).token 
+  // const filter = {"$or":[{"$and":[{"group":${group}},{"page":${page}},{"userWord.difficulty":"easy", "userWord.optional.repeat":true}]},{"userWord":null},{"userWord.difficulty":"hard"}]}
+  // const filter = {"$and":[{"group":`${group}`},{"page":`${page}`},{"userWord":null}]}
+  // {"$and":[{"group":1},{"page":1},{"userWord.difficulty":"hard"}]}`
+  const rawResponse = await fetch(`${base}users/${userId}/aggregatedWords?wordsPerPage=20&filter=
+  {"$or":[{"$and":[{"group":${group}},{"page":${page}},{"userWord":null}]},{"$and":[{"group":${group}},{"page":${page}},{"userWord.difficulty":"hard"}]},{"$and":[{"group":${group}},{"page":${page}},{"userWord.difficulty":"easy", "userWord.optional.repeat":true}]}]}`,{
     headers:{
       'Authorization': `Bearer ${token}`,
       'Accept': 'application/json',

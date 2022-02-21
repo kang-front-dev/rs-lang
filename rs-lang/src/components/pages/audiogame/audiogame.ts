@@ -1,8 +1,8 @@
-import { base, createUserWords, getWords, IWords } from '../../api/api';
-import { disableMain } from '../../app/main';
-import { Sprint } from '../sprint/sprint';
+import { base, createUserWords, generateWordsForAudio, getWords, IWords } from '../../api/api';
+// import { disableMain } from '../../app/main';
+// import { Sprint } from '../sprint/sprint';
 
-export let Statistic = []
+export const Statistic = []
 export class AudioGame {
   public container: HTMLElement;
   currentAudio: string;
@@ -139,16 +139,27 @@ export class AudioGame {
 
     startGameSubmit.onclick = async () => {
       const page = +localStorage.page >= 0 ? localStorage.page : Math.floor(Math.random()*(30-0)+0)  
-      const answer: IWords = await getWords(
-        +localStorage.getItem('group'),
-        page
-      );
-      for (let i = 0; i < 20; i++) {
+      let answer:Array<IWords>
+      if (this.user !== null){
+        const answerUser: IWords = await generateWordsForAudio(
+          JSON.parse(localStorage.SignInUser).userId,
+          +localStorage.getItem('group'),
+          page
+        );
+        answer = await answerUser[0].paginatedResults
+      }else{
+          answer = await getWords(
+          +localStorage.getItem('group'),
+          page
+        ) 
+      }
+      
+      for (let i = 0; i < answer.length; i++) {
         const subQuestion = [];
         subQuestion.push(answer[i]);
         const randomArr = [i];
         while (randomArr.length <= 3) {
-          const randomnumber = Math.floor(Math.random() * 20);
+          const randomnumber = Math.floor(Math.random() * answer.length);
           if (randomArr.indexOf(randomnumber) == -1)
             randomArr.push(randomnumber);
         }
@@ -242,13 +253,13 @@ export class AudioGame {
           target.style.background = 'rgba(126, 255, 133, 0.7)';
           this.correctAnswer++;
           if (this.user !== null){
-            createUserWords(this.user, questionArr[0].id, {difficulty:'easy', optional:{repeat:true}})
+            createUserWords(this.user, questionArr[0]._id, {difficulty:'easy', optional:{repeat:true}})
           }
           (this.rightAnswer as [IWords]).push(questionArr[0]);
           changeLastBtn();
         } else {
           if (this.user !== null){
-            createUserWords(this.user, questionArr[0].id, {difficulty:'hard', optional:{repeat:true}})
+            createUserWords(this.user, questionArr[0]._id, {difficulty:'hard', optional:{repeat:true}})
           }
           target.style.background = 'rgba(255, 126, 126, 0.7)';
           (this.wrongAnswer as [IWords]).push(questionArr[0]);

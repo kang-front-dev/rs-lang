@@ -1,8 +1,8 @@
-import { spawn } from "child_process";
+// import { spawn } from "child_process";
 import { createUserWords, generateEasyWords, generateHardWords, getWords, IWords } from "../../api/api";
 import { AudioGame } from "../audiogame/audiogame";
 
-export let sprinStat = []
+export const sprinStat = []
 export class Sprint extends AudioGame {
   private questSprint: [] | [IWords] | IWords[]
   private time: number
@@ -80,18 +80,29 @@ export class Sprint extends AudioGame {
         for(let i = +localStorage.page; i<=0 ;i--){
           const userid = JSON.parse(localStorage.SignInUser).id
           const page = +localStorage.page;
-          const answer:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
-          const answerEasy:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
-          (this.questSprint as [IWords]).push(answer[i].paginatedResults as IWords);
-          (this.questSprint as [IWords]).push(answerEasy[i].paginatedResults as IWords)
+          if(this.user !== null){
+            const answer:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
+            const answerEasy:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
+            (this.questSprint as [IWords]).push(answer[i].paginatedResults as IWords);
+            (this.questSprint as [IWords]).push(answerEasy[i].paginatedResults as IWords)
+          }else{
+            const answer:IWords = await getWords(+localStorage.getItem('group'),page);
+            (this.questSprint as [IWords]).push(answer as IWords)
+          }
         }
       }else{
         for (let i=0; i<5; i++){
+          const userid = JSON.parse(localStorage.SignInUser).id
           const page = Math.floor(Math.random() * (30 - 0) + 0);
-          const answer:IWords = await generateHardWords(JSON.parse(localStorage.SignInUser).userId,+localStorage.getItem('group'),page);
-          const answerEasy:IWords = await generateEasyWords(JSON.parse(localStorage.SignInUser).userId,+localStorage.getItem('group'),page);
-          (this.questSprint as [IWords]).push(answer[0].paginatedResults as IWords);
-          (this.questSprint as [IWords]).push(answerEasy[0].paginatedResults as IWords)
+          if(this.user !== null){
+            const answer:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
+            const answerEasy:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
+            (this.questSprint as [IWords]).push(answer[i].paginatedResults as IWords);
+            (this.questSprint as [IWords]).push(answerEasy[i].paginatedResults as IWords)
+          }else{
+            const answer:IWords = await getWords(+localStorage.getItem('group'),page);
+            (this.questSprint as [IWords]).push(answer as IWords)
+          }
         }
       }
       // JSON.parse(localStorage.SignInUser).token
