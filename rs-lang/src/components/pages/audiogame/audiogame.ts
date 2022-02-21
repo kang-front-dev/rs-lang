@@ -1,8 +1,8 @@
+
 import { base, createUserWords, generateWordsForAudio, getWords, IWords } from '../../api/api';
-// import { disableMain } from '../../app/main';
-// import { Sprint } from '../sprint/sprint';
 
 export const Statistic = []
+
 export class AudioGame {
   public container: HTMLElement;
   currentAudio: string;
@@ -130,8 +130,7 @@ export class AudioGame {
     }else{
       console.log(localStorage.group)
     }
-    
-
+   
     const startGameSubmit = document.createElement('button');
     startGameSubmit.className = 'start-game__submit';
     startGameSubmit.innerHTML = 'Начать';
@@ -162,6 +161,7 @@ export class AudioGame {
           const randomnumber = Math.floor(Math.random() * answer.length);
           if (randomArr.indexOf(randomnumber) == -1)
             randomArr.push(randomnumber);
+
         }
         for (let j = 0; j < 3; j++) {
           subQuestion.push(answer[randomArr[j + 1]]);
@@ -298,7 +298,6 @@ export class AudioGame {
       if (this.questNumber === this.questions.length) {
         this.audioStat();
         Statistic.push(this.questions,this.rightAnswer, this.wrongAnswer)
-        
       } else {
         this.renderGame(this.questNumber);
       }
@@ -493,5 +492,6 @@ export class AudioGame {
     this.startGame();   
     return this.container;
   }
+
 
 }
