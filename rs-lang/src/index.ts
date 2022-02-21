@@ -13,14 +13,9 @@ import './styles/footer.scss';
 
 import "./components/pages/textBook/textBook"
 import "./components/pages/textBook/groupWords/groupWords"
-<<<<<<< HEAD
-=======
-// import "./components/pages/statistics/statistics"
-// import "./components/pages/statistics/containerStatistics/statisticsPage"
->>>>>>> d0014d994672f74999886eeac48371939ad796a2
+import "./components/pages/statistics/statistics"
+import "./components/pages/statistics/containerStatistics/statisticsPage"
 import './components/pages/sprint/sprint.scss';
-
-
 import './components/pages/audiogame/audiogame.css';
 
 import {
