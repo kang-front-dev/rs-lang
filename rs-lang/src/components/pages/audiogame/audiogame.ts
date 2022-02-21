@@ -297,7 +297,7 @@ export class AudioGame {
       // this.renderGame(this.questNumber)
       if (this.questNumber === this.questions.length) {
         this.audioStat();
-        Statistic.push(this.questions,this.rightAnswer, this.wrongAnswer
+        Statistic.push(this.questions,this.rightAnswer, this.wrongAnswer)
       } else {
         this.renderGame(this.questNumber);
       }
