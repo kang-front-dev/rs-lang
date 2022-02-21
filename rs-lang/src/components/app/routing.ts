@@ -79,7 +79,7 @@ export function setRouting() {
       if (currentModule && currentModule != headerContent) {
         currentModule.remove();
       }
-
+      enableMain()
       headerLinkActive.setActivePosition(
         mainpageLink.offsetLeft,
         mainpageLink.offsetWidth,
@@ -89,9 +89,12 @@ export function setRouting() {
       if (currentModule && currentModule != headerContent) {
         currentModule.remove();
       }
+      headerContent.classList.add('element-disabled');
+      disableMain();
 
       const textBook = new TextBook(document.getElementById('module-wrapper'))
 
+      currentModule = document.querySelector('.word-section-main')
       headerLinkActive.setActivePosition(
         textbookLink.offsetLeft,
         textbookLink.offsetWidth,

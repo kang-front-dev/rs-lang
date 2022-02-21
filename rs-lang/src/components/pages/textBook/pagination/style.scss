@@ -135,8 +135,7 @@
   transition: 0.12s;
 
   &:hover {
-    background-color: rgb(43, 43, 99);
-    color: #fff;
+
     transform: scale(1.05);
   }
 
@@ -185,10 +184,6 @@
 
   outline: none;
 
-  &:hover {
-    background-color: rgb(43, 43, 99);
-    color: #fff;
-  }
 }
 
 .select__pagination li {
@@ -198,10 +193,12 @@
   font-size: 16px;
   width: 24px;
   cursor: pointer;
+  transition: 0.12s;
+
 }
 .select__pagination li:hover {
-  background-color: #baedff;
-  border-radius: 30px;
+  background-color: rgb(43, 43, 99);
+  color: #fff;
 }
 .select__pagination_UlLi {
   padding: 5px;
