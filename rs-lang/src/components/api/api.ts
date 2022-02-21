@@ -160,7 +160,7 @@ export const createUserWords = async (id:string, wordId:string, word:{difficulty
 
 // export getHardWords = async 
 
-export const deleteUserWord = async (id:number, wordId:string) => {
+export const deleteUserWord = async (id:string, wordId:string) => {
   const token:string = JSON.parse(localStorage.NewToken).token 
   const rawResponse = await fetch(`${base}user/${id}/words/${wordId}`, {
     method: 'DELETE',

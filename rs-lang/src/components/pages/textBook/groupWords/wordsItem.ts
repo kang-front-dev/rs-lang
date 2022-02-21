@@ -124,7 +124,7 @@ console.log(deleteBtn)
       this.wordList.element.classList.add("difficultWords_arr")
       const arrDifficultLocalStorage = createUserWords(JSON.parse(localStorage.SignInUser).userId, word.id, {
   difficulty: "hard",
-  optional: {word: "Wordstart"}
+  optional: {repeat: true}
 })
 console.log(arrDifficultLocalStorage)
     });
