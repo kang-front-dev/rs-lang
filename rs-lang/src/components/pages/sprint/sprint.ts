@@ -116,7 +116,6 @@ export class Sprint extends AudioGame {
 
     const sprintTimeBox = document.createElement('div')
     sprintTimeBox.className = 'sprint__time-box'
-
     // const sprintTimeImg = document.createElement('img')
     // sprintTimeImg.alt = 'time__img'
     // sprintTimeImg.className = 'sprint__time-img'
