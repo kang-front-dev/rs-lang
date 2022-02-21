@@ -109,7 +109,7 @@ export class AudioGame {
     const startGameBtns = document.createElement('div');
     startGameBtns.className = 'start-game__btns';
 
-    if (+localStorage.group >= 0){
+    if (+localStorage.group <= 0){
       arr.forEach((elem: string) => {
         const startGameBtn = document.createElement('button');
         startGameBtn.className = 'start-game__btn';
@@ -242,13 +242,13 @@ export class AudioGame {
           target.style.background = 'rgba(126, 255, 133, 0.7)';
           this.correctAnswer++;
           if (this.user !== null){
-            createUserWords(this.user, questionArr[0].id, {difficulty:'easy', optional:{newWord:true}})
+            createUserWords(this.user, questionArr[0].id, {difficulty:'easy', optional:{repeat:true}})
           }
           (this.rightAnswer as [IWords]).push(questionArr[0]);
           changeLastBtn();
         } else {
           if (this.user !== null){
-            createUserWords(this.user, questionArr[0].id, {difficulty:'hard', optional:{newWord:true}})
+            createUserWords(this.user, questionArr[0].id, {difficulty:'hard', optional:{repeat:true}})
           }
           target.style.background = 'rgba(255, 126, 126, 0.7)';
           (this.wrongAnswer as [IWords]).push(questionArr[0]);
