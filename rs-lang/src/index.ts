@@ -124,7 +124,6 @@ const userProfile = document.querySelector('.header__nav_profile'),
   userProfileAvatar = document.querySelector('.header__nav_link-profile'),
   userProfileExitBtn = document.querySelector('.header__nav_profile_cross-icon')
 
-
 userProfileAvatar.addEventListener('click', ()=>{
   userProfile.classList.remove('element-disabled')
 })

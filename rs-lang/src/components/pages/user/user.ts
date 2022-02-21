@@ -100,6 +100,8 @@ export class User {
             localStorage.setItem('SignInUser', JSON.stringify(a))
             this.userSectionBg.remove()
             checkOnProfile()
+            const userProfileEmail = document.querySelector('.header__nav_profile_mail') as HTMLElement
+            userProfileEmail.innerHTML = `${JSON.parse(localStorage.SignInUser).name}`
         })
 
         const register = document.createElement('button') as HTMLButtonElement

@@ -36,7 +36,8 @@ export function setRouting() {
       headerContent.classList.add('element-disabled');
 
       disableMain();
-
+      localStorage.setItem('group', '-1')
+      localStorage.setItem('page', '-1')
       const audiogameObject = new AudioGame('audio__game'),
         audiogameRendered = audiogameObject.render();
 

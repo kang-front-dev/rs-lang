@@ -132,7 +132,8 @@ export class Register {
             const arr = {name: name[1].value, email: name[0].value, password: name[2].value}
             const a = await createUser(arr)
             localStorage.setItem('userRegistration', JSON.stringify(a))
-            checkOnProfile()
+            // checkOnProfile()
+            this.registerSectionBg.remove()
         })
 
         

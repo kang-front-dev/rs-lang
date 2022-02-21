@@ -15,11 +15,12 @@ export class Sprint extends AudioGame {
     this.winStreak = 0
     this.multiply = 1
     this.score = 0
-    this.time = 10
+    this.time = 30
     this.questSprint = []
     this.container = document.createElement('div');
     this.container.id = id;
     this.container.className = id;
+    this.user = localStorage.SignInUser ? JSON.parse(localStorage.SignInUser).userId : null
   }
   generateStartPage() {
     const sprintStartPage = document.createElement('div')
@@ -78,9 +79,9 @@ export class Sprint extends AudioGame {
     sprintStartBtn.onclick = async() =>{
       if (+localStorage.page >= 0){
         for(let i = +localStorage.page; i<=0 ;i--){
-          const userid = JSON.parse(localStorage.SignInUser).id
           const page = +localStorage.page;
           if(this.user !== null){
+            const userid = JSON.parse(localStorage.SignInUser).id
             const answer:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
             const answerEasy:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
             (this.questSprint as [IWords]).push(answer[i].paginatedResults as IWords);
@@ -92,9 +93,9 @@ export class Sprint extends AudioGame {
         }
       }else{
         for (let i=0; i<5; i++){
-          const userid = JSON.parse(localStorage.SignInUser).id
           const page = Math.floor(Math.random() * (30 - 0) + 0);
           if(this.user !== null){
+            const userid = JSON.parse(localStorage.SignInUser).id
             const answer:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
             const answerEasy:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
             (this.questSprint as [IWords]).push(answer[i].paginatedResults as IWords);
@@ -199,13 +200,18 @@ export class Sprint extends AudioGame {
     trueAns.onclick = () =>{
       if(this.questSprint[this.questNumber].wordTranslate === sprintAns.textContent.split(' ')[0]){
         (this.rightAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'easy', optional:{repeat:true}})
+
+        if(this.user !== null){
+          createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'easy', optional:{repeat:true}})
+        }
         this.multiply = multScore(this.winStreak)
         this.score = this.score + this.multiply*10
         this.winStreak++
       }else{
         (this.wrongAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
+        if(this.user !== null){
         createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'hard', optional:{repeat:true}})
+        }
         this.winStreak = 0
         this.multiply = 1
       }
@@ -221,14 +227,18 @@ export class Sprint extends AudioGame {
     falseAns.onclick = () =>{
       if(this.questSprint[this.questNumber].wordTranslate !== sprintAns.textContent.split(' ')[0]){
         (this.rightAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'easy', optional:{repeat:true}})
+        if(this.user !== null){
+          createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'easy', optional:{repeat:true}})        
+        }
         this.multiply = multScore(this.winStreak)
         this.score = this.score + this.multiply*10
         this.winStreak++
       }else{
         (this.wrongAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'hard', optional:{repeat:true}})
-        this.winStreak = 0
+        if(this.user !== null){
+          createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'hard', optional:{repeat:true}})
+        }
+          this.winStreak = 0
         this.multiply = 1
       }
       asd(this.questSprint, this.questNumber, this.score, this.multiply)
