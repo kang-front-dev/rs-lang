@@ -1,17 +1,18 @@
 .pages {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    .pages__title {
-      margin-right: 10px;
-    }
-    .btn {
-      padding: 8px 20px;
-      width: 100px;
-      height: 50px;
-    }
+
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .pages__title {
+    margin-right: 10px;
+  }
+  .btn {
+    padding: 8px 20px;
+    width: 80px;
+    height: 40px;
+
     .btn-prev, .btn-next {
       border-radius: 50px;
     }
@@ -21,32 +22,67 @@
     .btn-next {
       margin-left: 14px;
     }
+
   }
-  .btn-group {
+  .btn-prev,
+  .btn-next {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent;
-    border: 1px solid black;
-    cursor: pointer;
-    max-width: 100px;
-    width: 100%;
-    border-radius: 10px;
-  }
-  .answer-group {
-    max-width: 400px;
-    font-size: 18px;
-    font-weight: 400;
-    color: #303030;
-  }
 
-  .textbook__subheading {
-    color: #2c2647;
-    font-family: 'Gilroy-SemiBold';
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+
+    cursor: pointer;
+
+    padding: 10px 45px;
+
+    backdrop-filter: blur(5px);
+
     font-size: 20px;
-    margin-bottom: 1rem;
+    font-weight: 500;
+    color: rgb(48, 48, 48);
+    font-family: 'Gilroy';
+
+    animation: fade 0.2s ease-in-out;
+    transition: 0.12s;
+
+    &:hover {
+      background-color: rgb(43, 43, 99);
+      color: #fff;
+    }
+  }
+  .btn-prev {
+    border-radius: 5px 0 0 5px;
+  }
+  .btn-next {
+    border-radius: 0 5px 5px 0;
+  }
+}
+.btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  max-width: 100px;
+  width: 100%;
+  border-radius: 10px;
+}
+.answer-group {
+  max-width: 400px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #303030;
 }
 
+.textbook__subheading {
+  color: #2c2647;
+  font-family: 'Gilroy';
+  font-size: 20px;
+  margin-bottom: 40px;
+}
 
 .start-game__container {
   display: flex;
@@ -68,7 +104,7 @@
 .start-game__btns {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   width: 100%;
 }
 .group_btn,
@@ -76,25 +112,36 @@
 .audio-quest__btn,
 .next__btn,
 .next-quest__btn {
+  font-family: 'Gilroy';
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  border: 1px solid black;
+
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  max-width: 100px;
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 30px;
+
+  padding: 10px 45px;
+  margin: 0 5px;
+
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
+
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(48, 48, 48);
+
+  animation: fade 0.2s ease-in-out;
+  transition: 0.12s;
+
+  &:hover {
+    background-color: rgb(43, 43, 99);
+    color: #fff;
+    transform: scale(1.05);
+  }
 }
-.group_btn:hover,
-.start-game__submit:hover,
-.audio-quest__btn:hover,
-.next__btn:hover,
-.next-quest__btn:hover {
-  background-color: burlywood;
-  transform: scale(1.1);
-}
+
 .game-main__container {
   display: flex;
   flex-direction: column;
@@ -109,18 +156,41 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
-  border-radius: 50px;
-  border-color: #baedff;
-  background-color: white;
-  border-style: solid;
+
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
 }
+
 .select__pagination {
-  padding: 5px;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+
+  cursor: pointer;
+
+  padding: 0px 15px;
+  max-height: 40px;
+  backdrop-filter: blur(5px);
+
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(48, 48, 48);
+  font-family: 'Gilroy';
+
+  animation: fade 0.2s ease-in-out;
+  transition: 0.12s;
+
+  outline: none;
+
+  &:hover {
+    background-color: rgb(43, 43, 99);
+    color: #fff;
+  }
 }
+
 .select__pagination li {
   list-style: none;
   line-height: 40px;
@@ -149,3 +219,4 @@
   cursor: pointer;
 
 }
+

@@ -52,7 +52,6 @@ $cerulean-blue-900: #262889;
 
 @keyframes animate {
   0% {
-
     transform: translate(0px, 0vh) rotate(0deg);
     opacity: 0;
   }
@@ -60,8 +59,6 @@ $cerulean-blue-900: #262889;
     transform: translate(0px, 0vh) rotate(0deg);
     opacity: 1;
   }
-
-
   100% {
     transform: translate(500px,-100vh) rotate(960deg);
     opacity: 0;
