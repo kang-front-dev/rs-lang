@@ -18,20 +18,52 @@
             />
           </a>
           <div class="header__nav_right">
-            <ul class="header__nav_list">
-              <li><a href="#" class="header__nav_link">Спринт</a></li>
-              <li><a href="#" class="header__nav_link">Аудиовызов</a></li>
-              <li><a href="#" class="header__nav_link textBook-link">Учебник</a></li>
-              <li><a href="#" class="header__nav_link statistics-link">Статистика</a></li>
-            </ul>
-            <ul class="header__nav_list" id="login-reg-list">
+
+            <ul class="header__nav_list" id="header-nav-links">
               <li>
-                <a href="#" class="header__nav_link-login">Войти</a>
+                <a href="#" class="header__nav_link" id="main-page">Главная</a>
               </li>
               <li>
-                <a href="#" class="header__nav_link-reg">Регистрация</a>
+                <a href="#" class="header__nav_link" id="sprint">Спринт</a>
               </li>
+              <li>
+                <a href="#" class="header__nav_link" id="audiogame"
+                  >Аудиовызов</a
+                >
+              </li>
+              <li>
+                <a href="#" class="header__nav_link" id="textbook">Учебник</a>
+              </li>
+              <li>
+                <a href="#" class="header__nav_link" id="stats">Статистика</a>
+              </li>
+              <div class="header__nav_link-active"></div>
             </ul>
+            <div class="header__nav_list" id="login-reg-list">
+              <div class="header__nav_link-login">Войти</div>
+
+              <div class="header__nav_link-reg">Регистрация</div>
+              <div class="header__nav_link-profile element-disabled">
+                <img
+                  class="header__nav_link-profile_img"
+                  src="assets/img/avatar.svg"
+                  alt=""
+                />
+              </div>
+              <div class="header__nav_profile element-disabled">
+                <div class="header__nav_profile_cross">
+                  <i class="fa fa-times header__nav_profile_cross-icon"></i>
+                </div>
+
+                <img
+                  class="header__nav_profile_img"
+                  src="assets/img/avatar.svg"
+                  alt=""
+                />
+                <div class="header__nav_profile_mail">example@example.com</div>
+                <div class="header__nav_profile_btn-exit">Exit</div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -49,31 +81,10 @@
           </div>
           <img src="assets/img/Exam.png" alt="" class="header__content_img" />
         </div>
+
       </div>
 
-      <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <ul class="circles"></ul>
     </header>
-
   </body>
 </html>

@@ -1,5 +1,5 @@
 import { Component } from "../addition/addComponents";
-import { IWords, getAllWords, getWord, deleteWord } from "../../../api/api";
+import { IWords, getAllWords, getWord, deleteUserWord } from "../../../api/api";
 import "./groupWordsStyle.scss";
 import { GroupWordsContainer } from "./groupWordsContainer";
 
@@ -21,7 +21,7 @@ export class GroupWordsClass extends Component {
 
     this.groupWordsContainer = new GroupWordsContainer(this.element);
     this.getAllWords(this.page, this.group);
-    this.groupWordsContainer.removeWord = (wordId) => this.removeWord(wordId);
+    this.groupWordsContainer.removeWord = (id, wordId) => this.removeWord(id, wordId);
      this.groupWordsContainer.updateWord = (wordId) => this.getWord(wordId);
     this.groupWordsContainer.updatePage = (page, group) => {
       this.page = page;
@@ -40,7 +40,7 @@ export class GroupWordsClass extends Component {
         this.page,
         this.group,
         +wordLength,
-        29
+        20
       );
       this.groupWordsContainer.pagination.updateGroupButton(
         this.page,
@@ -60,8 +60,8 @@ export class GroupWordsClass extends Component {
     await this.getAllWords(this.page, this.group);
   }
 
-  private async removeWord(wordId: string): Promise<void> {
-    await deleteWord(wordId);
+  private async removeWord(id: string, wordId: string): Promise<void> {
+    await deleteUserWord(id, wordId);
     // console.log(deleteWord(wordId))
     await this.getAllWords(this.page, this.group);
   }

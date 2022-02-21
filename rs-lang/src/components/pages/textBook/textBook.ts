@@ -1,7 +1,7 @@
 import "./textBook.scss";
 import { Connection } from "./serverConnection";
 import { Component } from "./addition/addComponents";
-import { deleteMain } from "../../app/main";
+import { disableMain } from "../../app/main";
 export class TextBook {
 
   private wordSectionMain;
@@ -18,9 +18,10 @@ export class TextBook {
     }
     textBookLink.addEventListener("click", (event) => {
       event.preventDefault();
-      deleteMain()
-      deleteHeaderContent();
-      this.wordSectionMain = new Component(moduleWrapper, "div", ["word-section-main"]);
+
+      disableMain()
+      deleteHedaerContent();
+      this.wordSectionMain = new Component(this.rootElement, "div", ["word-section-main"]);
         this.router = new Connection(this.wordSectionMain.element);
         // this.wordSectionMain.element.append(circles)
     });

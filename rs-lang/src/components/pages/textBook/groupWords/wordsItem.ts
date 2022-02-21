@@ -1,11 +1,11 @@
-import {Component} from "../addition/addComponents"
-import {IWords, base} from "../../../api/api"
+import { Component } from "../addition/addComponents";
+import {IWords, base, createUserWords, deleteUserWord} from "../../../api/api"
 
 import "./groupWordsStyle.scss";
 import {Button} from "../../../UI/Button/button"
 
 export class WordsItem extends Component {
-  removeWord: (wordId: string) => void = () => {};
+  removeWord: (id: string, wordId: string) => void = () => {};
   updateWord: (wordId: string) => void = () => {};
   public word: IWords;
   private wordName: Component;
@@ -103,25 +103,30 @@ this.textMeaningTranslate.element.innerHTML=word.textMeaningTranslate
       "div",
       ["textExampleTranslate-word"]);
     this.textExampleTranslate.element.innerHTML= word.textExampleTranslate
-
+  
       const divButtons=new Component(this.wordList.element, "div", ["div-buttons"])
     const removeBtn = new Button(divButtons.element, ["btn-small"], "delete");
+    const localStoragekey=localStorage.SignInUser;
     removeBtn.element.title="Удалить слово"
-    removeBtn.element.addEventListener("click", ()=> {
+    removeBtn.element.addEventListener("click", () => {
       if (word.id) {
-        this.removeWord(word.id);
-      this.destroy();
+        const deleteBtn=deleteUserWord(JSON.parse(localStorage.SignInUser).userId, word.id);
+console.log(deleteBtn)
+       this.destroy();
       } 
-      // this.wordList.element.style.display="none" 
-      // console.log(`removeBTN ${removeBtn}`)
-      // console.log(`this.removeWord(word.id): ${this.removeWord(word.id)}`)
-      // console.log(` this.destroy();: ${ this.destroy()}`)
     });
+    let arrDifficultWords=[]
     const difficultBtn = new Button(divButtons.element, ["btn-small"], "difficult");
     difficultBtn.element.title="Добавить слово в сложные"
     difficultBtn.element.addEventListener("click", () => {
-      if (word.id) this.removeWord(word.id);
-      this.destroy();
+      arrDifficultWords.push(word.id)
+      console.log(arrDifficultWords)
+      this.wordList.element.classList.add("difficultWords_arr")
+      const arrDifficultLocalStorage = createUserWords(JSON.parse(localStorage.SignInUser).userId, word.id, {
+  difficulty: "hard",
+  optional: {repeat: true}
+})
+console.log(arrDifficultLocalStorage)
     });
 
     const deleteTranslateBtn = new Button(divButtons.element, ["btn-small"], "translate")

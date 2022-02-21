@@ -1,7 +1,7 @@
 import "./statistics.scss";
 import { ConnectionStatistics } from "./serverConnection";
 import { Component } from "../textBook/addition/addComponents";
-import { deleteMain } from "../../app/main";
+import {disableMain} from "../../app/main"
 export class Statistics {
  
   private statisticsSectionMain;
@@ -15,7 +15,7 @@ export class Statistics {
     }
     statisticsLink.addEventListener("click", (event) => {
       event.preventDefault();
-      deleteMain()
+      disableMain();
       deleteHedaerContent();
       this.statisticsSectionMain = new Component(this.rootElement, "div", ["statistics-section-main"]);
       this.router = new ConnectionStatistics(this.statisticsSectionMain.element);

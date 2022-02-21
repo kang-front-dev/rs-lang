@@ -1,13 +1,28 @@
+$jacarta-50: #eff4fe;
+$jacarta-100: #e3e9fc;
+$jacarta-200: #ccd7f9;
+$jacarta-300: #acbcf5;
+$jacarta-400: #8b98ee;
+$jacarta-500: #6f75e5;
+$jacarta-600: #5653d8;
+$jacarta-700: #4944be;
+$jacarta-800: #3d3a99;
+$jacarta-900: #2b2b63;
+
 .header {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-grow: 1;
-  
-  background: #FFF;
+  min-height: 90vh;
+  background: #fff;
   box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.3);
   &__nav {
+    width: 100%;
     position: relative;
-    z-index: 2;
-    background: linear-gradient(135deg, rgb(43, 43, 99), rgb(26, 26, 49));
+    z-index: 5;
+    background: $jacarta-900;
     box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.3);
     & > .container {
       display: flex;
@@ -30,6 +45,7 @@
     &_list {
       display: flex;
       align-items: center;
+      position: relative;
       &:nth-of-type(2) {
         margin-left: 30px;
       }
@@ -42,15 +58,39 @@
       padding: 11px 17px;
       color: #fff;
       background: transparent;
-      transition: background 0.12s;
+      transition: 0.2s;
       border-radius: 7px;
+      border-bottom: 1px transparent solid;
       box-sizing: border-box;
       margin-left: 2px;
-
       box-shadow: none;
+      cursor: pointer;
       &:hover {
-        background: rgba(255, 255, 255, 0.01);
+        border-bottom: 1px rgba(255, 255, 255, 0.3) solid;
+        border-radius: 5%;
+      }
 
+      &-profile {
+        border-radius: 50%;
+        cursor: pointer;
+        border: 1px rgba(255, 255, 255, 0.6) solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fade 0.3s ease-in-out;
+        margin-left: 20px;
+        &_img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+      &-active {
+        position: absolute;
+        z-index: 5;
+        transition: 0.3s ease-in-out;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 7px;
         box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.3);
       }
       &-reg,
@@ -60,11 +100,10 @@
         font-weight: 400;
         background: transparent;
         transition: background 0.12s ease-in-out;
-
+        cursor: pointer;
         box-sizing: border-box;
       }
       &-reg {
-
         color: rgb(255, 255, 255);
 
         padding: 10px 30px;
@@ -72,8 +111,8 @@
         font-weight: 700;
         margin-left: 20px;
         box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.7);
-        &:hover{
-          background: #FFF;
+        &:hover {
+          background: #fff;
           color: rgb(26, 26, 49);
         }
       }
@@ -85,9 +124,72 @@
 
         font-weight: 700;
         box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.7);
-        &:hover{
-          background: #FFF;
+        &:hover {
+          background: #fff;
           color: rgb(26, 26, 49);
+        }
+      }
+    }
+
+    &_profile {
+      position: absolute;
+      z-index: 5;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      background: rgba(255, 255, 255, 0.3);
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.3),
+        0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+
+      animation: fade 0.3s ease-in-out;
+      &_img {
+        width: 70px;
+        height: 70px;
+      }
+      &_mail {
+        font-family: 'Gilroy';
+        font-size: 17px;
+        font-weight: 500;
+        margin: 15px 0;
+        color: rgb(61, 61, 61);
+      }
+      &_btn-exit{
+        width: 100%;
+        padding: 7px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $jacarta-600;
+        font-family: 'Gilroy';
+        font-weight: 500;
+        color: rgb(255, 255, 255);
+        border-radius: 5px;
+        border: 1px $jacarta-600 solid;
+
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        &:hover {
+          background: #fff;
+          color: rgb(26, 26, 49);
+          border: 1px rgb(26, 26, 49) solid;
+        }
+      }
+
+      &_cross{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        &-icon{
+          font-size: 20px;
+          cursor: pointer;
         }
       }
     }
@@ -111,7 +213,7 @@
       line-height: 65px;
       color: rgb(70, 70, 70);
       margin-bottom: 40px;
-      
+
       animation: appear 0.3s ease-in-out;
       animation-delay: 0s;
       & > span {
@@ -135,19 +237,18 @@
       color: #fff;
       border-radius: 10px;
       margin-top: 40px;
-      
-      background: #6c7dff;
+
+      background: $jacarta-600;
       backdrop-filter: blur(4px);
       cursor: pointer;
       transition: 0.12s;
       box-shadow: inset 0px 1px 2px rgb(255, 255, 255);
       animation: appear 0.3s ease-in-out;
       animation-delay: 0.04s;
-      &:hover{
+      &:hover {
         background: rgba(255, 255, 255, 0);
         box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.3);
         color: rgb(26, 26, 49);
-        
       }
     }
     &_img {
@@ -161,13 +262,25 @@
   }
 }
 
-@keyframes appear{
-  0%{
+#login-reg-list {
+  margin-left: 20px;
+}
+
+@keyframes appear {
+  0% {
     transform: translateY(50px);
     opacity: 0;
   }
-  100%{
+  100% {
     transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
