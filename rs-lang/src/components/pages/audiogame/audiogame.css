@@ -61,7 +61,7 @@
 .start-game__text {
   font-size: 20px;
   font-weight: 500;
-  margin-bottom: 40px;
+  margin-bottom: 200px;
   color: #3b3b3b;
 }
 .start-game__choose {
@@ -73,10 +73,9 @@
 .start-game__btns {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   width: 100%;
-
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .start-game__submit {
@@ -101,6 +100,7 @@
   background-color: rgb(43, 43, 99);
 
   color: #fff;
+
 }
 
 .start__game_btn-active {

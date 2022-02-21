@@ -37,7 +37,7 @@ export class Pages extends Component {
     // );
     // this.titleGROUP= new Component(this.element, "h3",["pages__title"], `GROUP #${this.group}`)
     
-    this.groupBtnChoose=new Component(this.element, "p", ["textbook__subheading"], "Выберете уровень сложности слов")
+    this.groupBtnChoose=new Component(this.element, "p", ["textbook__subheading"], "Выберите уровень сложности слов")
 
     const arr: Array<string> = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
     this.groupBtns = new Component(this.element, "div", ["start-game__btns"])

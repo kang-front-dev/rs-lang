@@ -2,7 +2,7 @@ import { headerNavLinkActive } from "./animation";
 import { AudioGame } from "../pages/audiogame/audiogame";
 import { Sprint } from "../pages/sprint/sprint";
 import { disableMain, enableMain } from "./main";
-
+import { TextBook } from "../pages/textBook/textBook";
 export function setRouting() {
   const headerLinkActive = new headerNavLinkActive();
 
@@ -89,6 +89,8 @@ export function setRouting() {
       if (currentModule && currentModule != headerContent) {
         currentModule.remove();
       }
+
+      const textBook = new TextBook(document.getElementById('module-wrapper'))
 
       headerLinkActive.setActivePosition(
         textbookLink.offsetLeft,
