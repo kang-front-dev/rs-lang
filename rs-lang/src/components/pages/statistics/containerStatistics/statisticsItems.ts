@@ -3,6 +3,7 @@ import { Button } from "../../../UI/Button/button";
 import { IWords, baseUrl } from "../../../api/api";
 import "./containerStatistics.scss"
 import { Statistic } from "../../audiogame/audiogame";
+
 export class StatisticsItem extends Component {
     private statisticToday:Component;
     private divWordsLearning: Component;
@@ -39,15 +40,15 @@ export class StatisticsItem extends Component {
 
 
     this.SprintH2=new Component(this.gameStatisticCardSprint.element, "h2", ["sprint_h2"], "Спринт");
-    this.SavannaH2=new Component(this.gameStatisticCardSavanna.element, "h2", ["savanna_h2"], "Саванна")
+    this.SavannaH2=new Component(this.gameStatisticCardSavanna.element, "h2", ["savanna_h2"], "Аудио-игра")
 
-    this.SprintH3=new Component(this.gameStatisticCardSprint.element, "h3", ["sprint_h3"], `Изучено ${0} слов`)
+    this.SprintH3=new Component(this.gameStatisticCardSprint.element, "h3", ["sprint_h3"], `Изучено ${Statistic} слов`)
     this.SprintH3=new Component(this.gameStatisticCardSprint.element, "h3", ["sprint_h3"], `Правильных ответов: ${0}%`)
-    this.SprintH3=new Component(this.gameStatisticCardSprint.element, "h3", ["sprint_h3"], `Самая длинная серия ответов: ${0}`)
+    // this.SprintH3=new Component(this.gameStatisticCardSprint.element, "h3", ["sprint_h3"], `Самая длинная серия ответов: ${0}`)
 
     this.SavannaH3=new Component(this.gameStatisticCardSavanna.element, "h3", ["savanna_h3"], `Изучено ${0} слов`)
     this.SavannaH3=new Component(this.gameStatisticCardSavanna.element, "h3", ["savanna_h3"], `Правильных ответов: ${0}%`)
-    this.SavannaH3=new Component(this.gameStatisticCardSavanna.element, "h3", ["savanna_h3"], `Самая длинная серия ответов: ${0}`)
-    console.log(Statistic)
+    // this.SavannaH3=new Component(this.gameStatisticCardSavanna.element, "h3", ["savanna_h3"], `Самая длинная серия ответов: ${0}`)
+    console.log(Statistic.slice())
     }
 } 

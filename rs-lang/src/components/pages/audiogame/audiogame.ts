@@ -436,7 +436,7 @@ export class AudioGame {
             this.audio.src = `${rightBtn.dataset.src}`  
             this.audio.play()
             }
-            Statistic.push(this.questions,this.rightAnswer, this.wrongAnswer)
+            Statistic.push(this.questions, this.rightAnswer, this.wrongAnswer)
         })
         audioStatResMain.append(audioStatResMainText, audioStatResMainBtn, audioStatPersentBox)
         audioStatViewMain.append(audioStatWrongText, audioStatWrongBox, audioStatRightText, audioStatRightBox)
