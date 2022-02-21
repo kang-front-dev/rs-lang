@@ -18,6 +18,11 @@ $jacarta-900: #2b2b63;
   min-height: 90vh;
   background: #fff;
   box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.3);
+
+  background-image: url('../assets/img/stacked-waves-haikei\ \(6\).svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+
   &__nav {
     width: 100%;
     position: relative;

@@ -1,7 +1,12 @@
+import {
+  base,
+  createUserWords,
+  generateWordsForAudio,
+  getWords,
+  IWords,
+} from '../../api/api';
 
-import { base, createUserWords, generateWordsForAudio, getWords, IWords } from '../../api/api';
-
-export const Statistic = []
+export const Statistic = [];
 
 export class AudioGame {
   public container: HTMLElement;
@@ -12,12 +17,14 @@ export class AudioGame {
   rightAnswer: [IWords] | [];
   wrongAnswer: [IWords] | [];
   audio: HTMLAudioElement;
-  game:string
-  user:string|null
+  game: string;
+  user: string | null;
 
   constructor(id: string) {
-    this.user = localStorage.SignInUser ? JSON.parse(localStorage.SignInUser).userId : null
-    console.log(this.user)
+    this.user = localStorage.SignInUser
+      ? JSON.parse(localStorage.SignInUser).userId
+      : null;
+    console.log(this.user);
     this.container = document.createElement('div');
     this.container.id = id;
     this.currentAudio = '';
@@ -27,7 +34,7 @@ export class AudioGame {
     this.wrongAnswer = [];
     this.rightAnswer = [];
     this.audio = new Audio();
-    this.game = 'audiocall'
+    this.game = 'audiocall';
   }
   audioGameHeader(className: string) {
     const sidebar = document.createElement('aside');
@@ -101,15 +108,20 @@ export class AudioGame {
     startGameText.innerHTML =
       'Игра "Аудиовызов" улучшает твое восприятие речи на слух';
 
-    const startGameChoose = document.createElement('p');
-    startGameChoose.className = 'start-game__choose';
-    startGameChoose.innerHTML = 'Выберите уровень:';
+    const startGameSubmit = document.createElement('button');
+    startGameSubmit.className = 'start-game__submit';
+    startGameSubmit.innerHTML = 'Начать';
 
     const arr: Array<string> = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
     const startGameBtns = document.createElement('div');
     startGameBtns.className = 'start-game__btns';
 
-    if (+localStorage.group <= 0){
+    if (+localStorage.group < 0) {
+      const startGameChoose = document.createElement('p');
+      startGameChoose.className = 'start-game__choose';
+      startGameChoose.innerHTML = 'Выберите уровень:';
+      startGameContainer.append(startGameChoose);
+
       arr.forEach((elem: string) => {
         const startGameBtn = document.createElement('button');
         startGameBtn.className = 'start-game__btn';
@@ -119,7 +131,8 @@ export class AudioGame {
         startGameBtn.onclick = () => {
           localStorage.setItem('group', String(arr.indexOf(elem)));
           startGameBtns.childNodes.forEach((el) => {
-            (el as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+            (el as HTMLButtonElement).style.backgroundColor =
+              'rgba(255, 255, 255, 0.3)';
             (el as HTMLButtonElement).style.color = 'rgb(48, 48, 48)';
           });
           startGameBtn.style.backgroundColor = 'rgb(43, 43, 99)';
@@ -127,32 +140,32 @@ export class AudioGame {
           startGameSubmit.disabled = false;
         };
       });
-    }else{
-      console.log(localStorage.group)
+    } else {
+      console.log(localStorage.group);
+      startGameSubmit.disabled = false;
     }
-   
-    const startGameSubmit = document.createElement('button');
-    startGameSubmit.className = 'start-game__submit';
-    startGameSubmit.innerHTML = 'Начать';
-    +localStorage.group >= 0 ? startGameSubmit.disabled = true : startGameSubmit.disabled = false
+
+    +localStorage.group > 0
+      ? (startGameSubmit.disabled = true)
+      : (startGameSubmit.disabled = false);
 
     startGameSubmit.onclick = async () => {
-      const page = +localStorage.page >= 0 ? localStorage.page : Math.floor(Math.random()*(30-0)+0)  
-      let answer:Array<IWords>
-      if (this.user !== null){
+      const page =
+        +localStorage.page >= 0
+          ? localStorage.page
+          : Math.floor(Math.random() * (30 - 0) + 0);
+      let answer: Array<IWords>;
+      if (this.user !== null) {
         const answerUser: IWords = await generateWordsForAudio(
           JSON.parse(localStorage.SignInUser).userId,
           +localStorage.getItem('group'),
           page
         );
-        answer = await answerUser[0].paginatedResults
-      }else{
-          answer = await getWords(
-          +localStorage.getItem('group'),
-          page
-        ) 
+        answer = await answerUser[0].paginatedResults;
+      } else {
+        answer = await getWords(+localStorage.getItem('group'), page);
       }
-      
+
       for (let i = 0; i < answer.length; i++) {
         const subQuestion = [];
         subQuestion.push(answer[i]);
@@ -161,7 +174,6 @@ export class AudioGame {
           const randomnumber = Math.floor(Math.random() * answer.length);
           if (randomArr.indexOf(randomnumber) == -1)
             randomArr.push(randomnumber);
-
         }
         for (let j = 0; j < 3; j++) {
           subQuestion.push(answer[randomArr[j + 1]]);
@@ -175,7 +187,6 @@ export class AudioGame {
     startGameContainer.append(
       startGameHeader,
       startGameText,
-      startGameChoose,
       startGameBtns,
       startGameSubmit
     );
@@ -222,10 +233,8 @@ export class AudioGame {
     const audioImg = document.createElement('img');
     audioImg.className = 'audio__img';
 
-
     const audioDiscript = document.createElement(`p`);
     audioDiscript.className = 'audio__discription';
-
 
     const audioQuestBox = document.createElement('div');
     audioQuestBox.className = 'audio_questions';
@@ -252,14 +261,20 @@ export class AudioGame {
         if (questionArr[0].wordTranslate === target.textContent) {
           target.style.background = 'rgba(126, 255, 133, 0.7)';
           this.correctAnswer++;
-          if (this.user !== null){
-            createUserWords(this.user, questionArr[0]._id, {difficulty:'easy', optional:{repeat:true}})
+          if (this.user !== null) {
+            createUserWords(this.user, questionArr[0]._id, {
+              difficulty: 'easy',
+              optional: { repeat: true },
+            });
           }
           (this.rightAnswer as [IWords]).push(questionArr[0]);
           changeLastBtn();
         } else {
-          if (this.user !== null){
-            createUserWords(this.user, questionArr[0]._id, {difficulty:'hard', optional:{repeat:true}})
+          if (this.user !== null) {
+            createUserWords(this.user, questionArr[0]._id, {
+              difficulty: 'hard',
+              optional: { repeat: true },
+            });
           }
           target.style.background = 'rgba(255, 126, 126, 0.7)';
           (this.wrongAnswer as [IWords]).push(questionArr[0]);
@@ -297,7 +312,7 @@ export class AudioGame {
       // this.renderGame(this.questNumber)
       if (this.questNumber === this.questions.length) {
         this.audioStat();
-        Statistic.push(this.questions,this.rightAnswer, this.wrongAnswer)
+        Statistic.push(this.questions, this.rightAnswer, this.wrongAnswer);
       } else {
         this.renderGame(this.questNumber);
       }
@@ -314,9 +329,10 @@ export class AudioGame {
     );
   }
   audioStat() {
-    const persent = this.questions.length > 0 ? Math.ceil(
-      (this.rightAnswer.length / this.questions.length) * 100
-    ) : 0;
+    const persent =
+      this.questions.length > 0
+        ? Math.ceil((this.rightAnswer.length / this.questions.length) * 100)
+        : 0;
     const audioStatContainer = document.createElement('div');
     audioStatContainer.className = 'audio-stat__container';
     this.container.append(audioStatContainer);
@@ -390,13 +406,15 @@ export class AudioGame {
     const audioStatBtnRetry = document.createElement('button');
     audioStatBtnRetry.className = 'audio-stat__retry';
     audioStatBtnRetry.innerHTML = 'Сыграть еще раз';
-    this.game === 'audiocall' ? audioStatBtnRetry.disabled = false : audioStatBtnRetry.disabled = true
+    this.game === 'audiocall'
+      ? (audioStatBtnRetry.disabled = false)
+      : (audioStatBtnRetry.disabled = true);
     audioStatBtnRetry.onclick = () => {
       audioStatContainer.remove();
-      if(this.game === 'audiocall'){
-        this.startGame()
-      }else{
-        this.container.remove()
+      if (this.game === 'audiocall') {
+        this.startGame();
+      } else {
+        this.container.remove();
       }
     };
 
@@ -485,13 +503,10 @@ export class AudioGame {
       audioStatToggle,
       audioStatBtnContainer
     );
-    
   }
   render() {
     this.audioGameHeader('header');
-    this.startGame();   
+    this.startGame();
     return this.container;
   }
-
-
 }

@@ -37,7 +37,7 @@ export class Sprint extends AudioGame {
     const sprintLevels = document.createElement('div');
     sprintLevels.className = 'sprint__levels';
     // this.container.append(sprintLevels);
-    if (+localStorage.group <= 0){
+    if (+localStorage.group < 0){
     const sprintLevelsTitle = document.createElement('h3');
     sprintLevelsTitle.className = 'sprint__levels_title';
     sprintLevelsTitle.textContent = 'Выберите уровень:';

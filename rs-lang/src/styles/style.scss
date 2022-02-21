@@ -26,7 +26,6 @@ body {
   display: flex;
   flex-direction: column;
   scroll-behavior: smooth;
-
 }
 
 section {
@@ -66,18 +65,62 @@ section {
   }
 }
 
-
-#module-wrapper{
+#module-wrapper {
   width: 100%;
   max-width: 100%;
   padding: 0 290px;
-  background-image: url('../assets/img/stacked-waves-haikei\ \(6\).svg');
-  background-size: cover;
-  background-repeat: no-repeat;
+
   flex-grow: 1;
   position: relative;
   z-index: 5;
+}
 
+.games__title {
+  font-family: 'Gilroy';
+  font-size: 52px;
+  font-weight: 700;
+  color: rgb(60, 60, 60);
+  text-align: center;
+  margin-bottom: 50px;
+}
+.games-btn__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+.game__btn-1,
+.game__btn-2{
+  height: 250px;
+  outline: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.103);
+
+  border-radius: 10px;
+
+  font-family: 'Gilroy';
+  font-size: 50px;
+  font-weight: 700;
+  color: rgb(60, 60, 60);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: -70px;
+
+  box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.3),
+  0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+
+  backdrop-filter: blur(5px);
+  transition: 0.2s ease-in-out;
+  &:hover{
+    transform: scale(1.02);
+  }
+}
+.game__btn-1{
+  background-image: url('../assets/img/guide-card-1.png');
+}
+.game__btn-2{
+  background-image: url('../assets/img/guide-card-2.png');
 }
 
 @keyframes slideFromDown {
@@ -99,4 +142,3 @@ section {
     opacity: 1;
   }
 }
-
