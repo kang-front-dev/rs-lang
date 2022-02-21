@@ -1,6 +1,6 @@
 import { Component } from "../addition/addComponents";
 import { GroupWordsClass } from "../groupWords/groupWords";
-
+import { createGames } from "../groupWords/gameBtns";
 import { IConnection } from "../../../api/api";
 
 export class Connection {
@@ -10,10 +10,11 @@ export class Connection {
   // Pages
   wordsGroupPage: Component;
   winnersPage: Component | undefined;
+  gameBtns: Component | undefined;
 
   constructor(private rootElement: HTMLElement) {
     this.wordsGroupPage = new GroupWordsClass(this.rootElement);
-
+    this.gameBtns = new createGames(this.rootElement)
     this.routes = [
       {
         name: "/",

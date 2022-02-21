@@ -18,6 +18,7 @@ export class GroupWordsClass extends Component {
         ["textBook__title"],
         "Учебник"
       );
+      
 
     this.groupWordsContainer = new GroupWordsContainer(this.element);
     this.getAllWords(this.page, this.group);
@@ -51,12 +52,14 @@ export class GroupWordsClass extends Component {
         600
       )
     }
-  } 
+  }
+
   private async getWord(wordId: string): Promise<void> {
     const word = await getWord(wordId);
     console.log(word);
     // if (word) this.garageOptions.updateState(word);
   }
+
   private async updateWord(word: IWords): Promise<void> {
     await this.updateWord(word);
     await this.getAllWords(this.page, this.group);
