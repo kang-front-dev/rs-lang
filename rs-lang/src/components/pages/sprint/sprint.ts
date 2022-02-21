@@ -1,5 +1,5 @@
 import { spawn } from "child_process";
-import { createUserWords, getWords, IWords } from "../../api/api";
+import { createUserWords, generateEasyWords, generateHardWords, getWords, IWords } from "../../api/api";
 import { AudioGame } from "../audiogame/audiogame";
 
 export let sprinStat = []
@@ -78,18 +78,23 @@ export class Sprint extends AudioGame {
     sprintStartBtn.onclick = async() =>{
       if (+localStorage.page >= 0){
         for(let i = +localStorage.page; i<=0 ;i--){
+          const userid = JSON.parse(localStorage.SignInUser).id
           const page = +localStorage.page;
-          const answer:IWords = await getWords(+localStorage.getItem('group'),page);
-          (this.questSprint as [IWords]).push(answer as IWords)
+          const answer:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
+          const answerEasy:IWords = await generateHardWords(userid,+localStorage.getItem('group'),page);
+          (this.questSprint as [IWords]).push(answer[i].paginatedResults as IWords);
+          (this.questSprint as [IWords]).push(answerEasy[i].paginatedResults as IWords)
         }
       }else{
         for (let i=0; i<5; i++){
           const page = Math.floor(Math.random() * (30 - 0) + 0);
-          const answer:IWords = await getWords(+localStorage.getItem('group'),page);
-          console.log(answer);
-          (this.questSprint as [IWords]).push(answer as IWords)
+          const answer:IWords = await generateHardWords(JSON.parse(localStorage.SignInUser).userId,+localStorage.getItem('group'),page);
+          const answerEasy:IWords = await generateEasyWords(JSON.parse(localStorage.SignInUser).userId,+localStorage.getItem('group'),page);
+          (this.questSprint as [IWords]).push(answer[0].paginatedResults as IWords);
+          (this.questSprint as [IWords]).push(answerEasy[0].paginatedResults as IWords)
         }
       }
+      // JSON.parse(localStorage.SignInUser).token
       
 
       console.log(this.questSprint.flat(1))
@@ -163,7 +168,7 @@ export class Sprint extends AudioGame {
 
     function asd(arr:IWords[], num:number, score:number, mult:number){ 
       sprintQuest.innerHTML = `<b>${arr[num+1].word}</b> это - `
-      sprintAns.innerHTML = `<u>${Math.random() < 0.5 ? arr[num+1].wordTranslate : arr[Math.floor(Math.random() * (99 - 0) + 0)].wordTranslate} ?</u>`
+      sprintAns.innerHTML = `<u>${Math.random() < 0.5 ? arr[num+1].wordTranslate : arr[Math.floor(Math.random() * (49 - 0) + 0)].wordTranslate} ?</u>`
       multBox.innerHTML = `умножение: х${mult} +${mult*10}`
       sprintScore.innerHTML = `очки: ${score}`
     }
@@ -184,13 +189,13 @@ export class Sprint extends AudioGame {
     trueAns.onclick = () =>{
       if(this.questSprint[this.questNumber].wordTranslate === sprintAns.textContent.split(' ')[0]){
         (this.rightAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'easy', optional:{newWord:true}})
+        createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'easy', optional:{repeat:true}})
         this.multiply = multScore(this.winStreak)
         this.score = this.score + this.multiply*10
         this.winStreak++
       }else{
         (this.wrongAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'hard', optional:{newWord:true}})
+        createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'hard', optional:{repeat:true}})
         this.winStreak = 0
         this.multiply = 1
       }
@@ -206,13 +211,13 @@ export class Sprint extends AudioGame {
     falseAns.onclick = () =>{
       if(this.questSprint[this.questNumber].wordTranslate !== sprintAns.textContent.split(' ')[0]){
         (this.rightAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'easy', optional:{newWord:true}})
+        createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'easy', optional:{repeat:true}})
         this.multiply = multScore(this.winStreak)
         this.score = this.score + this.multiply*10
         this.winStreak++
       }else{
         (this.wrongAnswer as [IWords]).push(this.questSprint[this.questNumber] as IWords)
-        createUserWords(this.user, this.questSprint[this.questNumber].id, {difficulty:'hard', optional:{newWord:true}})
+        createUserWords(this.user, this.questSprint[this.questNumber]._id, {difficulty:'hard', optional:{repeat:true}})
         this.winStreak = 0
         this.multiply = 1
       }
