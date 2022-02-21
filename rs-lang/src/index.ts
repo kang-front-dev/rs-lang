@@ -1,8 +1,5 @@
-
-
 import './assets/fonts/FontAwesome/stylesheet.css';
 import './assets/fonts/Gilroy/stylesheet.css';
-
 
 import './styles/font.css';
 import './styles/style.scss';
@@ -27,6 +24,10 @@ import {
   enableMain,
 } from './components/app/main';
 
+import { generateBubbles } from './components/app/animation';
+
+generateBubbles(60);
+
 const sashaInfo: object = {
   avatarLink: 'assets/img/avatar-2.png',
   name: 'Саша',
@@ -35,7 +36,7 @@ const sashaInfo: object = {
   comment: `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
   Consequuntur est, voluptas eaque facere dignissimos architecto
   nisi veritatis mollitia. Nihil, odio!`,
-  goals: ['Авторизация', 'Аудиовызов'],
+  goals: ['Авторизация', 'Аудиовызов и Спринт'],
 };
 const kostyaInfo: object = {
   avatarLink: 'assets/img/avatar-1.png',
@@ -45,7 +46,7 @@ const kostyaInfo: object = {
   comment: `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
   Consequuntur est, voluptas eaque facere dignissimos architecto
   nisi veritatis mollitia. Nihil, odio!`,
-  goals: ['Главная страница', 'Спринт'],
+  goals: ['Дизайн', 'Верстка'],
 };
 const lizaInfo: object = {
   avatarLink: 'assets/img/avatar-3.png',
@@ -91,64 +92,120 @@ import './components/pages/register/register.css';
 import { User } from './components/pages/user/user';
 import { Register } from './components/pages/register/register';
 
-const loginRegList: HTMLElement = document.querySelector('#login-reg-list')
+const loginRegList: HTMLElement = document.querySelector('#login-reg-list');
 
-const loginLink: HTMLElement = document.querySelector('.header__nav_link-login'),
-  regLink: HTMLElement = document.querySelector('.header__nav_link-reg')
+const loginLink: HTMLElement = document.querySelector(
+    '.header__nav_link-login'
+  ),
+  regLink: HTMLElement = document.querySelector('.header__nav_link-reg');
 
-  loginRegList.addEventListener('click', (e) => {
-    if(e.target === loginLink){
-
-      const loginObject = new User('user'),
+loginRegList.addEventListener('click', (e) => {
+  if (e.target === loginLink) {
+    const loginObject = new User('user'),
       loginRendered = loginObject.render();
-      
-      document.body.appendChild(loginRendered)
-    }else if(e.target === regLink){
-      const regObject = new Register('user'),
+
+    document.body.appendChild(loginRendered);
+  } else if (e.target === regLink) {
+    const regObject = new Register('user'),
       regRendered = regObject.render();
-      
-      document.body.appendChild(regRendered)
-    }
-  })
+
+    document.body.appendChild(regRendered);
+  }
+});
 
 import { AudioGame } from './components/pages/audiogame/audiogame';
 
-const headerNavList = document.getElementById('header-nav-links')
+import { headerNavLinkActive } from './components/app/animation';
 
-const audiogameLink = document.getElementById('audiogame')
+const headerLinkActive = new headerNavLinkActive();
+
+const headerNavList = document.getElementById('header-nav-links');
+
+const audiogameLink = document.getElementById('audiogame'),
+  sprintLink = document.getElementById('sprint'),
+  mainpageLink = document.getElementById('main-page'),
+  textbookLink = document.getElementById('textbook'),
+  statsLink = document.getElementById('stats');
 
 const moduleWrapper = document.getElementById('module-wrapper'),
-  headerContent = document.querySelector('.header__content')
+  headerContent = document.querySelector('.header__content');
 
-headerNavList.addEventListener('click', (e)=> {
-  if(e.target === audiogameLink){
-    headerContent.classList.add('element-animated-out')
+window.onload = () => {
+  headerLinkActive.setActivePosition(
+    mainpageLink.offsetLeft,
+    mainpageLink.offsetWidth,
+    mainpageLink.offsetHeight
+  );
+  console.log('wdwadwd');
+  
+}
+
+
+headerNavList.addEventListener('click', (e) => {
+  if (e.target === audiogameLink) {
+    headerContent.classList.add('element-animated-out');
+    headerLinkActive.setActivePosition(
+      audiogameLink.offsetLeft,
+      audiogameLink.offsetWidth,
+      audiogameLink.offsetHeight
+    );
     setTimeout(() => {
-      headerContent.classList.add('element-disabled')
-      headerContent.classList.remove('element-animated-out')
-      disableMain()
+      headerContent.classList.add('element-disabled');
+      headerContent.classList.remove('element-animated-out');
+      disableMain();
 
       const audiogameObject = new AudioGame('audio__game'),
-      audiogameRendered = audiogameObject.render();
-      
-      moduleWrapper.appendChild(audiogameRendered)
+        audiogameRendered = audiogameObject.render();
 
+      moduleWrapper.appendChild(audiogameRendered);
     }, 300);
-
+  } else if (e.target === sprintLink) {
+    headerLinkActive.setActivePosition(
+      sprintLink.offsetLeft,
+      sprintLink.offsetWidth,
+      sprintLink.offsetHeight
+    );
+  } else if (e.target === mainpageLink) {
+    headerLinkActive.setActivePosition(
+      mainpageLink.offsetLeft,
+      mainpageLink.offsetWidth,
+      mainpageLink.offsetHeight
+    );
+  } else if (e.target === textbookLink) {
+    headerLinkActive.setActivePosition(
+      textbookLink.offsetLeft,
+      textbookLink.offsetWidth,
+      textbookLink.offsetHeight
+    );
+  } else if (e.target === statsLink) {
+    headerLinkActive.setActivePosition(
+      statsLink.offsetLeft,
+      statsLink.offsetWidth,
+      statsLink.offsetHeight
+    );
   }
-})
+});
 
-const headerLogo = document.querySelector('.header__nav_logo')
+const headerLogo = document.querySelector('.header__nav_logo');
 
-headerLogo.addEventListener('click', ()=>{
-  if(headerContent.classList.contains('element-disabled') && document.querySelector('.main').classList.contains('element-disabled')){
+headerLogo.addEventListener('click', () => {
+  if (
+    headerContent.classList.contains('element-disabled') &&
+    document.querySelector('.main').classList.contains('element-disabled')
+  ) {
     console.log('232332323');
-    
-    headerContent.classList.remove('element-disabled')
-    enableMain()
 
-    const audioGame = document.getElementById('audio__game')
-    audioGame.remove()
+    headerContent.classList.remove('element-disabled');
+    enableMain();
+
+    const audioGame = document.getElementById('audio__game');
+    audioGame.remove();
+
+    headerLinkActive.setActivePosition(
+      mainpageLink.offsetLeft,
+      mainpageLink.offsetWidth,
+      mainpageLink.offsetHeight
+    );
   }
 })
 
@@ -161,3 +218,6 @@ localStorage.setItem('group', '-1')
 localStorage.setItem('page', '-1')
 const sprintBlock = new Sprint('sprint')
 moduleWrapper.append(sprintBlock.generateStartPage())
+
+});
+
