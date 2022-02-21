@@ -1,0 +1,267 @@
+.textBook_wrapper {
+  padding: 100px 0px;
+}
+
+.textBookGroup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  -webkit-box-pack: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  font-family: 'Gilroy';
+}
+
+.main_textBook {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.transcript-music-word {
+  flex-direction: column-reverse;
+  margin-bottom: 8px;
+}
+
+.information-word {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  display: grid;
+  -webkit-box-align: end;
+  align-items: end;
+  gap: 10px;
+  margin: 5px 0px;
+}
+
+.btn-small {
+  font-family: 'Gilroy';
+  display: inline-block;
+  color: #fff;
+  background: #5663ca;
+
+  font-size: 14px;
+  font-weight: 700;
+  padding: 9px 7px;
+  font-weight: bold;
+  border-radius: 3px;
+  box-shadow:  0px 1px 2px rgba(0, 0, 0, 0.4);
+
+  text-transform: uppercase;
+
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease-in;
+  flex-grow: 1;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.12s;
+
+  &:hover{
+    background: rgba(255, 255, 255, 0);
+    color: rgb(26, 26, 49);
+  }
+}
+
+.div-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  column-gap: 5px;
+}
+
+.transcript-and-word {
+  margin-top: 16px;
+}
+
+.transcript-and-wordOneBlock {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-word {
+  max-width: 240px;
+  max-height: 281px;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 5px;
+}
+
+.translateSound {
+  flex-direction: column-reverse;
+  margin-bottom: 8px;
+}
+
+.name-word {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 28px;
+  margin-right: 9px;
+}
+
+.transcription-word,
+.translate-word {
+  font-size: 1.2rem;
+}
+
+.translate-word {
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.word-list {
+
+  display: flex;
+  border-radius: 10px;
+  padding: 24px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  box-shadow:  0px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.card-word-list {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+}
+
+.information-word {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  display: grid;
+  -webkit-box-align: end;
+  align-items: end;
+  gap: 10px;
+  margin: 5px 0px;
+}
+
+.sound-word__div {
+  display: flex;
+}
+
+.sound-word__svg {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none;
+  cursor: pointer;
+}
+.textMeaning-word,
+.textExample-word{
+  margin-bottom: 5px;
+}
+.textExampleTranslate-word,
+.text-meaning-translate {
+  max-width: 400px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #303030;
+  margin-bottom: 10px;
+}
+
+.level-card {
+  height: 70px;
+  width: 220px;
+  background-color: #f3f4f8;
+  display: flex;
+  border-radius: 0.5rem;
+  color: #2c2647;
+  font-size: 1rem;
+  font-family: 'Gilroy-Heavy';
+  justify-content: space-between;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1.2rem;
+  position: relative;
+  align-items: center;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  transition: all easy 0.5s;
+}
+
+.levels-wrapper .level-card--unactive {
+  background-color: #f3f4f8;
+  border: none;
+  outline: none;
+}
+
+.group__title {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.start-game__container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+}
+.start-game__header__text {
+  font-size: 3rem;
+}
+.start-game__text {
+  font-size: 1.5em;
+}
+.start-game__choose {
+  margin: 0;
+}
+.start-game__btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  
+}
+.groupBtn,
+
+.audio-quest__btn,
+.next__btn,
+.next-quest__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.groupBtn:hover,
+
+.audio-quest__btn:hover,
+.next__btn:hover,
+.next-quest__btn:hover {
+  background-color: burlywood;
+  transform: scale(1.1);
+}
+.game-main__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 80vh;
+  font-family: Comfortaa;
+}
+.delete-translate {
+  display: none
+}
+
+.difficultWords_arr {
+  background-color: #baedff;
+  transition: background-color 0.2s ease;
+}
+
