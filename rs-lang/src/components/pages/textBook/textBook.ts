@@ -1,29 +1,25 @@
-import "./textBook.scss";
-import { Connection } from "./serverConnection";
-import { Component } from "./addition/addComponents";
-import { deleteMain } from "../../app/main";
+import './textBook.scss';
+import { Connection } from './serverConnection';
+import { Component } from './addition/addComponents';
+import { disableMain } from '../../app/main';
 export class TextBook {
-
   private wordSectionMain;
-  private router; 
+  private router;
 
   constructor(private rootElement: HTMLElement) {
-    const textBookLink = document.querySelector(".textBook-link") as HTMLElement;
-    const headerContent = document.querySelector(".header__content") as HTMLElement;
-    const circles = document.querySelector(".circles") as HTMLElement
-    function deleteHedaerContent() {
-      headerContent.style.display = "none";
-      // circles.style.display = "none";
-    }
-    textBookLink.addEventListener("click", (event) => {
-      event.preventDefault();
-      deleteMain()
-      deleteHedaerContent();
-      this.wordSectionMain = new Component(this.rootElement, "div", ["word-section-main"]);
-        this.router = new Connection(this.wordSectionMain.element);
-        this.wordSectionMain.element.append(circles)
-    });
-   
+    const textBookLink = document.querySelector(
+      '.textBook-link'
+    ) as HTMLElement;
+    const headerContent = document.querySelector(
+      '.header__content'
+    ) as HTMLElement;
+
+    disableMain();
+
+    this.wordSectionMain = new Component(this.rootElement, 'div', [
+      'word-section-main',
+    ]);
+    this.router = new Connection(this.wordSectionMain.element);
   }
 
   init(): void {

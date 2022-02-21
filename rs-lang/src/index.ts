@@ -10,8 +10,8 @@ import './styles/footer.scss';
 
 import "./components/pages/textBook/textBook"
 import "./components/pages/textBook/groupWords/groupWords"
-import "./components/pages/statistics/statistics"
-import "./components/pages/statistics/containerStatistics/statisticsPage"
+// import "./components/pages/statistics/statistics"
+// import "./components/pages/statistics/containerStatistics/statisticsPage"
 import './components/pages/sprint/sprint.scss';
 
 import './components/pages/audiogame/audiogame.css';
