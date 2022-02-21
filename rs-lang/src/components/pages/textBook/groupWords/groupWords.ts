@@ -27,6 +27,8 @@ export class GroupWordsClass extends Component {
       this.page = page;
       this.group = group;
       this.getAllWords(page, group);
+      localStorage.setItem('group', `${this.group}`)
+      localStorage.setItem('page', `${this.page}`)
     };
 
   }
