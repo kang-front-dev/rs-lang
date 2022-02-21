@@ -94,6 +94,8 @@ export class Pages extends Component {
               
             }   
          this.updatePage(this.page, this.group);
+         localStorage.setItem('group', `${this.group}`)
+         localStorage.setItem('page', `${this.page}`)
       })  
   })
 const arrPage=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
@@ -111,6 +113,8 @@ const arrPage=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
         localStorage.setItem("page", String(arrPage.indexOf(item)))
         const groupStorage:IWords = await getWords(this.page, this.group) 
         this.updatePage(this.page, this.group)
+        localStorage.setItem('group', `${this.group}`)
+        localStorage.setItem('page', `${this.page}`)
         
         // this.newOption.element.classList.toggle("selector-option_click")
         if(item < this.page-1) {
@@ -123,6 +127,7 @@ const arrPage=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
 
     this.nextButton = new Button(this.containerBtnPagination.element, ["btn-next"], "Next");
     this.nextButton.onClickButton = async () => {
+      localStorage.setItem('page', `${this.page}`)
       this.switchPage("next");
     };
   }
