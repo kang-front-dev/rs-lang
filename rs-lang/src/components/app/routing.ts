@@ -1,6 +1,7 @@
 import { headerNavLinkActive } from "./animation";
 import { AudioGame } from "../pages/audiogame/audiogame";
-import { disableMain } from "./main";
+import { Sprint } from "../pages/sprint/sprint";
+import { disableMain, enableMain } from "./main";
 
 export function setRouting() {
   const headerLinkActive = new headerNavLinkActive();
@@ -29,23 +30,19 @@ export function setRouting() {
 
   headerNavList.addEventListener('click', (e) => {
     if (e.target === audiogameLink) {
-      headerContent.classList.add('element-animated-out');
-
       if (currentModule && currentModule != headerContent) {
         currentModule.remove();
       }
+      headerContent.classList.add('element-disabled');
 
-      setTimeout(() => {
-        headerContent.classList.add('element-disabled');
-        headerContent.classList.remove('element-animated-out');
-        disableMain();
+      disableMain();
 
-        const audiogameObject = new AudioGame('audio__game'),
-          audiogameRendered = audiogameObject.render();
+      const audiogameObject = new AudioGame('audio__game'),
+        audiogameRendered = audiogameObject.render();
 
-        moduleWrapper.appendChild(audiogameRendered);
-        currentModule = audiogameRendered;
-      }, 300);
+      moduleWrapper.appendChild(audiogameRendered);
+      currentModule = audiogameRendered;
+
 
       headerLinkActive.setActivePosition(
         audiogameLink.offsetLeft,
@@ -58,18 +55,17 @@ export function setRouting() {
       if (currentModule && currentModule != headerContent) {
         currentModule.remove();
       }
+      
+      headerContent.classList.add('element-disabled');
 
-      setTimeout(() => {
-        headerContent.classList.add('element-disabled');
-        headerContent.classList.remove('element-animated-out');
-        disableMain();
+      disableMain();
 
-        const audiogameObject = new AudioGame('audio__game'),
-          audiogameRendered = audiogameObject.render();
+      localStorage.setItem('group', '-1')
+      localStorage.setItem('page', '-1')
+      const sprintBlock = new Sprint('sprint')
+      moduleWrapper.append(sprintBlock.generateStartPage())
 
-        moduleWrapper.appendChild(audiogameRendered);
-        currentModule = audiogameRendered;
-      }, 300);
+      currentModule = document.querySelector('.sprint');
 
       headerLinkActive.setActivePosition(
         sprintLink.offsetLeft,
@@ -77,7 +73,7 @@ export function setRouting() {
         sprintLink.offsetHeight
       );
     } else if (e.target === mainpageLink) {
-      headerContent.classList.add('element-animated-out');
+      headerContent.classList.remove('element-disabled');
 
       if (currentModule && currentModule != headerContent) {
         currentModule.remove();

@@ -1,12 +1,12 @@
 import './assets/fonts/FontAwesome/stylesheet.css';
 import './assets/fonts/Gilroy/stylesheet.css';
 
-
 import './styles/style.scss';
 import './styles/header.scss';
 import './styles/header-bg.scss';
 import './styles/about.scss';
 import './styles/footer.scss';
+import './components/pages/sprint/sprint.scss';
 
 import './components/pages/audiogame/audiogame.css';
 
@@ -20,7 +20,7 @@ import {
   enableMain,
   generateFooter,
   generateMain,
-  generateSection
+  generateSection,
 } from './components/app/main';
 
 import { generateBubbles } from './components/app/animation';
@@ -115,4 +115,3 @@ loginRegList.addEventListener('click', (e) => {
 import { setRouting } from './components/app/routing';
 
 setRouting();
-

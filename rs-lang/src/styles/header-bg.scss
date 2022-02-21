@@ -1,3 +1,4 @@
+
 $cerulean-blue-50: #ecf2ff;
 $cerulean-blue-100: #dde7ff;
 $cerulean-blue-200: #c2d2ff;
@@ -9,7 +10,8 @@ $cerulean-blue-700: #3734da;
 $cerulean-blue-800: #2525ae;
 $cerulean-blue-900: #262889;
 
-.circles{
+.circles {
+
   position: absolute;
   z-index: 1;
   top: 0;
@@ -20,12 +22,13 @@ $cerulean-blue-900: #262889;
   pointer-events: none;
 }
 
-.circles li{
+.circles li {
   position: absolute;
   display: block;
   list-style: none;
   width: 20px;
   height: 20px;
+
   background: rgba(141, 177, 255, 0.6);
   animation: animate 0s linear infinite;
   bottom: -100px;
@@ -43,14 +46,13 @@ $cerulean-blue-900: #262889;
 
     animation-duration: (random($limit: 13) + 13)+s;
     animation-delay: (random($limit: 20) + 0)+s;
+
   }
 }
 
-
-
-
 @keyframes animate {
   0% {
+
     transform: translate(0px, 0vh) rotate(0deg);
     opacity: 0;
   }
@@ -65,3 +67,4 @@ $cerulean-blue-900: #262889;
     opacity: 0;
   }
 }
+

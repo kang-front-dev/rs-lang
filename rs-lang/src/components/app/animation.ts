@@ -53,13 +53,7 @@ export function generateBubbles(amount: number) {
   if (amount > 0) {
     const bubble = document.createElement('li');
     const bubbleList = document.querySelector('.circles');
-    async function getBubbleInfo(){
-      const result = await getWords(getRandom(1,6), getRandom(1,30))
-      return result
-    }
-    const bubbleInfo = getBubbleInfo()
-    console.log(bubbleInfo);
-    
+
     bubbleList.appendChild(bubble);
 
     generateBubbles(amount - 1);

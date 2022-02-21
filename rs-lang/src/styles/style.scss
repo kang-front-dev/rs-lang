@@ -66,13 +66,16 @@ section {
   }
 }
 
-.module__wrapper{
-  position: relative;
-  z-index: 5;
+
+#module-wrapper{
+  width: 100%;
+  max-width: 100%;
+  padding: 0 290px;
+  background-image: url('../assets/img/stacked-waves-haikei\ \(6\).svg');
+  background-size: cover;
+  background-repeat: no-repeat;
   flex-grow: 1;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+
 }
 
 @keyframes slideFromDown {
