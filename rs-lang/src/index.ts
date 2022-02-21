@@ -26,7 +26,7 @@ import {
 
 import { generateBubbles } from './components/app/animation';
 
-// generateBubbles(60);
+generateBubbles(60);
 
 const sashaInfo: object = {
   avatarLink: 'assets/img/avatar-2.png',
