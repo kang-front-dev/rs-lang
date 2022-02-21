@@ -1,5 +1,4 @@
-
-.circles{
+.circles {
   position: absolute;
   z-index: 1;
   top: 0;
@@ -10,12 +9,13 @@
   pointer-events: none;
 }
 
-.circles li{
+.circles li {
   position: absolute;
   display: block;
   list-style: none;
   width: 20px;
   height: 20px;
+
   background: rgba(141, 177, 255, 0.6);
   animation: animate 0s linear infinite;
   bottom: -100px;
@@ -33,14 +33,13 @@
 
     animation-duration: (random($limit: 8) + 13)+s;
     animation-delay: (random($limit: 20) + 0)+s;
+
   }
 }
 
-
-
-
 @keyframes animate {
   0% {
+
     transform: translate(0px, 0vh) rotate(0deg);
     opacity: 0;
   }
@@ -55,3 +54,4 @@
     opacity: 0;
   }
 }
+

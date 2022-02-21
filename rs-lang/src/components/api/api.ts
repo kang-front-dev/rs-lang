@@ -71,11 +71,15 @@ export const getUserToken = async (id:string) => (await fetch(`${base}users/${id
 
 export const getUserWords = async (id:string) => (await fetch(`${base}users/${id}/words`)).json()
 
-export const createUserWords = async (id:string, wordId:string, word:{difficulty:string, optional:[] }) => {
-    const rawResponse = await fetch(`${base}users/${id}/words/${wordId}`, {
+
+
+export const createUserWords = async (id:string, wordId:string, word:{difficulty:string, optional:{newWord:boolean}}) => { 
+  const token:string = JSON.parse(localStorage.SignInUser).token
+  const rawResponse = await fetch(`${base}users/${id}/words/${wordId}`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(word)
