@@ -24,7 +24,7 @@ export class AudioGame {
     this.user = localStorage.SignInUser
       ? JSON.parse(localStorage.SignInUser).userId
       : null;
-    console.log(this.user);
+    // console.log(this.user);
     this.container = document.createElement('div');
     this.container.id = id;
     this.currentAudio = '';
@@ -111,6 +111,7 @@ export class AudioGame {
     const startGameSubmit = document.createElement('button');
     startGameSubmit.className = 'start-game__submit';
     startGameSubmit.innerHTML = 'Начать';
+    
 
     const arr: Array<string> = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
     const startGameBtns = document.createElement('div');
@@ -141,7 +142,7 @@ export class AudioGame {
         };
       });
     } else {
-      console.log(localStorage.group);
+      // console.log(localStorage.group);
       startGameSubmit.disabled = false;
     }
 

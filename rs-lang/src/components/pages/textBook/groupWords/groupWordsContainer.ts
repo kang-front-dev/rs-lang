@@ -28,13 +28,10 @@ export class GroupWordsContainer extends Component {
 
   addItems(wordCart: Array<IWords>, wordLength: string): void {
     this.clear();
-    // this.updateTitle(wordLength);
     this.wordCart = wordCart.map((word) => {
       const item = new WordsItem(this.container.element, word);
       item.removeWord = (id, wordId) => this.removeWord(id, wordId);
        item.updateWord = (wordId) => this.updateWord(wordId);
-    // console.log(item)
-    // console.log(item.removeWord)
       return item;
     });
   }

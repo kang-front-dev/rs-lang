@@ -1,9 +1,17 @@
 .statistic_title {
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 65px;
+    color: #464646;
+    margin-bottom: 40px;
+    animation: appear 0.3s ease-in-out;
+    animation-delay: 0s;
     text-align: center;
-    z-index: 1;
-    position: relative;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
+    font-family: 'Gilroy';
+}
+
+.statistics_wrapper {
+    padding: 100px 0px;
 }
 
 .statistic-container {

@@ -56,8 +56,10 @@ export const getNewToken = async ()=> {
   let refToken:string
   if (localStorage.NewToken == undefined){
     refToken = JSON.parse(localStorage.SignInUser).refreshToken;
+    console.log(refToken)
   }else{
     refToken = JSON.parse(localStorage.NewToken).refreshToken;
+    console.log(refToken)
   }
   const rawResponse = await fetch(`${base}users/${userId}/tokens`,{
     method: 'GET',

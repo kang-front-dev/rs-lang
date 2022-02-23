@@ -109,7 +109,7 @@ export class Sprint extends AudioGame {
       // JSON.parse(localStorage.SignInUser).token
       
 
-      console.log(this.questSprint.flat(1))
+      // console.log(this.questSprint.flat(1))
       this.questSprint = this.questSprint.flat(1) as IWords[]
       sprintStartPage.remove()
       this.generateGame()
@@ -257,12 +257,12 @@ export class Sprint extends AudioGame {
       this.time--
       this.questions = [...this.rightAnswer,...this.wrongAnswer]
       if (this.time<=1 || this.questNumber+1 > this.questSprint.length){
-        console.log(this.questions)
+        // console.log(this.questions)
         sprintContainer.remove()
         this.audioStat()
 
         sprinStat.push(this.questions, this.rightAnswer,this.wrongAnswer)
-        console.log(sprinStat)
+        // console.log(sprinStat)
         clearInterval(timer)
       }
       sprintTime.innerHTML = `${this.time}`

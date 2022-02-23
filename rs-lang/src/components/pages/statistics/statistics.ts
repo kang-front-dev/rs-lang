@@ -1,26 +1,16 @@
 import "./statistics.scss";
 import { ConnectionStatistics } from "./serverConnection";
 import { Component } from "../textBook/addition/addComponents";
-import {disableMain} from "../../app/main"
+import { disableMain } from "../../app/main";
 export class Statistics {
  
   private statisticsSectionMain;
   private router;
 
   constructor(private rootElement: HTMLElement) {
-    const statisticsLink = document.querySelector(".statistics-link") as HTMLElement;
-    const headerContent = document.querySelector(".header__content") as HTMLElement;
-    function deleteHedaerContent() {
-      headerContent.style.display = "none";
-    }
-    statisticsLink.addEventListener("click", (event) => {
-      event.preventDefault();
-      disableMain();
-      deleteHedaerContent();
+         disableMain();
       this.statisticsSectionMain = new Component(this.rootElement, "div", ["statistics-section-main"]);
       this.router = new ConnectionStatistics(this.statisticsSectionMain.element);
-    });
-  
   }
 
   init(): void {

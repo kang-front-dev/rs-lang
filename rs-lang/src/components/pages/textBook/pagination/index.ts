@@ -7,7 +7,6 @@ import {
   getAllWords,
   createUserWords,
 } from '../../../api/api';
-import constants from './1';
 import { WordsItem } from '../groupWords/wordsItem';
 import { getState, updateState } from './state';
 export class Pages extends Component {
@@ -193,8 +192,8 @@ export class Pages extends Component {
     totalCount: number,
     limit: number
   ): void {
-    console.log(
-      `page ${page}, group ${group}, totalCount ${totalCount}, limit ${limit}`
-    );
+    // console.log(
+    //   `page ${page}, group ${group}, totalCount ${totalCount}, limit ${limit}`
+    // );
   }
 }

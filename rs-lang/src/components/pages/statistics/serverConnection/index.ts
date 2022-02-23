@@ -8,17 +8,17 @@ export class ConnectionStatistics {
   private defaultRoute: IConnection;
 
   // Pages
-  wordsGroupPage: Component;
+  statisticPage: Component;
   winnersPage: Component | undefined;
 
   constructor(private rootElement: HTMLElement) {
-    this.wordsGroupPage = new StatisticsPage(this.rootElement);
+    this.statisticPage = new StatisticsPage(this.rootElement);
 
     this.routes = [
       {
         name: "/",
         component: () => {
-          this.rootElement.append(this.wordsGroupPage.element);
+          this.rootElement.append(this.statisticPage.element);
         },
       },
     ];
@@ -43,7 +43,7 @@ export class ConnectionStatistics {
 
   initRouter(): void {
     if (window.location.hash === "") {
-      window.location.hash = "#/";
+      window.location.hash = "#/"; 
     }
 
     window.onpopstate = () => this.updateRouter();

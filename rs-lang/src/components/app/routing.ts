@@ -3,11 +3,10 @@ import { AudioGame } from '../pages/audiogame/audiogame';
 import { Sprint } from '../pages/sprint/sprint';
 import { disableMain, enableMain } from './main';
 import { TextBook } from '../pages/textBook/textBook';
+import { Statistics } from '../pages/statistics/statistics';
 export function setRouting() {
   const headerLinkActive = new headerNavLinkActive();
-
   const headerNavList = document.getElementById('header-nav-links');
-
   const moduleWrapper = document.getElementById('module-wrapper'),
     headerContent = document.querySelector('.header__content');
 
@@ -56,9 +55,7 @@ export function updateCurrentModule(target, fromTextBook?) {
 
     moduleWrapper.appendChild(audiogameRendered);
 
-    if (!fromTextBook) {
-      console.log('dwdwadawdad');
-      
+    if (!fromTextBook) {     
       localStorage.setItem('group', '-1');
       localStorage.setItem('page', '-1');
     }
@@ -78,11 +75,9 @@ export function updateCurrentModule(target, fromTextBook?) {
     }
 
     headerContent.classList.add('element-disabled');
-
     disableMain();
 
     if (!fromTextBook) {
-      console.log('dwdwadawdad2');
       localStorage.setItem('group', '-1');
       localStorage.setItem('page', '-1');
     }
@@ -113,14 +108,11 @@ export function updateCurrentModule(target, fromTextBook?) {
     if (currentModule && currentModule != headerContent) {
       currentModule.remove();
     }
-
     localStorage.setItem('currentModule', '.word-section-main');
-
     headerContent.classList.add('element-disabled');
     disableMain();
-
     const textBook = new TextBook(document.getElementById('module-wrapper'));
-
+   
     headerLinkActive.setActivePosition(
       textbookLink.offsetLeft,
       textbookLink.offsetWidth,
@@ -130,11 +122,15 @@ export function updateCurrentModule(target, fromTextBook?) {
     if (currentModule && currentModule != headerContent) {
       currentModule.remove();
     }
+    localStorage.setItem('currentModule', '.statistics-section-main');
+    headerContent.classList.add('element-disabled');
+    disableMain();
+    const statistics=new Statistics(document.getElementById('module-wrapper'));
 
     headerLinkActive.setActivePosition(
       statsLink.offsetLeft,
       statsLink.offsetWidth,
       statsLink.offsetHeight
     );
-  }
+  } 
 }

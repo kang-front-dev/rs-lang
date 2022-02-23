@@ -19,7 +19,7 @@ export class Connection {
       {
         name: "/",
         component: () => {
-          this.rootElement.append(this.wordsGroupPage.element);
+          this.rootElement.append(this.wordsGroupPage. element);
         },
       },
     ];

@@ -10,4 +10,5 @@ export class ContainerStatistics extends Component {
         super(parentNode, "div", ["statistic-container"])
         this.statisticsItem=new StatisticsItem(this.element)
     }
+
 }

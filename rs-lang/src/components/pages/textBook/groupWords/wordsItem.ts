@@ -75,7 +75,7 @@ export class WordsItem extends Component {
     ]);
     this.soundWordImg.element.setAttribute(
       'src',
-      '../../../../assets/png/soundicon.png'
+      "../../../../assets/png/soundicon.png"
     );
 
     // this.soundWordAudio=new Component(soundWord.element, "audio", ["sound-word__audio"])
@@ -155,7 +155,7 @@ export class WordsItem extends Component {
           JSON.parse(localStorage.SignInUser).userId,
           word.id
         );
-        console.log(deleteBtn);
+        // console.log(deleteBtn);
         this.destroy();
       }
     });
@@ -168,7 +168,7 @@ export class WordsItem extends Component {
     difficultBtn.element.title = 'Добавить слово в сложные';
     difficultBtn.element.addEventListener('click', () => {
       arrDifficultWords.push(word.id);
-      console.log(arrDifficultWords);
+      // console.log(arrDifficultWords);
       this.wordList.element.classList.add('difficultWords_arr');
       const arrDifficultLocalStorage = createUserWords(
         JSON.parse(localStorage.SignInUser).userId,
@@ -178,7 +178,7 @@ export class WordsItem extends Component {
           optional: { repeat: true },
         }
       );
-      console.log(arrDifficultLocalStorage);
+      // console.log(arrDifficultLocalStorage);
     });
 
     const deleteTranslateBtn = new Button(

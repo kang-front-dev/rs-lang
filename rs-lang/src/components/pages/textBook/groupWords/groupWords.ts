@@ -5,7 +5,7 @@ import { GroupWordsContainer } from "./groupWordsContainer";
 
 export class GroupWordsClass extends Component {
   [x: string]: any;
-  page = 0;
+  page = 0; 
   group = 0;
   private groupWordsContainer: GroupWordsContainer;
   private title: Component;
@@ -56,7 +56,7 @@ export class GroupWordsClass extends Component {
 
   private async getWord(wordId: string): Promise<void> {
     const word = await getWord(wordId);
-    console.log(word);
+    // console.log(word);
     // if (word) this.garageOptions.updateState(word);
   }
 
@@ -67,7 +67,6 @@ export class GroupWordsClass extends Component {
 
   private async removeWord(id: string, wordId: string): Promise<void> {
     await deleteUserWord(id, wordId);
-    // console.log(deleteWord(wordId))
     await this.getAllWords(this.page, this.group);
   }
 
