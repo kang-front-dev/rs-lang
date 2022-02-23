@@ -1,0 +1,144 @@
+$cerulean-blue-50: #ecf2ff;
+$cerulean-blue-100: #dde7ff;
+$cerulean-blue-200: #c2d2ff;
+$cerulean-blue-300: #9db4ff;
+$cerulean-blue-400: #758bff;
+$cerulean-blue-500: #5563ff;
+$cerulean-blue-600: #3738f4;
+$cerulean-blue-700: #3734da;
+$cerulean-blue-800: #2525ae;
+$cerulean-blue-900: #262889;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+section {
+  padding: 100px 0;
+}
+
+.container {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.section__underline {
+  width: 290px;
+  height: 2px;
+  border-radius: 1px;
+  background: #fff;
+  margin-top: 20px;
+
+  opacity: 0;
+  &-appear-active {
+    animation: slideFromDown 0.3s ease-in-out;
+    opacity: 1;
+  }
+}
+
+.section__title {
+  font-family: 'Gilroy';
+  font-weight: 700;
+  font-size: 60px;
+  color: #fff;
+
+  opacity: 0;
+  &-appear-active {
+    animation: slideFromDown 0.3s ease-in-out;
+    opacity: 1;
+  }
+}
+
+#module-wrapper {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 290px;
+
+  flex-grow: 1;
+  position: relative;
+  z-index: 5;
+}
+
+.games__title {
+  font-family: 'Gilroy';
+  font-size: 52px;
+  font-weight: 700;
+  color: rgb(60, 60, 60);
+  text-align: center;
+  margin-bottom: 50px;
+}
+.games-btn__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+.game__btn-1,
+.game__btn-2{
+  height: 250px;
+  outline: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.103);
+
+  border-radius: 10px;
+
+  font-family: 'Gilroy';
+  font-size: 50px;
+  font-weight: 700;
+  color: rgb(60, 60, 60);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: -70px;
+
+  box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.3),
+  0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+
+  backdrop-filter: blur(5px);
+  transition: 0.2s ease-in-out;
+  &:hover{
+    transform: scale(1.02);
+  }
+}
+.game__btn-1{
+  background-image: url('../assets/img/guide-card-1.png');
+}
+.game__btn-2{
+  background-image: url('../assets/img/guide-card-2.png');
+}
+
+@keyframes slideFromDown {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
