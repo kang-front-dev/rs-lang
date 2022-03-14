@@ -42,9 +42,9 @@ const sashaInfo: object = {
   name: 'Саша',
   role: 'Frontend Dev',
   ghLink: 'https://github.com/alexanderson0708',
-  comment: `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-  Consequuntur est, voluptas eaque facere dignissimos architecto
-  nisi veritatis mollitia. Nihil, odio!`,
+  comment: `Проект был очень интересен для меня, он принёс много опыта.
+  Хотелось бы отдельно отметить опыт в команде, который показал все мои отрицательные стороны,
+  к чему мне стоит стремится в дальнейшем развитии в сфере front-end.`,
   goals: ['Авторизация', 'Аудиовызов и Спринт'],
 };
 const kostyaInfo: object = {
@@ -52,9 +52,9 @@ const kostyaInfo: object = {
   name: 'Костя',
   role: 'Team Lead | Frontend Dev',
   ghLink: 'https://github.com/na1led',
-  comment: `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-  Consequuntur est, voluptas eaque facere dignissimos architecto
-  nisi veritatis mollitia. Nihil, odio!`,
+  comment: `Так как это мой первый совместный проект с другими разработчиками,
+  я почти сразу познал сложность кооперации,
+  но несмотря на это мы смогли реализовать большую часть функционала`,
   goals: ['Дизайн', 'Верстка'],
 };
 const lizaInfo: object = {
