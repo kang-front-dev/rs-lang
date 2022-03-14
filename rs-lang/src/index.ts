@@ -62,9 +62,9 @@ const lizaInfo: object = {
   name: 'Лиза',
   role: 'Frontend Dev',
   ghLink: 'https://github.com/elizavetachizh',
-  comment: `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-  Consequuntur est, voluptas eaque facere dignissimos architecto
-  nisi veritatis mollitia. Nihil, odio!`,
+  comment: `Проект был действительно интересным. Было разработано много крутых фич. Рада была получить опыт работы в команде. В ближайшем будущем мне это однозначно пригодится. 
+Спасибо ребятам, которые помогали с решением тасок и поддерживали
+Спасибо так же тем, кто придумал этот проект. Дальше - больше)`,
   goals: ['Электронный учебник', 'Статистика'],
 };
 
